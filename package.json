@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/iray-tno/chirashi-js",
   "author": "Yuta Tanaka <iray.tno@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "gatsby": "^2.0.0-beta.42"
+  }
 }
