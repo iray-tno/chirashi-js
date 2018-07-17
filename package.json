@@ -1,0 +1,9 @@
+{
+  "name": "chirashi_js",
+  "version": "0.0.1",
+  "description": "My stupid blog.",
+  "main": "index.js",
+  "repository": "https://github.com/iray-tno/chirashi-js",
+  "author": "Yuta Tanaka <iray.tno@gmail.com>",
+  "license": "MIT"
+}
