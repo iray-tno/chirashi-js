@@ -6,6 +6,11 @@
   "repository": "https://github.com/iray-tno/chirashi-js",
   "author": "Yuta Tanaka <iray.tno@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve"
+  },
   "dependencies": {
     "gatsby": "^2.0.0-beta.42",
     "react": "^16.4.1",
