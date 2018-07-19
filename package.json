@@ -9,11 +9,22 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "lint": "eslint src/**/*.js*",
+    "flow": "flow"
   },
   "dependencies": {
     "gatsby": "^2.0.0-beta.42",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "flow-bin": "^0.76.0"
   }
 }
