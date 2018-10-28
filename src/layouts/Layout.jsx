@@ -16,7 +16,7 @@ export default class Template extends React.PureComponent<Props> {
         return (
             <React.Fragment>
                 <Helmet
-                    title="Gatsby Default (Blog) Starter"
+                    title="Chiranoura"
                     meta={[
                         { name: 'description', content: 'Sample' },
                         { name: 'keywords', content: 'sample, something' },
@@ -31,7 +31,7 @@ export default class Template extends React.PureComponent<Props> {
                                     textDecoration: 'none',
                                 }}
                             >
-                                Gatsby Blog
+                                Chiranoura
                             </Link>
                         </h1>
                     </div>
