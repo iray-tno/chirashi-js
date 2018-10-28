@@ -28,26 +28,11 @@ export const pageQuery = graphql`
                     frontmatter {
                         title
                     }
+                    fields {
+                        slug
+                    }
                 }
             }
         }
     }
 `;
-
-// export const pageQuery = graphql`
-//     query IndexQuery {
-//         allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-//             edges {
-//                 node {
-//                     excerpt(pruneLength: 250)
-//                     id
-//                     frontmatter {
-//                         title
-//                         date(formatString: "MMMM DD, YYYY")
-//                         path
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// `;

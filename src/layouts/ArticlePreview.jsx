@@ -15,7 +15,7 @@ export default class ArticlePreview extends React.PureComponent<Props> {
         return (
             <div className="blog-post-preview" key={post.id}>
                 <h1 className="title">
-                    <Link to={post.frontmatter.path}>
+                    <Link to={post.fields.slug}>
                         {post.frontmatter.title}
                     </Link>
                 </h1>
@@ -25,7 +25,7 @@ export default class ArticlePreview extends React.PureComponent<Props> {
                 <p>
                     {post.excerpt}
                 </p>
-                <Link to={post.frontmatter.path}>
+                <Link to={post.fields.slug}>
                     Read more
                 </Link>
             </div>
