@@ -1,5 +1,6 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
+const parseArticlePath = require('./src/utils/parseArticlePath');
 
 /**
  * onCreateNode
@@ -18,6 +19,16 @@ function onCreateNode({ node, getNode, actions }) {
             name: 'slug',
             value: `/articles${relativeFilePath}`,
         });
+
+        const [
+            date,
+            index,
+            name,
+        ] = parseArticlePath(relativeFilePath);
+
+        createNodeField({ node, name: 'date', value: date });
+        createNodeField({ node, name: 'index', value: index });
+        createNodeField({ node, name: 'name', value: name });
     }
 }
 
