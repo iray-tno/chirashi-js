@@ -9,8 +9,6 @@ type Props = {
 
 export default class Template extends React.PureComponent<Props> {
     render() {
-        // const { location } = this.props;
-        // const isRoot = location.pathname === '/';
         const {
             children,
         } = this.props;
@@ -30,7 +28,6 @@ export default class Template extends React.PureComponent<Props> {
                             <Link
                                 to="/"
                                 style={{
-                                    color: 'white',
                                     textDecoration: 'none',
                                 }}
                             >

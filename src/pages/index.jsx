@@ -1,7 +1,8 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../layouts/Layout';
+import ArticlePreview from '../layouts/ArticlePreview';
 
 export default function Index(props) {
     const { data } = props;
@@ -11,26 +12,7 @@ export default function Index(props) {
             <div className="blog-posts">
                 {posts
                     .filter(post => post.node.frontmatter.title.length > 0)
-                    .map(({ node: post }) => {
-                        return (
-                            <div className="blog-post-preview" key={post.id}>
-                                <h1 className="title">
-                                    <Link to={post.frontmatter.path}>
-                                        {post.frontmatter.title}
-                                    </Link>
-                                </h1>
-                                <h2 className="date">
-                                    {post.frontmatter.date}
-                                </h2>
-                                <p>
-                                    {post.excerpt}
-                                </p>
-                                <Link to={post.frontmatter.path}>
-                                    Read more
-                                </Link>
-                            </div>
-                        );
-                    })}
+                    .map(({ node: post }) => <ArticlePreview post={post} />)}
             </div>
         </Layout>
     );
