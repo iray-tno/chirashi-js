@@ -1,10 +1,10 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
 type Props = {
-    children: Function,
+    children: React.Node,
 };
 
 export default class Template extends React.PureComponent<Props> {

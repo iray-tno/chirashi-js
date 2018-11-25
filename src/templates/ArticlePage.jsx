@@ -4,6 +4,10 @@ import { graphql } from 'gatsby';
 
 import Layout from '../layouts/Layout';
 
+type Props = {
+    data: $FlowFixMe,
+};
+
 export default class ArticlePage extends React.PureComponent<Props> {
     createMarkup() {
         const {
