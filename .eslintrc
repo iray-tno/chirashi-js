@@ -20,6 +20,12 @@
             "error",
             4
         ],
+        "react/jsx-one-expression-per-line": [
+            "error",
+            {
+                "allow": "single-child"
+            }
+        ],
         "react/prefer-stateless-function": "off"
     },
     "overrides": [
