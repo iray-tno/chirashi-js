@@ -27,6 +27,7 @@ export default class ArticlePage extends React.PureComponent<Props> {
             <Layout>
                 <div>
                     <h1>{post.frontmatter.title}</h1>
+                    <h2>{post.fields.date}</h2>
                     {/* eslint-disable-next-line react/no-danger */}
                     <div dangerouslySetInnerHTML={this.createMarkup()} />
                 </div>
@@ -41,6 +42,9 @@ export const query = graphql`
             html
             frontmatter {
                 title
+            }
+            fields {
+                date
             }
         }
     }

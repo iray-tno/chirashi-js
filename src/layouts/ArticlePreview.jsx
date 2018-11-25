@@ -20,7 +20,7 @@ export default class ArticlePreview extends React.PureComponent<Props> {
                     </Link>
                 </h1>
                 <h2 className="date">
-                    {post.frontmatter.date}
+                    {post.fields.date}
                 </h2>
                 <p>
                     {post.excerpt}

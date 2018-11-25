@@ -20,7 +20,7 @@ export default function Index(props) {
 
 export const pageQuery = graphql`
     query IndexQuery {
-        allMarkdownRemark(sort: { order: DESC, fields: [] }) {
+        allMarkdownRemark(sort: { order: DESC, fields: [fields___date] }) {
             edges {
                 node {
                     excerpt(pruneLength: 250)
