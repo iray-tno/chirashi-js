@@ -18,15 +18,19 @@ export default function Index(props) {
     );
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
     query IndexQuery {
-        allMarkdownRemark(sort: { order: DESC, fields: [fields___date] }) {
+        allMarkdownRemark(
+            sort: { order: DESC, fields: [fields___date] }
+            filter: { frontmatter: { publish: { ne:false } } }
+        ) {
             edges {
                 node {
                     excerpt(pruneLength: 250)
                     id
                     frontmatter {
                         title
+                        publish
                     }
                     fields {
                         slug

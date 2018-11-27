@@ -37,7 +37,7 @@ function createPages({ graphql, actions }) {
     return new Promise((resolve, reject) => {
         graphql(`
             {
-                allMarkdownRemark {
+                allMarkdownRemark(filter: { frontmatter: { publish: { ne:false } } }) {
                     edges {
                         node {
                             fields {
