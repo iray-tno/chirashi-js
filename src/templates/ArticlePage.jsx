@@ -27,7 +27,26 @@ export default class ArticlePage extends React.PureComponent<Props> {
             <Layout>
                 <div>
                     <h1>{post.frontmatter.title}</h1>
-                    <h2>{post.fields.date}</h2>
+                    <div>
+                        <span>Date:</span>
+                        <span>{post.fields.date}</span>
+                    </div>
+                    <div>
+                        <span>Author:</span>
+                        <span>{post.frontmatter.author}</span>
+                    </div>
+                    <div>
+                        <span>Category:</span>
+                        <span>{post.frontmatter.category}</span>
+                    </div>
+                    <div>
+                        <span>Tags:</span>
+                        <span>
+                            {post.frontmatter.tags.map((tag) => {
+                                return <span>{tag}</span>;
+                            })}
+                        </span>
+                    </div>
                     {/* eslint-disable-next-line react/no-danger */}
                     <div dangerouslySetInnerHTML={this.createMarkup()} />
                 </div>
@@ -42,6 +61,9 @@ export const query = graphql`
             html
             frontmatter {
                 title
+                author
+                category
+                tags
             }
             fields {
                 date
