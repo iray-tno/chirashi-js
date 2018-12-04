@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { graphql } from 'gatsby';
+import { DiscussionEmbed } from 'disqus-react';
 
 import Layout from '../layouts/Layout';
 
@@ -50,6 +51,16 @@ export default class ArticlePage extends React.PureComponent<Props> {
                     {/* eslint-disable-next-line react/no-danger */}
                     <div dangerouslySetInnerHTML={this.createMarkup()} />
                 </div>
+                <div>
+                    <DiscussionEmbed
+                        shortname="chiranoura"
+                        config={{
+                            title: post.frontmatter.title,
+                            identifier: post.fields.slug,
+                            url: `http://chiraoura.nobody.jp${post.fields.slug}`,
+                        }}
+                    />
+                </div>
             </Layout>
         );
     }
@@ -67,6 +78,7 @@ export const query = graphql`
             }
             fields {
                 date
+                slug
             }
         }
     }
