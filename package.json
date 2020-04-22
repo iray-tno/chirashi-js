@@ -15,7 +15,7 @@
     "flow": "flow"
   },
   "dependencies": {
-    "disqus-react": "^1.0.5",
+    "disqus-react": "^1.0.8",
     "gatsby": "^2.0.55",
     "gatsby-plugin-catch-links": "^2.0.8",
     "gatsby-plugin-react-helmet": "^3.0.2",
