@@ -19,7 +19,7 @@
     "gatsby": "^2.20.29",
     "gatsby-plugin-catch-links": "^2.2.4",
     "gatsby-plugin-react-helmet": "^3.2.4",
-    "gatsby-source-filesystem": "^2.2.4",
+    "gatsby-source-filesystem": "^2.2.5",
     "gatsby-transformer-remark": "^2.7.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
