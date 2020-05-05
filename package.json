@@ -18,16 +18,21 @@
     "disqus-react": "^1.0.8",
     "gatsby": "^2.21.7",
     "gatsby-plugin-catch-links": "^2.3.0",
+    "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-react-helmet": "^3.3.0",
+    "gatsby-plugin-typescript": "^2.4.0",
     "gatsby-source-filesystem": "^2.3.0",
     "gatsby-transformer-remark": "^2.8.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^6.0.0"
+    "react-helmet": "^6.0.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-flow": "^7.9.0",

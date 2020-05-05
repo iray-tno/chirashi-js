@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
 import { Link } from 'gatsby';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 type Props = {
     children: React.Node,
 };
 
-export default class Template extends React.PureComponent<Props> {
+export default class Layout extends React.PureComponent<Props> {
     render() {
         const {
             children,
