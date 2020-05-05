@@ -5,3 +5,5 @@ articles
 .nyc_output
 coverage
 yarn-error.log
+
+types/graphql-types.d.ts
