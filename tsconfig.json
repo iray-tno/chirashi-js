@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esnext",
+        // "strict": true, // FIXME#74: Review after migration finished
+        "sourceMap": true,
+        // "noImplicitAny": true, // FIXME#74: Same as above
+        "esModuleInterop": true,
+        "jsx": "react",
+        "lib": [
+            "dom",
+            "esnext"
+        ]
+    },
+    "include": [
+        "./types/**/*",
+        "./src/**/*"
+    ]
+}
