@@ -2,9 +2,9 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "esnext",
-        // "strict": true, // FIXME#74: Review after migration finished
+        // "strict": true, // FIXME#73: Review after migration finished
         "sourceMap": true,
-        // "noImplicitAny": true, // FIXME#74: Same as above
+        // "noImplicitAny": true, // FIXME#73: Same as above
         "esModuleInterop": true,
         "jsx": "react",
         "lib": [
