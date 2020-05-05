@@ -47,6 +47,6 @@
     "eslint-plugin-react": "^7.19.0",
     "flow-bin": "^0.123.0",
     "jest-cli": "^25.5.0",
-    "jest-config": "^25.5.0"
+    "jest-config": "^26.0.0"
   }
 }
