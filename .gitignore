@@ -6,4 +6,4 @@ articles
 coverage
 yarn-error.log
 
-types/graphql-types.d.ts
+types/graphqlTypes.d.ts
