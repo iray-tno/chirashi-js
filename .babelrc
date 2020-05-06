@@ -9,7 +9,8 @@
                         ">0.25%",
                         "not dead"
                     ]
-                }
+                },
+                "corejs": 3
             }
         ],
         "@babel/preset-react",
