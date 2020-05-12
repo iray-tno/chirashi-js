@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "disqus-react": "^1.0.8",
-    "gatsby": "^2.21.7",
+    "gatsby": "^2.21.24",
     "gatsby-plugin-catch-links": "^2.3.0",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-react-helmet": "^3.3.0",
