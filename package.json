@@ -10,7 +10,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "lint": "eslint src/**/*.js*",
+    "lint": "eslint src/**/*.js* src/**/*.ts*",
     "test": "jest",
     "flow": "flow"
   },
@@ -38,6 +38,8 @@
     "@babel/preset-flow": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "@types/jest": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
     "babel-core": "^7.0.0-bridge",
     "babel-jest": "^25.5.0",
     "eslint": "^5.16.0",

@@ -1,11 +1,20 @@
 {
     "extends": [
+        "eslint:recommended",
         "airbnb",
-        "plugin:flowtype/recommended"
+        "plugin:flowtype/recommended",
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
     "plugins": [
-        "flowtype"
+        "flowtype",
+        "@typescript-eslint"
     ],
     "rules": {
         "arrow-body-style": [
@@ -29,12 +38,22 @@
                 "allow": "single-child"
             }
         ],
-        "react/prefer-stateless-function": "off"
+        "react/prefer-stateless-function": "off",
+        "import/extensions": [
+            ".js",
+            ".jsx",
+            ".json",
+            ".ts",
+            ".tsx"
+        ]
     },
     "overrides": [
         {
             "files": [
-                "**/*.test.js"
+                "**/*.test.js",
+                "**/*.test.jsx",
+                "**/*.test.ts",
+                "**/*.test.tsx"
             ],
             "env": {
                 "jest": true
