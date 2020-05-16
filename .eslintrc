@@ -46,6 +46,19 @@
         ],
         "react/prefer-stateless-function": "off",
         "react/prop-types": "off",
+        "@typescript-eslint/member-delimiter-style": [
+            "error",
+            {
+                "multiline": {
+                    "delimiter": "comma",
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "comma",
+                    "requireLast": false
+                }
+            }
+        ],
         "import/extensions": [
             ".js",
             ".jsx",
@@ -55,6 +68,15 @@
         ]
     },
     "overrides": [
+        {
+            "files": [
+                "**/*.js"
+            ],
+            "parser": "babel-eslint",
+            "rules": {
+                "@typescript-eslint/no-var-requires": 0
+            }
+        },
         {
             "files": [
                 "**/*.test.js",

@@ -1,0 +1,4 @@
+node_modules/*
+public/*
+coverage/*
+types/graphqlTypes.d.ts

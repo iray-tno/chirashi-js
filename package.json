@@ -10,7 +10,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "lint": "eslint src/**/*.js* src/**/*.ts*",
+    "lint": "eslint ./**/*.ts ./**/*.tsx ./**/*.js",
     "test": "jest",
     "flow": "flow"
   },
