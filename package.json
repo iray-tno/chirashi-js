@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@types/react": "^16.9.35",
+    "@types/react-helmet": "^6.0.0",
     "disqus-react": "^1.0.8",
     "gatsby": "^2.21.7",
     "gatsby-plugin-catch-links": "^2.3.0",
