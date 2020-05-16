@@ -16,7 +16,6 @@ const Index: React.FC<Props> = React.memo((props) => {
         <Layout {...props}>
             <div className="blog-posts">
                 {posts
-                    .filter(post => post.node.frontmatter.title.length > 0)
                     .map(({ node: post }) => <ArticlePreview post={post} />)}
             </div>
         </Layout>
@@ -29,7 +28,7 @@ export const query = graphql`
     query Index {
         allMarkdownRemark(
             sort: { order: DESC, fields: [fields___date] }
-            filter: { frontmatter: { publish: { ne:false } } }
+            filter: { frontmatter: { publish: { ne: false } } }
             limit: 6
         ) {
             edges {
