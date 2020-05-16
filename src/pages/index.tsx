@@ -3,8 +3,13 @@ import { graphql } from 'gatsby';
 
 import Layout from '../layouts/Layout';
 import ArticlePreview from '../layouts/ArticlePreview';
+import { IndexQuery } from '../../types/graphqlTypes';
 
-export default function Index(props) {
+type Props = {
+    data: IndexQuery,
+};
+
+const Index: React.FC<Props> = React.memo((props) => {
     const { data } = props;
     const { edges: posts } = data.allMarkdownRemark;
     return (
@@ -16,10 +21,12 @@ export default function Index(props) {
             </div>
         </Layout>
     );
-}
+});
+
+export default Index;
 
 export const query = graphql`
-    query IndexQuery {
+    query Index {
         allMarkdownRemark(
             sort: { order: DESC, fields: [fields___date] }
             filter: { frontmatter: { publish: { ne:false } } }
