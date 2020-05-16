@@ -18,7 +18,7 @@
     "@types/react-helmet": "^6.0.0",
     "disqus-react": "^1.0.8",
     "gatsby": "^2.21.7",
-    "gatsby-plugin-catch-links": "^2.3.0",
+    "gatsby-plugin-catch-links": "^2.3.1",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-react-helmet": "^3.3.0",
     "gatsby-plugin-typescript": "^2.4.0",
