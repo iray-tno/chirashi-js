@@ -38,7 +38,14 @@
                 "allow": "single-child"
             }
         ],
+        "react/jsx-filename-extension": [
+            "error",
+            {
+                "extensions": [".jsx", ".tsx"]
+            }
+        ],
         "react/prefer-stateless-function": "off",
+        "react/prop-types": "off",
         "import/extensions": [
             ".js",
             ".jsx",
