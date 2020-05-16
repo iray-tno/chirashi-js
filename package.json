@@ -11,8 +11,7 @@
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "lint": "eslint ./**/*.ts ./**/*.tsx ./**/*.js",
-    "test": "jest",
-    "flow": "flow"
+    "test": "jest"
   },
   "dependencies": {
     "@types/react": "^16.9.35",
