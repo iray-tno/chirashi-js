@@ -20,7 +20,7 @@ const query = `
 `;
 
 type Result = {
-    allMarkdownRemark: MarkdownRemarkConnection;
+    allMarkdownRemark: MarkdownRemarkConnection,
 };
 
 /**
@@ -65,7 +65,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
     nodes.forEach(({ node }) => {
         createPage({
             path: node.fields.slug,
-            component: path.resolve('./src/templates/ArticlePage.jsx'),
+            component: path.resolve('./src/templates/ArticlePage.tsx'),
             context: {
                 slug: node.fields.slug,
             },
