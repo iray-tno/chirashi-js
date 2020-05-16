@@ -2,12 +2,7 @@
 
 'use strict';
 
-require('ts-node').register({
-    compilerOptions: {
-        module: 'commonjs',
-        target: 'esnext',
-    },
-});
+require('ts-node').register(require('tsconfig.json'));
 const gatsbyNode = require('./src/gatsbyNode/index');
 
 exports.createPages = gatsbyNode.createPages;
