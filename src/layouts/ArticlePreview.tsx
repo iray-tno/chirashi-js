@@ -20,20 +20,23 @@ const ArticlePreview: React.FC<Props> = React.memo((props) => {
         post,
     } = props;
 
+    const slug = post?.fields?.slug;
+    if (slug == null) return null;
+
     return (
         <div className="blog-post-preview" key={post.id}>
             <h1 className="title">
-                <Link to={post.fields.slug}>
-                    {post.frontmatter.title}
+                <Link to={slug}>
+                    {post?.frontmatter?.title}
                 </Link>
             </h1>
             <h2 className="date">
-                {post.fields.date}
+                {post?.fields?.date}
             </h2>
             <p>
                 {post.excerpt}
             </p>
-            <Link to={post.fields.slug}>
+            <Link to={slug}>
                 Read more
             </Link>
         </div>

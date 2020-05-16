@@ -11,6 +11,7 @@ type Props = {
 };
 
 function createMarkup(data: ArticlePageQuery): { __html: string } {
+    if (data.markdownRemark?.html == null) return { __html: '' };
     return { __html: data.markdownRemark.html };
 }
 
@@ -23,23 +24,23 @@ const ArticlePage: React.FC<Props> = (props) => {
     return (
         <Layout>
             <div>
-                <h1>{post.frontmatter.title}</h1>
+                <h1>{post?.frontmatter?.title}</h1>
                 <div>
                     <span>Date:</span>
-                    <span>{post.fields.date}</span>
+                    <span>{post?.fields?.date}</span>
                 </div>
                 <div>
                     <span>Author:</span>
-                    <span>{post.frontmatter.author}</span>
+                    <span>{post?.frontmatter?.author}</span>
                 </div>
                 <div>
                     <span>Category:</span>
-                    <span>{post.frontmatter.category}</span>
+                    <span>{post?.frontmatter?.category}</span>
                 </div>
                 <div>
                     <span>Tags:</span>
                     <span>
-                        {post.frontmatter.tags.map((tag) => {
+                        {post?.frontmatter?.tags?.map((tag) => {
                             return <span>{tag}</span>;
                         })}
                     </span>
@@ -51,9 +52,9 @@ const ArticlePage: React.FC<Props> = (props) => {
                 <DiscussionEmbed
                     shortname="chiranoura"
                     config={{
-                        title: post.frontmatter.title,
-                        identifier: post.fields.slug,
-                        url: `http://chiraoura.nobody.jp${post.fields.slug}`,
+                        title: post?.frontmatter?.title || '',
+                        identifier: post?.fields?.slug || '',
+                        url: `http://chiraoura.nobody.jp${post?.fields?.slug}`,
                     }}
                 />
             </div>

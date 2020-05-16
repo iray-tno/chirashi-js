@@ -26,8 +26,10 @@ type Result = {
 /**
  * onCreateNode
  */
-export function onCreateNode({ node, getNode, actions }): void {
+export const onCreateNode: GatsbyNode['onCreateNode'] = (args) => {
+    const { node, getNode, actions } = args;
     const { createNodeField } = actions;
+
     if (node.internal.type === 'MarkdownRemark') {
         const relativeFilePath = createFilePath({
             node,
@@ -51,23 +53,26 @@ export function onCreateNode({ node, getNode, actions }): void {
         createNodeField({ node, name: 'index', value: index });
         createNodeField({ node, name: 'name', value: name });
     }
-}
+};
 
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     const { createPage } = actions;
 
     const result = await graphql<Result>(query);
-    if (result.errors) {
-        throw result.errors;
-    }
+    if (result.errors) throw result.errors;
 
-    const nodes = result.data.allMarkdownRemark.edges;
+    const nodes = result?.data?.allMarkdownRemark.edges;
+    if (nodes == null) return;
+
     nodes.forEach(({ node }) => {
+        const nodePath = node?.fields?.slug;
+        if (nodePath == null) throw new Error('node.field.slug should not be nullish');
+
         createPage({
-            path: node.fields.slug,
+            path: nodePath,
             component: path.resolve('./src/templates/ArticlePage.tsx'),
             context: {
-                slug: node.fields.slug,
+                slug: nodePath,
             },
         });
     });
