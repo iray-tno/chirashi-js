@@ -1,10 +1,13 @@
 import path from 'path';
 import { createFilePath } from 'gatsby-source-filesystem';
+import { GatsbyNode } from 'gatsby';
+
 import parseArticlePath from '../utils/parseArticlePath';
+import { MarkdownRemarkConnection } from '../../types/graphqlTypes';
 
 const query = `
-    {
-        allMarkdownRemark(filter: { frontmatter: { publish: { ne:false } } }) {
+    query PagesQuery {
+        allMarkdownRemark(filter: { frontmatter: { publish: { ne: false } } }) {
             edges {
                 node {
                     fields {
@@ -16,10 +19,14 @@ const query = `
     }
 `;
 
+type Result = {
+    allMarkdownRemark: MarkdownRemarkConnection;
+};
+
 /**
  * onCreateNode
  */
-export function onCreateNode({ node, getNode, actions }) {
+export function onCreateNode({ node, getNode, actions }): void {
     const { createNodeField } = actions;
     if (node.internal.type === 'MarkdownRemark') {
         const relativeFilePath = createFilePath({
@@ -46,23 +53,22 @@ export function onCreateNode({ node, getNode, actions }) {
     }
 }
 
-export function createPages({ graphql, actions }) {
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     const { createPage } = actions;
 
-    return new Promise((resolve, reject) => {
-        graphql(query).then((result) => {
-            result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-                createPage({
-                    path: node.fields.slug,
-                    component: path.resolve('./src/templates/ArticlePage.jsx'),
-                    context: {
-                        slug: node.fields.slug,
-                    },
-                });
-            });
-            resolve();
-        }).catch((error: Error) => {
-            reject(error);
+    const result = await graphql<Result>(query);
+    if (result.errors) {
+        throw result.errors;
+    }
+
+    const nodes = result.data.allMarkdownRemark.edges;
+    nodes.forEach(({ node }) => {
+        createPage({
+            path: node.fields.slug,
+            component: path.resolve('./src/templates/ArticlePage.jsx'),
+            context: {
+                slug: node.fields.slug,
+            },
         });
     });
-}
+};
