@@ -2,7 +2,7 @@ import path from 'path';
 import { createFilePath } from 'gatsby-source-filesystem';
 import { GatsbyNode } from 'gatsby';
 
-import parseArticlePath from '../utils/parseArticlePath';
+import parseArticlePath from './parseArticlePath';
 import { MarkdownRemarkConnection } from '../../types/graphqlTypes';
 
 const query = `
