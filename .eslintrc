@@ -77,13 +77,28 @@
         },
         {
             "files": [
-                "**/*.test.js",
-                "**/*.test.jsx",
-                "**/*.test.ts",
-                "**/*.test.tsx"
+                "**/*.test.[jt]s",
+                "**/*.test.[jt]sx"
             ],
             "env": {
                 "jest": true
+            }
+        },
+        {
+            "files": [
+                "**/*.test.[jt]s",
+                "**/*.test.[jt]sx",
+                "**/*.stories.[jt]s",
+                "**/*.stories.[jt]sx"
+            ],
+            "rules": {
+                "import/no-extraneous-dependencies": [
+                    "error",
+                    {
+                        "devDependencies": true,
+                        "optionalDependencies": false
+                    }
+                ]
             }
         }
     ]
