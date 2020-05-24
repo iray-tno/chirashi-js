@@ -1,4 +1,7 @@
+/* global window */
+/* eslint-disable no-underscore-dangle */
 import { action } from '@storybook/addon-actions';
+import noop from 'lodash.noop';
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
@@ -6,8 +9,8 @@ import { action } from '@storybook/addon-actions';
 // requiring you to override it to empty functions (no-op),
 // so Gatsby Link doesn't throw any errors.
 global.___loader = {
-    enqueue: () => {},
-    hovering: () => {},
+    enqueue: noop,
+    hovering: noop,
 };
 
 // __PATH_PREFIX__ is used inside gatsby-link an other various places.
@@ -19,6 +22,6 @@ global.__PATH_PREFIX__ = '';
 // In Storybook it makes more sense to log an action than doing an actual navigate.
 // Checkout the actions addon docs for more info:
 //   https://github.com/storybookjs/storybook/tree/master/addons/actions.
-window.___navigate = pathname => {
-    action('NavigateTo:')(pathname)
+window.___navigate = (pathname) => {
+    action('NavigateTo:')(pathname);
 };
