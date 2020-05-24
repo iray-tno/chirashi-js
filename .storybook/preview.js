@@ -3,6 +3,9 @@
 import { action } from '@storybook/addon-actions';
 import noop from 'lodash.noop';
 
+import 'normalize.css';
+import '../src/global/default.scss';
+
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
 // This global object isn't set in storybook context,
