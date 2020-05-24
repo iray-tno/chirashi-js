@@ -10,6 +10,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-react-css-modules',
             options: {
+                generateScopedName: '[path]___[name]__[local]___[hash:base64:5]',
                 filetypes: {
                     '.scss': {
                         syntax: 'postcss-scss',
@@ -18,7 +19,14 @@ module.exports = {
                 exclude: '/global/',
             },
         },
-        'gatsby-plugin-sass',
+        {
+            resolve: 'gatsby-plugin-sass',
+            options: {
+                cssLoaderOptions: {
+                    localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+                },
+            },
+        },
         'gatsby-plugin-catch-links',
         {
             resolve: 'gatsby-source-filesystem',
