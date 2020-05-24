@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const path = require('path');
 
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
         '@storybook/addon-links',
         '@storybook/addon-docs',
     ],
-    webpackFinal: async (config, { configType }) => {
+    webpackFinal: async (config) => {
         // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
         config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/];
 
@@ -43,9 +44,9 @@ module.exports = {
                     [
                         require.resolve('babel-plugin-react-css-modules'),
                         {
-                            'filetypes': {
+                            filetypes: {
                                 '.scss': {
-                                    'syntax': 'postcss-scss',
+                                    syntax: 'postcss-scss',
                                 },
                             },
                         },
@@ -60,7 +61,7 @@ module.exports = {
             test: /\.scss$/,
             use: ['style-loader', 'css-loader', 'sass-loader'],
             include: path.resolve(__dirname, '../'),
-            exclude: /\.module\.scss$/
+            exclude: /\.module\.scss$/,
         });
         config.module.rules.push({
             test: /\.module\.scss$/,
@@ -75,11 +76,11 @@ module.exports = {
                             localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
                         },
                         importLoaders: 1,
-                    }
+                    },
                 },
-                'sass-loader'
-            ]
+                'sass-loader',
+            ],
         });
         return config;
-    }
+    },
 };

@@ -68,10 +68,12 @@
     "overrides": [
         {
             "files": [
-                "**/*.js"
+                "**/*.js",
+                ".storybook/*.js"
             ],
             "parser": "babel-eslint",
             "rules": {
+                "@typescript-eslint/explicit-function-return-type": 0,
                 "@typescript-eslint/no-var-requires": 0
             }
         },
@@ -86,6 +88,7 @@
         },
         {
             "files": [
+                ".storybook/*.js",
                 "**/*.test.[jt]s",
                 "**/*.test.[jt]sx",
                 "**/*.stories.[jt]s",
