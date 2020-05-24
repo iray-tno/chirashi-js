@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const path = require('path');
 
 module.exports = {
     stories: ['../src/**/*.stories.tsx'],
@@ -29,7 +29,7 @@ module.exports = {
         ];
 
         // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
-        config.resolve.mainFields = ['browser', 'module', 'main']
+        config.resolve.mainFields = ['browser', 'module', 'main'];
 
         // TypeScript config
         config.module.rules.push({
@@ -40,11 +40,46 @@ module.exports = {
                 plugins: [
                     require.resolve('@babel/plugin-proposal-class-properties'),
                     require.resolve('babel-plugin-remove-graphql-queries'),
+                    [
+                        require.resolve('babel-plugin-react-css-modules'),
+                        {
+                            'filetypes': {
+                                '.scss': {
+                                    'syntax': 'postcss-scss',
+                                },
+                            },
+                        },
+                    ],
                 ],
             },
         });
         config.resolve.extensions.push('.ts', '.tsx');
 
+        // CSS Modules config
+        config.module.rules.push({
+            test: /\.scss$/,
+            use: ['style-loader', 'css-loader', 'sass-loader'],
+            include: path.resolve(__dirname, '../'),
+            exclude: /\.module\.scss$/
+        });
+        config.module.rules.push({
+            test: /\.module\.scss$/,
+            use: [
+                'style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: {
+                            mode: 'local',
+                            exportGlobals: true,
+                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+                        },
+                        importLoaders: 1,
+                    }
+                },
+                'sass-loader'
+            ]
+        });
         return config;
     }
 };

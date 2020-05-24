@@ -7,6 +7,18 @@ module.exports = {
         title: 'Chiranoura',
     },
     plugins: [
+        {
+            resolve: 'gatsby-plugin-react-css-modules',
+            options: {
+                filetypes: {
+                    '.scss': {
+                        syntax: 'postcss-scss',
+                    },
+                },
+                exclude: '/global/',
+            },
+        },
+        'gatsby-plugin-sass',
         'gatsby-plugin-catch-links',
         {
             resolve: 'gatsby-source-filesystem',
