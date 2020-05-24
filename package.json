@@ -10,6 +10,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
+    "storybook": "start-storybook",
     "lint": "eslint ./**/*.ts ./**/*.tsx ./**/*.js",
     "test": "jest"
   },
