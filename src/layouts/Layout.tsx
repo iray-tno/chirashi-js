@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
+
+import Header from '../components/header/Header';
 
 type Props = {
 };
@@ -19,20 +20,7 @@ const Layout: React.FC<Props> = (props) => {
                     { name: 'keywords', content: 'sample, something' },
                 ]}
             />
-            <div>
-                <div>
-                    <h1>
-                        <Link
-                            to="/"
-                            style={{
-                                textDecoration: 'none',
-                            }}
-                        >
-                            Chiranoura
-                        </Link>
-                    </h1>
-                </div>
-            </div>
+            <Header />
             <div>
                 {children}
             </div>

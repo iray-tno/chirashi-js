@@ -30,6 +30,7 @@
     "gatsby-transformer-remark": "^2.8.13",
     "lodash.noop": "^3.0.1",
     "node-sass": "^4.14.1",
+    "normalize.css": "^8.0.1",
     "postcss-scss": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

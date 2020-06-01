@@ -1,0 +1,15 @@
+.pageTitle {
+    font-family: "Courier New";
+}
+
+.pageText {
+    color: lightgray;
+
+    &:hover {
+        color: lightblue;
+    }
+
+    &:active {
+        color: lightskyblue;
+    }
+}
