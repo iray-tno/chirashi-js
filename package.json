@@ -19,7 +19,7 @@
     "@types/react-css-modules": "^4.6.2",
     "@types/react-helmet": "^6.0.0",
     "disqus-react": "^1.0.8",
-    "gatsby": "^2.22.9",
+    "gatsby": "^2.22.15",
     "gatsby-plugin-catch-links": "^2.3.2",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-react-css-modules": "^2.3.2",
