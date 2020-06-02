@@ -8,6 +8,8 @@ import {
     MarkdownRemarkFields,
 } from '../../types/graphqlTypes';
 
+import ArticleTitle from '../components/article/ArticleTitle';
+
 type Props = {
     post: Pick<MarkdownRemark, 'excerpt' | 'id'> & {
         frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'publish'>>,
@@ -25,11 +27,7 @@ const ArticlePreview: React.FC<Props> = React.memo((props) => {
 
     return (
         <div className="blog-post-preview" key={post.id}>
-            <h1 className="title">
-                <Link to={slug}>
-                    {post?.frontmatter?.title}
-                </Link>
-            </h1>
+            <ArticleTitle to={slug}>{post?.frontmatter?.title}</ArticleTitle>
             <h2 className="date">
                 {post?.fields?.date}
             </h2>

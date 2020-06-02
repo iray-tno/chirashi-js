@@ -1,19 +1,25 @@
 import React from 'react';
+import RehypeReact from 'rehype-react';
 import { graphql } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
 
 import { ArticlePageQuery } from '../../types/graphqlTypes';
 
 import Layout from '../layouts/Layout';
+import ArticleTitle from '../components/article/ArticleTitle';
+import HeaderOne from '../components/article/HeaderOne';
 
 type Props = {
     data: ArticlePageQuery,
 };
 
-function createMarkup(data: ArticlePageQuery): { __html: string } {
-    if (data.markdownRemark?.html == null) return { __html: '' };
-    return { __html: data.markdownRemark.html };
-}
+// FIXME#162: Have to fix those type errors.
+const renderAst = new RehypeReact({
+    createElement: React.createElement,
+    components: {
+        h1: HeaderOne,
+    },
+}).Compiler;
 
 const ArticlePage: React.FC<Props> = (props) => {
     const {
@@ -21,10 +27,14 @@ const ArticlePage: React.FC<Props> = (props) => {
     } = props;
 
     const post = data.markdownRemark;
+    const slug = post?.fields?.slug;
+    const title = post?.frontmatter?.title;
+    if (slug == null || title == null) return null;
+
     return (
         <Layout>
             <div>
-                <h1>{post?.frontmatter?.title}</h1>
+                <ArticleTitle to={slug}>{title}</ArticleTitle>
                 <div>
                     <span>Date:</span>
                     <span>{post?.fields?.date}</span>
@@ -45,16 +55,15 @@ const ArticlePage: React.FC<Props> = (props) => {
                         })}
                     </span>
                 </div>
-                {/* eslint-disable-next-line react/no-danger */}
-                <div dangerouslySetInnerHTML={createMarkup(data)} />
+                {renderAst(post?.htmlAst)}
             </div>
             <div>
                 <DiscussionEmbed
                     shortname="chiranoura"
                     config={{
-                        title: post?.frontmatter?.title || '',
-                        identifier: post?.fields?.slug || '',
-                        url: `http://chiraoura.nobody.jp${post?.fields?.slug}`,
+                        title,
+                        identifier: slug,
+                        url: `http://chiraoura.nobody.jp${slug}`,
                     }}
                 />
             </div>
@@ -67,7 +76,7 @@ export default ArticlePage;
 export const query = graphql`
     query ArticlePage($slug: String!) {
         markdownRemark(fields: { slug: { eq: $slug } }) {
-            html
+            htmlAst
             frontmatter {
                 title
                 author
