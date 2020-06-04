@@ -13,11 +13,11 @@ type Props = {
     data: ArticlePageQuery,
 };
 
-// FIXME#162: Have to fix those type errors.
+// FIXME#167: Have to fix those type errors.
 const renderAst = new RehypeReact({
-    createElement: React.createElement,
+    createElement: React.createElement as any,
     components: {
-        h1: HeaderOne,
+        h1: HeaderOne as any,
     },
 }).Compiler;
 
