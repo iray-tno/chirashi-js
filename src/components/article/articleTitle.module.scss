@@ -1,0 +1,11 @@
+.headerText {
+    color: dimgray;
+
+    &:hover {
+        color: paleturquoise;
+    }
+
+    &:active {
+        color: lightblue;
+    }
+}

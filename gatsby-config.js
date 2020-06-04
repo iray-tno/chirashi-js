@@ -37,16 +37,26 @@ module.exports = {
         },
         {
             resolve: 'gatsby-transformer-remark',
-            // options: {
-            //     plugins: [
-            //         {
-            //             resolve: 'gatsby-remark-images',
-            //             options: {
-            //                 linkImagesToOriginal: false,
-            //             },
-            //         },
-            //     ],
-            // },
+            options: {
+                plugins: [
+                    {
+                        resolve: 'gatsby-remark-component',
+                    },
+                    {
+                        resolve: 'gatsby-remark-prismjs',
+                        options: {
+                            showLineNumbers: true,
+                            noInlineHighlight: true,
+                        },
+                    },
+                    // {
+                    //     resolve: 'gatsby-remark-images',
+                    //     options: {
+                    //         linkImagesToOriginal: false,
+                    //     },
+                    // },
+                ],
+            },
         },
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-typescript',

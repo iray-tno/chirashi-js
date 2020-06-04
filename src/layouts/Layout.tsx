@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import Header from '../components/header/Header';
+import ContentBox from '../components/ContentBox';
 
 type Props = {
 };
@@ -21,9 +22,9 @@ const Layout: React.FC<Props> = (props) => {
                 ]}
             />
             <Header />
-            <div>
+            <ContentBox>
                 {children}
-            </div>
+            </ContentBox>
         </React.Fragment>
     );
 };
