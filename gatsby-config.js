@@ -42,6 +42,13 @@ module.exports = {
                     {
                         resolve: 'gatsby-remark-component',
                     },
+                    {
+                        resolve: 'gatsby-remark-prismjs',
+                        options: {
+                            showLineNumbers: true,
+                            noInlineHighlight: true,
+                        },
+                    },
                     // {
                     //     resolve: 'gatsby-remark-images',
                     //     options: {

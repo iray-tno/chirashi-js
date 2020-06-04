@@ -1,3 +1,17 @@
 a {
     text-decoration: none;
 }
+
+// Overwrite Prism.js styles
+pre[class*="language-"].line-numbers {
+    padding: 0;
+    padding-left: 2.8em;
+}
+
+.gatsby-highlight {
+    font-size: 0.9em;
+}
+
+.line-numbers .line-numbers-rows {
+    padding-left: 5px;
+}
