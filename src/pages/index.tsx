@@ -15,8 +15,10 @@ const Index: React.FC<Props> = React.memo((props) => {
     return (
         <Layout {...props}>
             <div className="blog-posts">
-                {posts
-                    .map(({ node: post }) => <ArticlePreview post={post} />)}
+                {posts.map(({ node: post }) => {
+                    const id = post.fields?.slug;
+                    return (id == null) ? null : <ArticlePreview post={post} key={id} />;
+                })}
             </div>
         </Layout>
     );

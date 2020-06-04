@@ -56,7 +56,7 @@ const ArticlePage: React.FC<Props> = (props) => {
                     <span>Tags:</span>
                     <span>
                         {post?.frontmatter?.tags?.map((tag) => {
-                            return <span>{tag}</span>;
+                            return (tag == null) ? null : <span key={tag}>{tag}</span>;
                         })}
                     </span>
                 </div>
