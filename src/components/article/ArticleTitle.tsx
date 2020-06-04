@@ -14,7 +14,7 @@ const ArticleTitle: React.FC<Props> = React.memo((props) => {
     return (
         <HeaderOne>
             <Link to={props.to}>
-                {props.children}
+                <span styleName="headerText">{props.children}</span>
             </Link>
         </HeaderOne>
     );
