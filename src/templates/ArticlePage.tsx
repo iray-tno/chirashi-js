@@ -8,6 +8,7 @@ import { ArticlePageQuery } from '../../types/graphqlTypes';
 import Layout from '../layouts/Layout';
 import ArticleTitle from '../components/article/ArticleTitle';
 import HeaderOne from '../components/article/HeaderOne';
+import InlineCode from '../components/article/InlineCode';
 
 type Props = {
     data: ArticlePageQuery,
@@ -18,6 +19,10 @@ const renderAst = new RehypeReact({
     createElement: React.createElement as any,
     components: {
         h1: HeaderOne as any,
+        code: (props): any => {
+            const { className } = props;
+            return className == null ? <InlineCode {...props} /> : <span {...props} />;
+        },
     },
 }).Compiler;
 
