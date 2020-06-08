@@ -41,7 +41,7 @@
     "react-helmet": "^6.0.0",
     "rehype-react": "^5.0.1",
     "ts-node": "^8.10.1",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
