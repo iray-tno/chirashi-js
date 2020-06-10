@@ -1298,7 +1298,7 @@
     "@babel/plugin-transform-react-jsx-source" "^7.10.1"
     "@babel/plugin-transform-react-pure-annotations" "^7.10.1"
 
-"@babel/preset-typescript@7.9.0", "@babel/preset-typescript@^7.1.0":
+"@babel/preset-typescript@7.9.0":
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.9.0.tgz#87705a72b1f0d59df21c179f7c3d2ef4b16ce192"
   integrity sha512-S4cueFnGrIbvYJgwsVFKdvOmpiL0XGw9MFW9D0vgRys5g36PBhZRL8NX8Gr2akz8XRtzq6HuDXPD/1nniagNUg==
@@ -1306,7 +1306,7 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-transform-typescript" "^7.9.0"
 
-"@babel/preset-typescript@^7.10.1":
+"@babel/preset-typescript@^7.1.0", "@babel/preset-typescript@^7.10.1":
   version "7.10.1"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.10.1.tgz#a8d8d9035f55b7d99a2461a0bdc506582914d07e"
   integrity sha512-m6GV3y1ShiqxnyQj10600ZVOFrSSAa8HQ3qIUk2r+gcGtHTIRw0dJnFLt1WNXpKjtVw7yw1DAPU/6ma2ZvgJuA==
@@ -4801,10 +4801,10 @@ babel-plugin-react-docgen@^4.0.0:
     react-docgen "^5.0.0"
     recast "^0.14.7"
 
-babel-plugin-remove-graphql-queries@^2.9.4:
-  version "2.9.4"
-  resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.9.4.tgz#c2d7fa6744e4ad83bddf4ccef166319d7ddfb022"
-  integrity sha512-Q3WNsyN7vZ9W1e8YdEAxD6kQxFGgbDbvxKwz/J9rFkVnK720CCBtqsBsIQLEVJBJXCaGP0xBIGqe4Lu6KJpGAw==
+babel-plugin-remove-graphql-queries@^2.9.4, babel-plugin-remove-graphql-queries@^2.9.5:
+  version "2.9.5"
+  resolved "https://registry.yarnpkg.com/babel-plugin-remove-graphql-queries/-/babel-plugin-remove-graphql-queries-2.9.5.tgz#b094d01e39d911e92317d38bee04bf4b2bf7c156"
+  integrity sha512-z0T2dMz6V8a8hC11NFDwnuT5xR0k4Vu4Zie4A5BPchQOe59uHpbaM54mMl66FUA/iLTfYC11xez1N3Wc1gV20w==
 
 babel-plugin-syntax-jsx@^6.18.0:
   version "6.18.0"
@@ -9115,10 +9115,10 @@ gatsby-plugin-sass@^2.3.3:
     "@babel/runtime" "^7.10.2"
     sass-loader "^7.3.1"
 
-gatsby-plugin-typescript@^2.4.0, gatsby-plugin-typescript@^2.4.5:
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.4.5.tgz#e0e1aee019c44b7f604160089507f2e1bd513a29"
-  integrity sha512-qKu8z8IqbV9emo6TQeiE9cs1657oEJfpbYyLMB6xl6MVnXTDOO+bMXVqh0D/6r94mGjol/QK+ggda0NU9Tt80w==
+gatsby-plugin-typescript@^2.4.5, gatsby-plugin-typescript@^2.4.6:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.4.6.tgz#8c1c53510678978303ce9cd489e69f6696409bd8"
+  integrity sha512-RfI2/k5XHmyNHjKDZDEPha/TNoY0Wh6zeBteqmidoPsJ2GfeFhyyxFxuRak+wYpZqdMh/aVwaJoF9Q1OiS4woQ==
   dependencies:
     "@babel/core" "^7.10.2"
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.10.1"
@@ -9126,7 +9126,7 @@ gatsby-plugin-typescript@^2.4.0, gatsby-plugin-typescript@^2.4.5:
     "@babel/plugin-proposal-optional-chaining" "^7.10.1"
     "@babel/preset-typescript" "^7.10.1"
     "@babel/runtime" "^7.10.2"
-    babel-plugin-remove-graphql-queries "^2.9.4"
+    babel-plugin-remove-graphql-queries "^2.9.5"
 
 gatsby-react-router-scroll@^3.0.2:
   version "3.0.2"
