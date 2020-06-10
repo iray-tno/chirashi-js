@@ -9,6 +9,7 @@ import Layout from '../layouts/Layout';
 import ArticleTitle from '../components/article/ArticleTitle';
 import HeaderOne from '../components/article/HeaderOne';
 import InlineCode from '../components/article/InlineCode';
+import DateDisplay from '../components/frontmatter/DateDisplay';
 
 type Props = {
     data: ArticlePageQuery,
@@ -32,18 +33,17 @@ const ArticlePage: React.FC<Props> = (props) => {
     } = props;
 
     const post = data.markdownRemark;
+
     const slug = post?.fields?.slug;
     const title = post?.frontmatter?.title;
-    if (slug == null || title == null) return null;
+    const date = post?.fields?.date;
+    if (slug == null || title == null || date == null) return null;
 
     return (
         <Layout>
             <div>
                 <ArticleTitle to={slug}>{title}</ArticleTitle>
-                <div>
-                    <span>Date:</span>
-                    <span>{post?.fields?.date}</span>
-                </div>
+                <DateDisplay date={date} />
                 <div>
                     <span>Tags:</span>
                     <span>
