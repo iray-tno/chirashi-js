@@ -7,6 +7,7 @@ import './dateDisplay.module.scss';
 type Props = {
     date: string,
     className?: string,
+    styleName?: string,
 };
 
 const DateDisplay: React.FC<Props> = React.memo((props) => {
