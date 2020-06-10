@@ -45,14 +45,6 @@ const ArticlePage: React.FC<Props> = (props) => {
                     <span>{post?.fields?.date}</span>
                 </div>
                 <div>
-                    <span>Author:</span>
-                    <span>{post?.frontmatter?.author}</span>
-                </div>
-                <div>
-                    <span>Category:</span>
-                    <span>{post?.frontmatter?.category}</span>
-                </div>
-                <div>
                     <span>Tags:</span>
                     <span>
                         {post?.frontmatter?.tags?.map((tag) => {
@@ -84,8 +76,6 @@ export const query = graphql`
             htmlAst
             frontmatter {
                 title
-                author
-                category
                 tags
             }
             fields {
