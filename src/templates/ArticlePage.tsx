@@ -10,6 +10,7 @@ import ArticleTitle from '../components/article/ArticleTitle';
 import HeaderOne from '../components/article/HeaderOne';
 import InlineCode from '../components/article/InlineCode';
 import DateDisplay from '../components/frontmatter/DateDisplay';
+import TagsDisplay from '../components/frontmatter/TagsDisplay';
 
 type Props = {
     data: ArticlePageQuery,
@@ -44,14 +45,7 @@ const ArticlePage: React.FC<Props> = (props) => {
             <div>
                 <ArticleTitle to={slug}>{title}</ArticleTitle>
                 <DateDisplay date={date} />
-                <div>
-                    <span>Tags:</span>
-                    <span>
-                        {post?.frontmatter?.tags?.map((tag) => {
-                            return (tag == null) ? null : <span key={tag}>{tag}</span>;
-                        })}
-                    </span>
-                </div>
+                <TagsDisplay tags={post?.frontmatter?.tags} />
                 {renderAst(post?.htmlAst)}
             </div>
             <div>
