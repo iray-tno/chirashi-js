@@ -4,6 +4,7 @@ import './inlineCode.module.scss';
 
 type Props = {
     className?: string,
+    styleName?: string,
 };
 
 const InlineCode: React.FC<Props> = React.memo((props) => {

@@ -8,6 +8,7 @@ import './articleTitle.module.scss';
 type Props = {
     to: string,
     className?: string,
+    styleName?: string,
 };
 
 const ArticleTitle: React.FC<Props> = React.memo((props) => {

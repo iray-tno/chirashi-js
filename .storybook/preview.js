@@ -16,9 +16,9 @@ global.___loader = {
     hovering: noop,
 };
 
-// __PATH_PREFIX__ is used inside gatsby-link an other various places.
+// __BASE_PATH__ is used inside gatsby-link an other various places.
 // For storybook not to crash, you need to set it as well.
-global.__PATH_PREFIX__ = '';
+global.__BASE_PATH__ = '';
 
 // Navigating through a gatsby app using gatsby-link or any other gatsby component will
 // use the `___navigate` method.

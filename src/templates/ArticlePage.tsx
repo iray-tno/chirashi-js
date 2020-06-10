@@ -9,6 +9,7 @@ import Layout from '../layouts/Layout';
 import ArticleTitle from '../components/article/ArticleTitle';
 import HeaderOne from '../components/article/HeaderOne';
 import InlineCode from '../components/article/InlineCode';
+import Frontmatter from '../components/frontmatter/Frontmatter';
 
 type Props = {
     data: ArticlePageQuery,
@@ -32,34 +33,17 @@ const ArticlePage: React.FC<Props> = (props) => {
     } = props;
 
     const post = data.markdownRemark;
+
     const slug = post?.fields?.slug;
     const title = post?.frontmatter?.title;
-    if (slug == null || title == null) return null;
+    const date = post?.fields?.date;
+    if (slug == null || title == null || date == null) return null;
 
     return (
         <Layout>
             <div>
                 <ArticleTitle to={slug}>{title}</ArticleTitle>
-                <div>
-                    <span>Date:</span>
-                    <span>{post?.fields?.date}</span>
-                </div>
-                <div>
-                    <span>Author:</span>
-                    <span>{post?.frontmatter?.author}</span>
-                </div>
-                <div>
-                    <span>Category:</span>
-                    <span>{post?.frontmatter?.category}</span>
-                </div>
-                <div>
-                    <span>Tags:</span>
-                    <span>
-                        {post?.frontmatter?.tags?.map((tag) => {
-                            return (tag == null) ? null : <span key={tag}>{tag}</span>;
-                        })}
-                    </span>
-                </div>
+                <Frontmatter date={date} tags={post?.frontmatter?.tags} />
                 {renderAst(post?.htmlAst)}
             </div>
             <div>
@@ -84,8 +68,6 @@ export const query = graphql`
             htmlAst
             frontmatter {
                 title
-                author
-                category
                 tags
             }
             fields {
