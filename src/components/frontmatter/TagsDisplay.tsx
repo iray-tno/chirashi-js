@@ -27,7 +27,7 @@ const TagsDisplay: React.FC<Props> = React.memo((props) => {
             {tags == null || tags.length === 0
                 ? <span styleName="noTags">No tags.</span>
                 : tags.map((tag) => {
-                    return tag == null ? null : <TagItem tag={tag} styleName="item" />;
+                    return tag == null ? null : <TagItem tag={tag} key={tag} styleName="item" />;
                 })
             }
         </div>
