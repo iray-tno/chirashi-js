@@ -9092,10 +9092,10 @@ gatsby-plugin-page-creator@^2.3.8:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
-gatsby-plugin-react-css-modules@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-css-modules/-/gatsby-plugin-react-css-modules-2.3.3.tgz#be49e294b3a5c7df60fb91b1343e041ceaab19d6"
-  integrity sha512-/kWnBw4kq8rRnp2ahdhzQnZxl4l5cR5l9roUIGH4m+UWWgSYrhhywuUMNtFO2gnJ3FuLPWGp8JgElUW84Sc7Hg==
+gatsby-plugin-react-css-modules@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-css-modules/-/gatsby-plugin-react-css-modules-2.3.4.tgz#1c940f1d3b49d5ae439905e3f738eb1b778927c6"
+  integrity sha512-JoQ0u3ZGF+Qb/DBplEXum8a2oMzIYBcGEPnSuP8ihvA1vHvH9L78ExVzFPp0THwVuqYhG4jLBA5vjrLFSfqFWg==
   dependencies:
     "@babel/runtime" "^7.10.2"
     babel-plugin-react-css-modules "^3.4.2"
