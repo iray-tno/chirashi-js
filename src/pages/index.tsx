@@ -39,6 +39,7 @@ export const query = graphql`
                     id
                     frontmatter {
                         title
+                        tags
                         publish
                     }
                     fields {

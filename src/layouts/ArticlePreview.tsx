@@ -9,10 +9,11 @@ import {
 } from '../../types/graphqlTypes';
 
 import ArticleTitle from '../components/article/ArticleTitle';
+import Frontmatter from '../components/frontmatter/Frontmatter';
 
 type Props = {
     post: Pick<MarkdownRemark, 'excerpt' | 'id'> & {
-        frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'publish'>>,
+        frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'publish' | 'tags'>>,
         fields?: Maybe<Pick<MarkdownRemarkFields, 'slug' | 'date' | 'index' | 'name'>>,
     },
 };
@@ -23,14 +24,14 @@ const ArticlePreview: React.FC<Props> = React.memo((props) => {
     } = props;
 
     const slug = post?.fields?.slug;
-    if (slug == null) return null;
+    const title = post?.frontmatter?.title;
+    const date = post?.fields?.date;
+    if (slug == null || title == null || date == null) return null;
 
     return (
         <div className="blog-post-preview" key={post.id}>
-            <ArticleTitle to={slug}>{post?.frontmatter?.title}</ArticleTitle>
-            <h2 className="date">
-                {post?.fields?.date}
-            </h2>
+            <ArticleTitle to={slug}>{title}</ArticleTitle>
+            <Frontmatter date={date} tags={post?.frontmatter?.tags} />
             <p>
                 {post.excerpt}
             </p>
