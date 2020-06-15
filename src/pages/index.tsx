@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Layout from '../layouts/Layout';
-import ArticlePreview from '../layouts/ArticlePreview';
+import ArticlePreview from '../components/articlePreview/ArticlePreview';
 import { IndexQuery } from '../../types/graphqlTypes';
 
 type Props = {
@@ -39,6 +39,7 @@ export const query = graphql`
                     id
                     frontmatter {
                         title
+                        tags
                         publish
                     }
                     fields {

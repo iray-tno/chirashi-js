@@ -1,0 +1,24 @@
+.readMoreLink {
+    color: dimgray;
+    font-family: "Consolas", "Courier New", "Courier", "Monaco", "monospace";
+
+    .text, .icon {
+        color: dimgray;
+    }
+
+    .icon {
+        margin-left: 5px;
+    }
+
+    &:hover {
+        .text, .icon {
+            color: paleturquoise;
+        }
+    }
+
+    &:active {
+        .text, .icon {
+            color: lightblue;
+        }
+    }
+}
