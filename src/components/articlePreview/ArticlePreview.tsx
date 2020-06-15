@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
 import {
     Maybe,
     MarkdownRemark,
     MarkdownRemarkFrontmatter,
     MarkdownRemarkFields,
-} from '../../types/graphqlTypes';
+} from '../../../types/graphqlTypes';
 
-import ArticleTitle from '../components/article/ArticleTitle';
-import Frontmatter from '../components/frontmatter/Frontmatter';
+import ArticleTitle from '../article/ArticleTitle';
+import Frontmatter from '../frontmatter/Frontmatter';
+import ReadMoreLink from './ReadMoreLink';
 
 type Props = {
     post: Pick<MarkdownRemark, 'excerpt' | 'id'> & {
@@ -29,15 +29,13 @@ const ArticlePreview: React.FC<Props> = React.memo((props) => {
     if (slug == null || title == null || date == null) return null;
 
     return (
-        <div className="blog-post-preview" key={post.id}>
+        <div>
             <ArticleTitle to={slug}>{title}</ArticleTitle>
             <Frontmatter date={date} tags={post?.frontmatter?.tags} />
             <p>
                 {post.excerpt}
             </p>
-            <Link to={slug}>
-                Read more
-            </Link>
+            <ReadMoreLink to={slug} />
         </div>
     );
 });
