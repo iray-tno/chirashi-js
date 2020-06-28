@@ -23,7 +23,7 @@
     "@types/react-helmet": "^6.0.0",
     "@types/rehype-react": "^4.0.0",
     "disqus-react": "^1.0.8",
-    "gatsby": "^2.23.3",
+    "gatsby": "^2.23.11",
     "gatsby-plugin-catch-links": "^2.3.5",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-react-css-modules": "^2.3.4",
