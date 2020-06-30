@@ -22,7 +22,7 @@
     "@types/react-css-modules": "^4.6.2",
     "@types/react-helmet": "^6.0.0",
     "@types/rehype-react": "^4.0.0",
-    "disqus-react": "^1.0.8",
+    "disqus-react": "^1.0.9",
     "gatsby": "^2.23.11",
     "gatsby-plugin-catch-links": "^2.3.7",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
