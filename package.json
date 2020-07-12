@@ -24,7 +24,7 @@
     "@types/rehype-react": "^4.0.0",
     "disqus-react": "^1.0.9",
     "gatsby": "^2.24.2",
-    "gatsby-plugin-catch-links": "^2.3.10",
+    "gatsby-plugin-catch-links": "^2.3.11",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-react-css-modules": "^2.3.10",
     "gatsby-plugin-react-helmet": "^3.3.10",
