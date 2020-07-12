@@ -10,6 +10,7 @@ import ArticleTitle from '../components/article/ArticleTitle';
 import HeaderOne from '../components/article/HeaderOne';
 import InlineCode from '../components/article/InlineCode';
 import Frontmatter from '../components/frontmatter/Frontmatter';
+import TableOfContents from '../components/tableOfContents/TableOfContents';
 
 type Props = {
     data: ArticlePageQuery,
@@ -37,6 +38,7 @@ const ArticlePage: React.FC<Props> = (props) => {
     const slug = post?.fields?.slug;
     const title = post?.frontmatter?.title;
     const date = post?.fields?.date;
+    const headings = post?.headings;
     if (slug == null || title == null || date == null) return null;
 
     return (
@@ -44,6 +46,7 @@ const ArticlePage: React.FC<Props> = (props) => {
             <div>
                 <ArticleTitle to={slug}>{title}</ArticleTitle>
                 <Frontmatter date={date} tags={post?.frontmatter?.tags} />
+                <TableOfContents headings={headings} />
                 {renderAst(post?.htmlAst)}
             </div>
             <div>
@@ -73,6 +76,11 @@ export const query = graphql`
             fields {
                 date
                 slug
+            }
+            headings {
+                id
+                value
+                depth
             }
         }
     }
