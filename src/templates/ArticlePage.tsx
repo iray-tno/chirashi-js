@@ -5,12 +5,11 @@ import { DiscussionEmbed } from 'disqus-react';
 
 import { ArticlePageQuery } from '../../types/graphqlTypes';
 
-import Layout from '../layouts/Layout';
+import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticleTitle from '../components/article/ArticleTitle';
 import HeaderOne from '../components/article/HeaderOne';
 import InlineCode from '../components/article/InlineCode';
 import Frontmatter from '../components/frontmatter/Frontmatter';
-import TableOfContents from '../components/tableOfContents/TableOfContents';
 
 type Props = {
     data: ArticlePageQuery,
@@ -42,11 +41,10 @@ const ArticlePage: React.FC<Props> = (props) => {
     if (slug == null || title == null || date == null) return null;
 
     return (
-        <Layout>
+        <DefaultLayout headings={headings}>
             <div>
                 <ArticleTitle to={slug}>{title}</ArticleTitle>
                 <Frontmatter date={date} tags={post?.frontmatter?.tags} />
-                <TableOfContents headings={headings} />
                 {renderAst(post?.htmlAst)}
             </div>
             <div>
@@ -59,7 +57,7 @@ const ArticlePage: React.FC<Props> = (props) => {
                     }}
                 />
             </div>
-        </Layout>
+        </DefaultLayout>
     );
 };
 

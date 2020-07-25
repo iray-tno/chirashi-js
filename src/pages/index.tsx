@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import Layout from '../layouts/Layout';
+import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticlePreview from '../components/articlePreview/ArticlePreview';
 import { IndexQuery } from '../../types/graphqlTypes';
 
@@ -12,15 +12,16 @@ type Props = {
 const Index: React.FC<Props> = React.memo((props) => {
     const { data } = props;
     const { edges: posts } = data.allMarkdownRemark;
+
     return (
-        <Layout {...props}>
+        <DefaultLayout {...props}>
             <div className="blog-posts">
                 {posts.map(({ node: post }) => {
                     const id = post.fields?.slug;
                     return (id == null) ? null : <ArticlePreview post={post} key={id} />;
                 })}
             </div>
-        </Layout>
+        </DefaultLayout>
     );
 });
 
