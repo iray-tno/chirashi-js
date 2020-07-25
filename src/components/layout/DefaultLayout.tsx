@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import Header from '../header/Header';
-import ContentBox from './ContentBox';
 import TableOfContents from '../tableOfContents/TableOfContents';
 
 import { Maybe, MarkdownHeading } from '../../../types/graphqlTypes';
@@ -29,13 +28,17 @@ const DefaultLayout: React.FC<Props> = (props) => {
                 ]}
             />
             <Header />
-            <div styleName="mainPane">
-                <div styleName="leftPane">
-                    {headings != null ? <TableOfContents headings={headings} /> : null}
+            <div styleName="outerMainPane">
+                <div styleName="sidePane">
+                    {headings == null
+                        ? null
+                        : <TableOfContents styleName="toc" headings={headings} />
+                    }
                 </div>
-                <ContentBox>
+                <div styleName="contentPane">
                     {children}
-                </ContentBox>
+                </div>
+                <div styleName="sidePane" />
             </div>
         </React.Fragment>
     );
