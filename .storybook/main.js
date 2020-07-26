@@ -44,6 +44,7 @@ module.exports = {
                     [
                         require.resolve('babel-plugin-react-css-modules'),
                         {
+                            generateScopedName: '[path]___[name]__[local]', // FIXME#157: Cannot use hashes.
                             filetypes: {
                                 '.scss': {
                                     syntax: 'postcss-scss',
@@ -73,7 +74,7 @@ module.exports = {
                         modules: {
                             mode: 'local',
                             exportGlobals: true,
-                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+                            localIdentName: '[path]___[name]__[local]', // FIXME#157: Cannot use hashes.
                         },
                         importLoaders: 1,
                     },
