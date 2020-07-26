@@ -11,17 +11,17 @@ export const defaultView: React.ReactNode = () => {
         <TableOfContents headings={
             [
                 {
-                    id: null,
+                    id: 'hoge',
                     value: 'hoge',
                     depth: 4,
                 },
                 {
-                    id: null,
+                    id: 'fuga',
                     value: 'fuga',
                     depth: 4,
                 },
                 {
-                    id: null,
+                    id: '日本語のテスト',
                     value: '日本語のテスト',
                     depth: 4,
                 },
