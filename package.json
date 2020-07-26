@@ -43,6 +43,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
+    "react-intersection-observer": "^8.26.2",
     "rehype-react": "^6.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
