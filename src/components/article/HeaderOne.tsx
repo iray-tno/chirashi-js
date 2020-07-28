@@ -7,7 +7,7 @@ type Props = {
     className?: string,
     styleName?: string,
     id?: string,
-    onInViewChange?: (inView: boolean, id: string) => void;
+    onInViewChange?: (inView: boolean, id: string) => void,
 };
 
 const HeaderOne: React.FC<Props> = React.memo((props) => {
@@ -18,7 +18,7 @@ const HeaderOne: React.FC<Props> = React.memo((props) => {
         onInViewChange,
     } = props;
 
-    const handleInViewChange = useCallback((inView: boolean, entry: IntersectionObserverEntry) => {
+    const handleInViewChange = useCallback((inView: boolean) => {
         if (onInViewChange != null && id != null) {
             onInViewChange(inView, id);
         }
