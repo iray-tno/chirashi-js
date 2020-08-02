@@ -21,9 +21,9 @@ const TableOfContents: React.FC<Props> = React.memo((props) => {
 
                 return (
                     <li key={headerItem.id}>
-                        <Link to={`#${headerItem.id}`}>
+                        <a href={`#${headerItem.id}`}>
                             {headerItem.value}
-                        </Link>
+                        </a>
                     </li>
                 );
             })}
