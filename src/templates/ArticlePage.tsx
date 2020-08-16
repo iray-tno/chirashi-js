@@ -7,7 +7,7 @@ import { ArticlePageQuery } from '../../types/graphqlTypes';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticleTitle from '../components/article/ArticleTitle';
-import HeaderOne from '../components/article/HeaderOne';
+import HeaderOne from '../components/article/headers/HeaderOne';
 import InlineCode from '../components/article/InlineCode';
 import Frontmatter from '../components/frontmatter/Frontmatter';
 

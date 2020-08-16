@@ -1,18 +1,16 @@
 import React, { useCallback } from 'react';
 import { InView } from 'react-intersection-observer';
 
-import './headerOne.module.scss';
-
 type Props = {
-    className?: string,
-    styleName?: string,
     id?: string,
     onInViewChange?: (inView: boolean, id: string) => void,
 };
 
-const HeaderOne: React.FC<Props> = React.memo((props) => {
+/**
+ * Wrapper Component for onInViewChange callback function.
+ */
+const WithInView: React.FC<Props> = React.memo((props) => {
     const {
-        className,
         id,
         children,
         onInViewChange,
@@ -26,16 +24,9 @@ const HeaderOne: React.FC<Props> = React.memo((props) => {
 
     return (
         <InView as="div" onChange={handleInViewChange}>
-            <h1
-                className={className}
-                styleName="headerOne"
-                id={id}
-            >
-                {children}
-            </h1>
+            {children}
         </InView>
-
     );
 });
 
-export default HeaderOne;
+export default WithInView;
