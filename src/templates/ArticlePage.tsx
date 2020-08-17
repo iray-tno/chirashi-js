@@ -7,7 +7,15 @@ import { ArticlePageQuery } from '../../types/graphqlTypes';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticleTitle from '../components/article/ArticleTitle';
-import HeaderOne from '../components/article/headers/HeaderOne';
+
+import {
+    HeaderOneContainer,
+    HeaderTwoContainer,
+    HeaderThreeContainer,
+    HeaderFourContainer,
+    HeaderFiveContainer,
+    HeaderSixContainer,
+} from '../components/article/headers/headerContainers';
 import InlineCode from '../components/article/InlineCode';
 import Frontmatter from '../components/frontmatter/Frontmatter';
 
@@ -19,7 +27,12 @@ type Props = {
 const renderAst = new RehypeReact({
     createElement: React.createElement as any,
     components: {
-        h1: HeaderOne as any,
+        h1: HeaderOneContainer as any,
+        h2: HeaderTwoContainer as any,
+        h3: HeaderThreeContainer as any,
+        h4: HeaderFourContainer as any,
+        h5: HeaderFiveContainer as any,
+        h6: HeaderSixContainer as any,
         code: (props): any => {
             const { className } = props;
             return className == null ? <InlineCode {...props} /> : <span {...props} />;

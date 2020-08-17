@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './headerOne.module.scss';
+import './headerFive.module.scss';
 
 type Props = {
     className?: string,
@@ -8,7 +8,7 @@ type Props = {
     id?: string,
 };
 
-const HeaderOne: React.FC<Props> = React.memo((props) => {
+const HeaderFive: React.FC<Props> = React.memo((props) => {
     const {
         className,
         id,
@@ -16,14 +16,14 @@ const HeaderOne: React.FC<Props> = React.memo((props) => {
     } = props;
 
     return (
-        <h1
+        <h5
             className={className}
-            styleName="headerOne"
+            styleName="headerFive"
             id={id}
         >
             {children}
-        </h1>
+        </h5>
     );
 });
 
-export default HeaderOne;
+export default HeaderFive;
