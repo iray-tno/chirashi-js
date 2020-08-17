@@ -14,9 +14,7 @@ type Props = {
 const AsTocElement: React.FC<Props> = React.memo((props) => {
     const dispatch = useDispatch();
     const handleInViewChange = useCallback((inView, id) => {
-        // FIXME#201: dummy
-        dispatch(tableOfContentsModule.actions.increment());
-        console.log(inView, id);
+        dispatch(tableOfContentsModule.actions.updateItem({ id, inView }));
     }, [dispatch]);
 
     const {

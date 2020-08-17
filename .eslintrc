@@ -22,6 +22,15 @@
             "error",
             4
         ],
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "draftState"
+                ]
+            }
+        ],
         "react/jsx-indent": [
             "error",
             4

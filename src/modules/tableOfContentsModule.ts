@@ -1,11 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const tableOfContentsModule = createSlice({
     name: 'tableOfContent',
-    initialState: 0,
+    initialState: {
+        items: {} as {
+            [id: string]: {
+                isInView: boolean,
+            },
+        },
+    },
     reducers: {
-        increment: (state) => state + 1,
-        decrement: (state) => state - 1,
+        updateItem: (draftState, action: PayloadAction<{ id: string, inView: boolean }>) => {
+            const {
+                id,
+                inView,
+            } = action.payload;
+
+            if (draftState?.items[id] == null) {
+                draftState.items[id] = {
+                    isInView: inView,
+                };
+            } else {
+                draftState.items[id].isInView = inView;
+            }
+            return draftState;
+        },
     },
 });
 
