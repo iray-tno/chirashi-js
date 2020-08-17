@@ -1,5 +1,5 @@
 import React from 'react';
-import WithInView from './WithInVIew';
+import AsTocElement from './AsTocElement';
 
 import './headerOne.module.scss';
 
@@ -7,7 +7,6 @@ type Props = {
     className?: string,
     styleName?: string,
     id?: string,
-    onInViewChange?: (inView: boolean, id: string) => void,
 };
 
 const HeaderOne: React.FC<Props> = React.memo((props) => {
@@ -15,11 +14,10 @@ const HeaderOne: React.FC<Props> = React.memo((props) => {
         className,
         id,
         children,
-        onInViewChange,
     } = props;
 
     return (
-        <WithInView id={id} onInViewChange={onInViewChange}>
+        <AsTocElement id={id}>
             <h1
                 className={className}
                 styleName="headerOne"
@@ -27,7 +25,7 @@ const HeaderOne: React.FC<Props> = React.memo((props) => {
             >
                 {children}
             </h1>
-        </WithInView>
+        </AsTocElement>
     );
 });
 
