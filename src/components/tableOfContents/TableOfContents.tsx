@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 
 import { Maybe, MarkdownHeading } from '../../../types/graphqlTypes';
+import { RootState } from '../../store/createStore';
 
 import './tableOfContents.module.scss';
 
@@ -12,15 +14,23 @@ type Props = {
 };
 
 const TableOfContents: React.FC<Props> = React.memo((props) => {
-    if (props.headings == null) return null;
+    const tableOfContents = useSelector((state: RootState) => {
+        return state.tableOfContents;
+    });
 
+    const { lastItemId } = tableOfContents;
+    if (props.headings == null) return null;
     return (
         <div className={props.className}>
             {props.headings.map((headerItem) => {
                 if (headerItem?.id == null) return null;
 
+                const isInView = tableOfContents.items[headerItem.id]?.isInView;
+                const itemClassNames = classNames({
+                    active: isInView || lastItemId === headerItem.id,
+                });
                 return (
-                    <li key={headerItem.id}>
+                    <li key={headerItem.id} styleName={itemClassNames}>
                         <a href={`#${headerItem.id}`}>
                             {headerItem.value}
                         </a>

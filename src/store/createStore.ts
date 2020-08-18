@@ -8,7 +8,7 @@ import {
 import tableOfContentsModule from '../modules/tableOfContentsModule';
 
 const rootReducer = combineReducers({
-    counter: tableOfContentsModule.reducer,
+    tableOfContents: tableOfContentsModule.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
