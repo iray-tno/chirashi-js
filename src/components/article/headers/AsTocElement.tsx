@@ -26,7 +26,7 @@ const AsTocElement: React.FC<Props> = React.memo((props) => {
     useEffect(() => {
         return function willUnmount() {
             if (id == null) return;
-            dispatch(tableOfContentsModule.actions.updateItem({ id, inView: false }));
+            dispatch(tableOfContentsModule.actions.resetItem({ id }));
         };
     }, [dispatch, id]);
 

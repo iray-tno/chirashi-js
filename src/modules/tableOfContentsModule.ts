@@ -8,6 +8,7 @@ const tableOfContentsModule = createSlice({
                 isInView: boolean,
             },
         },
+        lastItemId: null as string | null,
     },
     reducers: {
         updateItem: (draftState, action: PayloadAction<{ id: string, inView: boolean }>) => {
@@ -16,13 +17,39 @@ const tableOfContentsModule = createSlice({
                 inView,
             } = action.payload;
 
-            if (draftState?.items[id] == null) {
+            let isInViewPrev = false;
+            if (draftState.items[id] == null) {
                 draftState.items[id] = {
                     isInView: inView,
                 };
             } else {
+                isInViewPrev = draftState.items[id].isInView;
                 draftState.items[id].isInView = inView;
             }
+
+            if (isInViewPrev === true && inView === false) {
+                draftState.lastItemId = id;
+            }
+
+            return draftState;
+        },
+        resetItem: (draftState, action: PayloadAction<{ id: string }>) => {
+            const {
+                id,
+            } = action.payload;
+
+            if (draftState.items[id] == null) {
+                draftState.items[id] = {
+                    isInView: false,
+                };
+            } else {
+                draftState.items[id].isInView = false;
+            }
+
+            if (draftState.lastItemId === id) {
+                draftState.lastItemId = null;
+            }
+
             return draftState;
         },
     },
