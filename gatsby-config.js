@@ -49,6 +49,9 @@ module.exports = {
                             noInlineHighlight: true,
                         },
                     },
+                    {
+                        resolve: 'gatsby-remark-autolink-headers',
+                    },
                     // {
                     //     resolve: 'gatsby-remark-images',
                     //     options: {

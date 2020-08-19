@@ -1,0 +1,78 @@
+
+$fadeOutInitialOpaticy: 1;
+$fadeOutFinalOpaticy: 0.2;
+@keyframes tocItemFadeOut {
+    0% {
+        opacity: $fadeOutInitialOpaticy;
+    }
+    20% {
+        opacity: $fadeOutInitialOpaticy; // 20% (1s) delay
+    }
+    100% {
+        opacity: $fadeOutFinalOpaticy;
+    }
+}
+
+.outer {
+    padding: 0 5px;
+    opacity: $fadeOutFinalOpaticy;
+    animation-name: tocItemFadeOut;
+    animation-duration: 5s;
+
+    &:hover {
+        opacity: $fadeOutInitialOpaticy;
+        animation-name: none;
+
+        .active {
+            background-color: whitesmoke;
+        }
+    }
+}
+
+$defaultItemPadding: 3px;
+$indentItemPadding: 7%;
+.item {
+    list-style-type: "- ";
+    list-style-position: inside;
+    border-radius: 2px;
+    font-family: "Courier New";
+    font-size: 12px;
+    padding: 1px $defaultItemPadding;
+    margin: 1px 0;
+}
+
+.active {
+    font-weight: bold;
+    list-style-type: "+ ";
+}
+
+.depthOne {
+    padding-left: calc($indentItemPadding * 0 + $defaultItemPadding);
+}
+.depthTwo {
+    padding-left: calc($indentItemPadding * 1 + $defaultItemPadding);
+}
+.depthThree {
+    padding-left: calc($indentItemPadding * 2 + $defaultItemPadding);
+}
+.depthFour {
+    padding-left: calc($indentItemPadding * 3 + $defaultItemPadding);
+}
+.depthFive {
+    padding-left: calc($indentItemPadding * 4 + $defaultItemPadding);
+}
+.depthSix {
+    padding-left: calc($indentItemPadding * 5 + $defaultItemPadding);
+}
+
+.link {
+    color: gray;
+
+    &:hover {
+        color: paleturquoise;
+    }
+
+    &:active {
+        color: lightblue;
+    }
+}

@@ -5,12 +5,23 @@ import './headerOne.module.scss';
 type Props = {
     className?: string,
     styleName?: string,
+    id?: string,
 };
 
 const HeaderOne: React.FC<Props> = React.memo((props) => {
+    const {
+        className,
+        id,
+        children,
+    } = props;
+
     return (
-        <h1 className={props.className} styleName="headerOne">
-            {props.children}
+        <h1
+            className={className}
+            styleName="headerOne"
+            id={id}
+        >
+            {children}
         </h1>
     );
 });

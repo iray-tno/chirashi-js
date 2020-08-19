@@ -1,0 +1,23 @@
+.outerMainPane {
+    display: flex;
+}
+
+.contentPane {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 5px;
+    flex: 4;
+}
+
+.sidePane {
+    min-width: 50px;
+    flex: 1;
+}
+
+.toc {
+    position: sticky;
+    top: 0;
+    margin-bottom: auto;
+    margin-top: 30px;
+    padding-top: 30px;
+}

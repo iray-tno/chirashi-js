@@ -22,6 +22,15 @@
             "error",
             4
         ],
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "draftState"
+                ]
+            }
+        ],
         "react/jsx-indent": [
             "error",
             4
@@ -58,12 +67,18 @@
             }
         ],
         "import/extensions": [
-            ".js",
-            ".jsx",
-            ".json",
-            ".ts",
-            ".tsx"
-        ]
+            "error",
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".json",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        ],
+        "import/prefer-default-export": "off"
     },
     "overrides": [
         {
