@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import Header from '../header/Header';
-import TableOfContents from '../tableOfContents/TableOfContents';
+import TableOfContentsContainer from '../tableOfContents/TableOfContentsContainer';
 
 import { Maybe, MarkdownHeading } from '../../../types/graphqlTypes';
 

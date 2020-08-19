@@ -57,5 +57,5 @@ const tableOfContentsModule = createSlice({
 
 export default tableOfContentsModule;
 
-export type TableOfContentActions = typeof tableOfContentsModule.actions;
-export type TableOfContentState = ReturnType<typeof tableOfContentsModule.reducer>;
+export type TableOfContentsActions = typeof tableOfContentsModule.actions;
+export type TableOfContentsState = ReturnType<typeof tableOfContentsModule.reducer>;
