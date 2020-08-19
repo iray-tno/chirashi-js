@@ -19,7 +19,7 @@ const DefaultLayout: React.FC<Props> = (props) => {
     } = props;
 
     return (
-        <React.Fragment>
+        <>
             <Helmet
                 title="Chiranoura"
                 meta={[
@@ -32,15 +32,14 @@ const DefaultLayout: React.FC<Props> = (props) => {
                 <div styleName="sidePane">
                     {headings == null
                         ? null
-                        : <TableOfContents styleName="toc" headings={headings} />
-                    }
+                        : <TableOfContentsContainer styleName="toc" headings={headings} />}
                 </div>
                 <div styleName="contentPane">
                     {children}
                 </div>
                 <div styleName="sidePane" />
             </div>
-        </React.Fragment>
+        </>
     );
 };
 
