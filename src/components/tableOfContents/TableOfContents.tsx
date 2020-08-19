@@ -23,17 +23,18 @@ const TableOfContents: React.FC<Props> = React.memo((props) => {
     const lastItemId = tableOfContents == null ? null : tableOfContents.lastItemId;
     if (headings == null) return null;
     return (
-        <div className={className}>
+        <div className={className} styleName="outer">
             {headings.map((headerItem) => {
                 if (headerItem?.id == null) return null;
 
                 const isInView = tableOfContents?.items[headerItem.id]?.isInView;
                 const itemClassNames = classNames({
+                    item: true,
                     active: isInView || lastItemId === headerItem.id,
                 });
                 return (
                     <li key={headerItem.id} styleName={itemClassNames}>
-                        <a href={`#${headerItem.id}`}>
+                        <a styleName="link" href={`#${headerItem.id}`}>
                             {headerItem.value}
                         </a>
                     </li>

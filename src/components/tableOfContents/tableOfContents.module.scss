@@ -1,3 +1,58 @@
+
+$fadeOutInitialOpaticy: 1;
+$fadeOutFinalOpaticy: 0.2;
+@keyframes tocItemFadeOut {
+    0% {
+        opacity: $fadeOutInitialOpaticy;
+    }
+    20% {
+        opacity: $fadeOutInitialOpaticy; // 20% (1s) delay
+    }
+    100% {
+        opacity: $fadeOutFinalOpaticy;
+    }
+}
+
+.outer {
+    padding: 0 5px;
+    opacity: $fadeOutFinalOpaticy;
+    animation-name: tocItemFadeOut;
+    animation-duration: 5s;
+
+    &:hover {
+        opacity: $fadeOutInitialOpaticy;
+        animation-name: none;
+
+        .active {
+            background-color: whitesmoke;
+        }
+    }
+}
+
+.item {
+    list-style-type: "- ";
+    list-style-position: inside;
+    border-radius: 2px;
+    font-family: "Courier New";
+    font-size: 12px;
+    padding: 1px 3px;
+    margin: 1px 0;
+}
+
 .active {
-    background-color: gray;
+    font-weight: bold;
+    list-style-type: "* ";
+}
+
+
+.link {
+    color: gray;
+
+    &:hover {
+        color: paleturquoise;
+    }
+
+    &:active {
+        color: lightblue;
+    }
 }
