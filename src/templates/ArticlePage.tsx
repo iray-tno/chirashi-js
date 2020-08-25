@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
 
 import { ArticlePageQuery } from '../../types/graphqlTypes';
+import { ArticlePageContext } from '../gatsbyNode/createPages';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticleTitle from '../components/article/ArticleTitle';
@@ -20,6 +21,7 @@ import InlineCode from '../components/article/InlineCode';
 import Frontmatter from '../components/frontmatter/Frontmatter';
 
 type Props = {
+    pageContext: ArticlePageContext,
     data: ArticlePageQuery,
 };
 

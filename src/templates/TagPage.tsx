@@ -1,21 +1,31 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import { TagArticlesQuery } from '../../types/graphqlTypes';
+import { TagPageContext } from '../gatsbyNode/createPages';
+
 import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticlePreview from '../components/articlePreview/ArticlePreview';
-import { IndexQuery } from '../../types/graphqlTypes';
 
 type Props = {
-    data: IndexQuery,
+    pageContext: TagPageContext,
+    data: TagArticlesQuery,
 };
 
-const Index: React.FC<Props> = React.memo((props) => {
-    const { data } = props;
+const TagPage: React.FC<Props> = React.memo((props) => {
+    const { data, pageContext } = props;
     const { edges: posts } = data.allMarkdownRemark;
+    const { tagName } = pageContext;
 
     return (
         <DefaultLayout>
             <div className="blog-posts">
+                <h1>
+                    <span>/tags/</span>
+                    <span>{tagName}</span>
+                    <span> x </span>
+                    <span>{posts.length}</span>
+                </h1>
                 {posts.map(({ node: post }) => {
                     const id = post.fields?.slug;
                     return (id == null) ? null : <ArticlePreview post={post} key={id} />;
@@ -25,14 +35,18 @@ const Index: React.FC<Props> = React.memo((props) => {
     );
 });
 
-export default Index;
+export default TagPage;
 
 export const query = graphql`
-    query Index {
+    query TagArticles($tag: String!) {
         allMarkdownRemark(
             sort: { order: DESC, fields: [fields___date] }
-            filter: { frontmatter: { publish: { ne: false } } }
-            limit: 6
+            filter: {
+                frontmatter: {
+                    publish: { ne: false }
+                    tags: { in: [$tag] }
+                }
+            }
         ) {
             edges {
                 node {

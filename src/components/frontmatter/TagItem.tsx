@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'gatsby';
+
+import parseTag from '../../gatsbyNode/parseTag';
 
 import './tagItem.module.scss';
 
@@ -9,13 +12,20 @@ type Props = {
 };
 
 const TagItem: React.FC<Props> = React.memo((props) => {
-    const originalTag = props.tag;
+    const {
+        tag: originalTag,
+        className,
+    } = props;
 
-    const tagName = originalTag;
+    const {
+        tagName,
+        tagId,
+    } = parseTag(originalTag);
+
     return (
-        <span className={props.className} styleName="tagItem">
+        <span className={className} styleName="tagItem">
             <span styleName="name">
-                {tagName}
+                <Link to={`/tags/${tagId}`}>{tagName}</Link>
             </span>
         </span>
     );
