@@ -20,7 +20,12 @@ const TagPage: React.FC<Props> = React.memo((props) => {
     return (
         <DefaultLayout>
             <div className="blog-posts">
-                {tagName}
+                <h1>
+                    <span>/tags/</span>
+                    <span>{tagName}</span>
+                    <span> x </span>
+                    <span>{posts.length}</span>
+                </h1>
                 {posts.map(({ node: post }) => {
                     const id = post.fields?.slug;
                     return (id == null) ? null : <ArticlePreview post={post} key={id} />;
