@@ -1,15 +1,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import { TagArticlesQuery } from '../../types/graphqlTypes';
+import { TagPageContext } from '../gatsbyNode/createPages';
+
 import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticlePreview from '../components/articlePreview/ArticlePreview';
-import { TagArticlesQuery } from '../../types/graphqlTypes';
 
 type Props = {
-    pageContext: { // FIXME#323: Add better type
-        tagId: string,
-        tagName: string,
-    },
+    pageContext: TagPageContext,
     data: TagArticlesQuery,
 };
 

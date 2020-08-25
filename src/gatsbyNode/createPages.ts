@@ -30,6 +30,16 @@ type Result = {
     },
 }
 
+export type ArticlePageContext = {
+    slug: string,
+}
+
+export type TagPageContext = {
+    tagId: string,
+    tagName: string,
+    tag: string,
+}
+
 /**
  * createPages
  */
@@ -45,7 +55,7 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
         const nodePath = node?.fields?.slug;
         if (nodePath == null) throw new Error('node.field.slug should not be nullish');
 
-        createPage({
+        createPage<ArticlePageContext>({
             path: nodePath,
             component: path.resolve('./src/templates/ArticlePage.tsx'),
             context: {
@@ -64,7 +74,7 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
             tagName,
         } = parseTag(tag);
 
-        createPage({
+        createPage<TagPageContext>({
             path: `/tags/${tagId}`,
             component: path.resolve('./src/templates/TagPage.tsx'),
             context: {
