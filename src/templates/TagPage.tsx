@@ -3,51 +3,64 @@ import { graphql } from 'gatsby';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticlePreview from '../components/articlePreview/ArticlePreview';
-import { IndexQuery } from '../../types/graphqlTypes';
+import { TagArticlesQuery } from '../../types/graphqlTypes';
 
 type Props = {
-    pageContext: {// FIXME#323: Add better type
-        tag: string,
+    pageContext: { // FIXME#323: Add better type
+        tagId: string,
+        tagName: string,
     },
+    data: TagArticlesQuery,
 };
 
-const Index: React.FC<Props> = React.memo((props) => {
+const TagPage: React.FC<Props> = React.memo((props) => {
+    const { data, pageContext } = props;
+    const { edges: posts } = data.allMarkdownRemark;
+    const { tagName } = pageContext;
+
     return (
         <DefaultLayout>
             <div className="blog-posts">
-                {props.pageContext.tag}
+                {tagName}
+                {posts.map(({ node: post }) => {
+                    const id = post.fields?.slug;
+                    return (id == null) ? null : <ArticlePreview post={post} key={id} />;
+                })}
             </div>
         </DefaultLayout>
     );
 });
 
-export default Index;
+export default TagPage;
 
-// FIXME#323: Add query for article list
-// export const query = graphql`
-//     query Index {
-//         allMarkdownRemark(
-//             sort: { order: DESC, fields: [fields___date] }
-//             filter: { frontmatter: { publish: { ne: false } } }
-//             limit: 6
-//         ) {
-//             edges {
-//                 node {
-//                     excerpt(pruneLength: 250)
-//                     id
-//                     frontmatter {
-//                         title
-//                         tags
-//                         publish
-//                     }
-//                     fields {
-//                         slug
-//                         date
-//                         index
-//                         name
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// `;
+export const query = graphql`
+    query TagArticles($tag: String!) {
+        allMarkdownRemark(
+            sort: { order: DESC, fields: [fields___date] }
+            filter: {
+                frontmatter: {
+                    publish: { ne: false }
+                    tags: { in: [$tag] }
+                }
+            }
+        ) {
+            edges {
+                node {
+                    excerpt(pruneLength: 250)
+                    id
+                    frontmatter {
+                        title
+                        tags
+                        publish
+                    }
+                    fields {
+                        slug
+                        date
+                        index
+                        name
+                    }
+                }
+            }
+        }
+    }
+`;

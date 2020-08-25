@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
+import parseTag from '../../gatsbyNode/parseTag';
+
 import './tagItem.module.scss';
 
 type Props = {
@@ -8,27 +10,6 @@ type Props = {
     className?: string,
     styleName?: string,
 };
-
-type Tag = {
-    tagName: string,
-    tagId: string,
-};
-
-function parseTag(tag: string) : Tag {
-    const startIndex = tag.indexOf('(');
-    const endIndex = tag.indexOf(')');
-    if (startIndex < 0 && endIndex < 0) {
-        return {
-            tagName: tag,
-            tagId: tag,
-        };
-    }
-
-    return {
-        tagName: tag.substring(0, startIndex),
-        tagId: tag.substring(startIndex + 1, endIndex),
-    };
-}
 
 const TagItem: React.FC<Props> = React.memo((props) => {
     const {

@@ -2,6 +2,8 @@ import path from 'path';
 import { GatsbyNode } from 'gatsby';
 import { MarkdownRemarkConnection } from '../../types/graphqlTypes';
 
+import parseTag from './parseTag';
+
 const query = `
     query PagesQuery {
         articles: allMarkdownRemark(filter: { frontmatter: { publish: { ne: false } } }) {
@@ -57,10 +59,17 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     tagNodes.forEach(({ fieldValue: tag }) => {
         if (tag == null) throw new Error('tag should not be nullish');
 
+        const {
+            tagId,
+            tagName,
+        } = parseTag(tag);
+
         createPage({
-            path: `/tags/${tag}`,
+            path: `/tags/${tagId}`,
             component: path.resolve('./src/templates/TagPage.tsx'),
             context: {
+                tagId,
+                tagName,
                 tag,
             },
         });
