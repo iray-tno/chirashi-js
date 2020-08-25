@@ -4,7 +4,7 @@ import { MarkdownRemarkConnection } from '../../types/graphqlTypes';
 
 const query = `
     query PagesQuery {
-        allMarkdownRemark(filter: { frontmatter: { publish: { ne: false } } }) {
+        articles: allMarkdownRemark(filter: { frontmatter: { publish: { ne: false } } }) {
             edges {
                 node {
                     fields {
@@ -13,12 +13,20 @@ const query = `
                 }
             }
         }
+        tags: allMarkdownRemark(limit: 1000) {
+            group(field: frontmatter___tags) {
+                fieldValue
+            }
+        }
     }
 `;
 
 type Result = {
-    allMarkdownRemark: MarkdownRemarkConnection,
-};
+    articles: MarkdownRemarkConnection,
+    tags: {
+        group: Array<{ fieldValue: string }>,
+    },
+}
 
 /**
  * createPages
@@ -29,10 +37,9 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     const result = await graphql<Result>(query);
     if (result.errors) throw result.errors;
 
-    const nodes = result?.data?.allMarkdownRemark.edges;
-    if (nodes == null) return;
-
-    nodes.forEach(({ node }) => {
+    const articleNodes = result?.data?.articles.edges;
+    if (articleNodes == null) return;
+    articleNodes.forEach(({ node }) => {
         const nodePath = node?.fields?.slug;
         if (nodePath == null) throw new Error('node.field.slug should not be nullish');
 
@@ -41,6 +48,20 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
             component: path.resolve('./src/templates/ArticlePage.tsx'),
             context: {
                 slug: nodePath,
+            },
+        });
+    });
+
+    const tagNodes = result?.data?.tags.group;
+    if (tagNodes == null || tagNodes.length === 0) return;
+    tagNodes.forEach(({ fieldValue: tag }) => {
+        if (tag == null) throw new Error('tag should not be nullish');
+
+        createPage({
+            path: `/tags/${tag}`,
+            component: path.resolve('./src/templates/TagPage.tsx'),
+            context: {
+                tag,
             },
         });
     });
