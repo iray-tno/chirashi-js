@@ -14,7 +14,7 @@ const Index: React.FC<Props> = React.memo((props) => {
     const { edges: posts } = data.allMarkdownRemark;
 
     return (
-        <DefaultLayout {...props}>
+        <DefaultLayout>
             <div className="blog-posts">
                 {posts.map(({ node: post }) => {
                     const id = post.fields?.slug;
