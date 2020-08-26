@@ -78,7 +78,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.20.3",
-    "jest-cli": "^26.1.0",
+    "jest-cli": "^26.4.2",
     "jest-config": "^26.1.0",
     "react-docgen-typescript-loader": "^3.7.2",
     "style-loader": "^1.2.1",
