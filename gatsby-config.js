@@ -8,6 +8,9 @@ module.exports = {
     },
     plugins: [
         {
+            resolve: 'gatsby-plugin-sharp',
+        },
+        {
             resolve: 'gatsby-plugin-react-css-modules',
             options: {
                 generateScopedName: '[path]___[name]__[local]', // FIXME#157: Cannot use hashes.
@@ -52,12 +55,12 @@ module.exports = {
                     {
                         resolve: 'gatsby-remark-autolink-headers',
                     },
-                    // {
-                    //     resolve: 'gatsby-remark-images',
-                    //     options: {
-                    //         linkImagesToOriginal: false,
-                    //     },
-                    // },
+                    {
+                        resolve: 'gatsby-remark-images',
+                        options: {
+                            linkImagesToOriginal: false,
+                        },
+                    },
                 ],
             },
         },
@@ -69,6 +72,5 @@ module.exports = {
                 fileName: 'types/graphqlTypes.d.ts',
             },
         },
-        // 'gatsby-plugin-sharp',
     ],
 };
