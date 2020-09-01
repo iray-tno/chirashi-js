@@ -33,7 +33,7 @@
     "gatsby-plugin-react-css-modules": "^2.3.10",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-sass": "^2.3.12",
-    "gatsby-plugin-sharp": "^2.6.30",
+    "gatsby-plugin-sharp": "^2.6.31",
     "gatsby-plugin-typescript": "^2.4.6",
     "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-component": "^1.1.3",
