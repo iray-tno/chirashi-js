@@ -1,4 +1,9 @@
+const { config } = require('dotenv');
 const { name } = require('./package.json');
+
+// Read .env file
+const activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || 'development';
+config({ path: `.env.${activeEnv}` });
 
 module.exports = {
     pathPrefix: process.env.CI ? `/${name}` : '/',
@@ -10,7 +15,7 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-google-analytics',
             options: {
-                trackingId: 'UA-44690113-1',
+                trackingId: process.env.GA_TRACKING_ID,
                 head: false,
                 pageTransitionDelay: 10,
                 defer: true,
