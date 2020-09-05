@@ -8,6 +8,15 @@ module.exports = {
     },
     plugins: [
         {
+            resolve: 'gatsby-plugin-google-analytics',
+            options: {
+                trackingId: 'UA-44690113-1',
+                head: false,
+                pageTransitionDelay: 10,
+                defer: true,
+            },
+        },
+        {
             resolve: 'gatsby-plugin-sharp',
         },
         {
