@@ -47,22 +47,22 @@ $indentItemPadding: 7%;
 }
 
 .depthOne {
-    padding-left: calc($indentItemPadding * 0 + $defaultItemPadding);
+    padding-left: calc(#{$indentItemPadding} * 0 + #{$defaultItemPadding});
 }
 .depthTwo {
-    padding-left: calc($indentItemPadding * 1 + $defaultItemPadding);
+    padding-left: calc(#{$indentItemPadding} * 1 + #{$defaultItemPadding});
 }
 .depthThree {
-    padding-left: calc($indentItemPadding * 2 + $defaultItemPadding);
+    padding-left: calc(#{$indentItemPadding} * 2 + #{$defaultItemPadding});
 }
 .depthFour {
-    padding-left: calc($indentItemPadding * 3 + $defaultItemPadding);
+    padding-left: calc(#{$indentItemPadding} * 3 + #{$defaultItemPadding});
 }
 .depthFive {
-    padding-left: calc($indentItemPadding * 4 + $defaultItemPadding);
+    padding-left: calc(#{$indentItemPadding} * 4 + #{$defaultItemPadding});
 }
 .depthSix {
-    padding-left: calc($indentItemPadding * 5 + $defaultItemPadding);
+    padding-left: calc(#{$indentItemPadding} * 5 + #{$defaultItemPadding});
 }
 
 .link {

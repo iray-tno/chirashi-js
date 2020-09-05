@@ -1,4 +1,9 @@
+const { config } = require('dotenv');
 const { name } = require('./package.json');
+
+// Read .env file
+const activeEnv = process.env.ACTIVE_ENV || process.env.NODE_ENV || 'development';
+config({ path: `.env.${activeEnv}` });
 
 module.exports = {
     pathPrefix: process.env.CI ? `/${name}` : '/',
@@ -7,6 +12,15 @@ module.exports = {
         title: 'Chiranoura',
     },
     plugins: [
+        {
+            resolve: 'gatsby-plugin-google-analytics',
+            options: {
+                trackingId: process.env.GA_TRACKING_ID,
+                head: false,
+                pageTransitionDelay: 10,
+                defer: true,
+            },
+        },
         {
             resolve: 'gatsby-plugin-sharp',
         },
