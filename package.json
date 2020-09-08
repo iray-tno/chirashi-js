@@ -37,7 +37,7 @@
     "gatsby-plugin-sass": "^2.3.12",
     "gatsby-plugin-sharp": "^2.6.31",
     "gatsby-plugin-typescript": "^2.4.6",
-    "gatsby-remark-autolink-headers": "^2.3.11",
+    "gatsby-remark-autolink-headers": "^2.3.12",
     "gatsby-remark-component": "^1.1.3",
     "gatsby-remark-images": "^3.3.28",
     "gatsby-remark-prismjs": "^3.5.11",
