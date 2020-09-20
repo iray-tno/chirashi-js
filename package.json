@@ -68,7 +68,7 @@
     "@storybook/addon-docs": "^6.0.21",
     "@storybook/addon-links": "^6.0.21",
     "@storybook/react": "^6.0.21",
-    "@types/jest": "^26.0.13",
+    "@types/jest": "^26.0.14",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^3.10.1",
     "babel-core": "^7.0.0-bridge",
