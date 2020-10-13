@@ -9606,10 +9606,10 @@ gatsby-plugin-page-creator@^2.3.32:
     graphql "^14.7.0"
     lodash "^4.17.20"
 
-gatsby-plugin-react-css-modules@^2.3.11:
-  version "2.3.11"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-css-modules/-/gatsby-plugin-react-css-modules-2.3.11.tgz#b1a923b45c10f7888a584a6cbd3c0dc0a81fcd59"
-  integrity sha512-3uf9pVqVxfpmtR7APE8dgU6QyTZ+2d+5xPPzkie5EvhMWIQay3v6cgRexiOumjDHq0jtGyOsmyTOWA6m+5Ut4A==
+gatsby-plugin-react-css-modules@^2.3.13:
+  version "2.3.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-css-modules/-/gatsby-plugin-react-css-modules-2.3.13.tgz#b40f03d45b2137783ae17e2df8ed8e765ba4d85e"
+  integrity sha512-Gqa7Hwch0dTY8k4AHYJN+sdlpzDTbNxbmVEdJaJqVZ78hGjhBBjQ0C7ScW/4+St1YGfMCbqPdkWih/HDs4F9Rw==
   dependencies:
     "@babel/runtime" "^7.11.2"
     babel-plugin-react-css-modules "^3.4.2"
