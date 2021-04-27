@@ -52,7 +52,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-intersection-observer": "^8.29.0",
-    "react-redux": "^7.2.1",
+    "react-redux": "^7.2.4",
     "rehype-react": "^6.0.0",
     "ts-node": "^9.0.0",
     "typescript": "^3.9.6"
