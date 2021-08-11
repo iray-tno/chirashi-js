@@ -85,7 +85,7 @@
     "jest-cli": "^26.6.3",
     "jest-config": "^26.1.0",
     "react-docgen-typescript-loader": "^3.7.2",
-    "style-loader": "^2.0.0",
+    "style-loader": "^3.2.1",
     "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.10"
   }
