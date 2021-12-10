@@ -17369,10 +17369,10 @@ react-inspector@^5.0.1:
     is-dom "^1.1.0"
     prop-types "^15.6.1"
 
-react-intersection-observer@^8.29.0:
-  version "8.29.0"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.29.0.tgz#8349a6301bfc24329a029036c6bed30f9864f3ad"
-  integrity sha512-Bqp7GBa5Aieo8C33Bz0e5WuUnFUKN3WOayKMT/2f0ujfW+YpzOEdNE4MK/TnaHp+cisK7n1At3qcFaNPfhHbqw==
+react-intersection-observer@^8.33.0:
+  version "8.33.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.33.0.tgz#e1ba72c9b28f1a02143870265f77d84aac450dbd"
+  integrity sha512-slsqrtsUhHT01aySxAcY0JcjLRdVJOwatKeyk5r4IQ9c8SU+x1mKr1kPxwElYHRCIbHS7t2KD15/4/FzNJGUNg==
 
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.9.0:
   version "16.13.1"
