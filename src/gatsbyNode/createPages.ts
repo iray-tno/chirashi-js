@@ -40,6 +40,8 @@ export type TagPageContext = {
     tag: string,
 }
 
+type ArticleNode = { node: { fields?: { slug?: string } } };
+
 /**
  * createPages
  */
@@ -49,9 +51,9 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     const result = await graphql<Result>(query);
     if (result.errors) throw result.errors;
 
-    const articleNodes = result?.data?.articles.edges;
+    const articleNodes: ArticleNode[] | undefined = result?.data?.articles.edges;
     if (articleNodes == null) return;
-    articleNodes.forEach(({ node }) => {
+    articleNodes.forEach(({ node }: ArticleNode) => {
         const nodePath = node?.fields?.slug;
         if (nodePath == null) throw new Error('node.field.slug should not be nullish');
 
