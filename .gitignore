@@ -8,3 +8,9 @@ yarn-error.log
 
 temp/*
 types/graphqlTypes.d.ts
+
+# Yarn install state cache
+.yarn/install-state.gz
+
+# Gatsby generated GraphQL types
+src/gatsby-types.d.ts
