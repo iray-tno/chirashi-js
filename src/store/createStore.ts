@@ -1,9 +1,4 @@
-import {
-    combineReducers,
-    configureStore,
-    getDefaultMiddleware,
-    EnhancedStore,
-} from '@reduxjs/toolkit';
+import { combineReducers, configureStore, EnhancedStore } from '@reduxjs/toolkit';
 
 import tableOfContentsModule from '../modules/tableOfContentsModule';
 
@@ -13,9 +8,10 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export default (): EnhancedStore => {
+export const createStore = (): EnhancedStore => {
     return configureStore({
         reducer: rootReducer,
-        middleware: getDefaultMiddleware(),
     });
 };
+
+export default createStore;
