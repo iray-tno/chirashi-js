@@ -3,7 +3,7 @@ import { InView } from 'react-intersection-observer';
 
 type Props = {
     id?: string,
-    onInViewChange?: (inView: boolean, id: string) => void,
+    onInViewChange?: (_inViewValue: boolean, _idValue: string) => void,
 };
 
 /**
@@ -20,7 +20,7 @@ const WithInView: React.FC<Props> = React.memo((props) => {
         if (onInViewChange != null && id != null) {
             onInViewChange(inView, id);
         }
-    }, [id]);
+    }, [id, onInViewChange]);
 
     return (
         <InView as="div" onChange={handleInViewChange}>

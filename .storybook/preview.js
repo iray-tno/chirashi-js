@@ -1,5 +1,3 @@
-/* global window */
-/* eslint-disable no-underscore-dangle */
 import { action } from '@storybook/addon-actions';
 import noop from 'lodash.noop';
 

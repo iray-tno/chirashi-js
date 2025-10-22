@@ -1,7 +1,0 @@
-node_modules/*
-public/*
-coverage/*
-temp/*
-src/gatsby-types.d.ts
-
-!.storybook
