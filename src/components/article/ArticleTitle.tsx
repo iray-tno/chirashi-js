@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import HeaderOne from './headers/HeaderOne';
 
-import './articleTitle.module.scss';
+import './articleTitle.module.css';
 
 type Props = {
     to: string,

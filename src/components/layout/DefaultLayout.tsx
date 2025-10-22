@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import Header from '../header/Header';
 import TableOfContentsContainer from '../tableOfContents/TableOfContentsContainer';
 
-import './defaultLayout.module.scss';
+import './defaultLayout.module.css';
 
 type Props = {
     headings?: Array<Queries.Maybe<Queries.MarkdownHeading>> | null,

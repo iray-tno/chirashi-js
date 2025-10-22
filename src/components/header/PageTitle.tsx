@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import './pageTitle.module.scss';
+import './pageTitle.module.css';
 
 type Props = {
 };

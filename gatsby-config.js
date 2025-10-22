@@ -10,23 +10,23 @@ const plugins = [
         resolve: 'gatsby-plugin-sharp',
     },
     {
-        resolve: 'gatsby-plugin-react-css-modules',
-        options: {
-            generateScopedName: '[path]___[name]__[local]', // FIXME#157: Cannot use hashes.
-            filetypes: {
-                '.scss': {
-                    syntax: 'postcss-scss',
-                },
-            },
-            exclude: '/global/',
-        },
-    },
-    {
-        resolve: 'gatsby-plugin-sass',
+        resolve: 'gatsby-plugin-postcss',
         options: {
             cssLoaderOptions: {
                 localIdentName: '[path]___[name]__[local]', // FIXME#157: Cannot use hashes.
             },
+        },
+    },
+    {
+        resolve: 'gatsby-plugin-react-css-modules',
+        options: {
+            generateScopedName: '[path]___[name]__[local]', // FIXME#157: Cannot use hashes.
+            filetypes: {
+                '.css': {
+                    syntax: 'postcss',
+                },
+            },
+            exclude: '/global/',
         },
     },
     'gatsby-plugin-catch-links',

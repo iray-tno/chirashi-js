@@ -1,7 +1,7 @@
 import React from 'react';
 import PageTitle from './PageTitle';
 
-import './header.module.scss';
+import './header.module.css';
 
 type Props = {
 };

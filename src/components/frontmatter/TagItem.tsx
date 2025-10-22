@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import parseTag from '../../gatsbyNode/parseTag';
 
-import './tagItem.module.scss';
+import './tagItem.module.css';
 
 type Props = {
     tag: string,
