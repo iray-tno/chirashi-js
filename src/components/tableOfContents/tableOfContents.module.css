@@ -1,26 +1,30 @@
+:root {
+    --fadeOutInitialOpaticy: 1;
+    --fadeOutFinalOpaticy: 0.2;
+    --defaultItemPadding: 3px;
+    --indentItemPadding: 7%;
+}
 
-$fadeOutInitialOpaticy: 1;
-$fadeOutFinalOpaticy: 0.2;
 @keyframes tocItemFadeOut {
     0% {
-        opacity: $fadeOutInitialOpaticy;
+        opacity: var(--fadeOutInitialOpaticy);
     }
     20% {
-        opacity: $fadeOutInitialOpaticy; // 20% (1s) delay
+        opacity: var(--fadeOutInitialOpaticy); /* 20% (1s) delay */
     }
     100% {
-        opacity: $fadeOutFinalOpaticy;
+        opacity: var(--fadeOutFinalOpaticy);
     }
 }
 
 .outer {
     padding: 0 5px;
-    opacity: $fadeOutFinalOpaticy;
+    opacity: var(--fadeOutFinalOpaticy);
     animation-name: tocItemFadeOut;
     animation-duration: 5s;
 
     &:hover {
-        opacity: $fadeOutInitialOpaticy;
+        opacity: var(--fadeOutInitialOpaticy);
         animation-name: none;
 
         .active {
@@ -29,15 +33,13 @@ $fadeOutFinalOpaticy: 0.2;
     }
 }
 
-$defaultItemPadding: 3px;
-$indentItemPadding: 7%;
 .item {
     list-style-type: "- ";
     list-style-position: inside;
     border-radius: 2px;
     font-family: "Courier New";
     font-size: 12px;
-    padding: 1px $defaultItemPadding;
+    padding: 1px var(--defaultItemPadding);
     margin: 1px 0;
 }
 
@@ -47,22 +49,22 @@ $indentItemPadding: 7%;
 }
 
 .depthOne {
-    padding-left: calc(#{$indentItemPadding} * 0 + #{$defaultItemPadding});
+    padding-left: calc(var(--indentItemPadding) * 0 + var(--defaultItemPadding));
 }
 .depthTwo {
-    padding-left: calc(#{$indentItemPadding} * 1 + #{$defaultItemPadding});
+    padding-left: calc(var(--indentItemPadding) * 1 + var(--defaultItemPadding));
 }
 .depthThree {
-    padding-left: calc(#{$indentItemPadding} * 2 + #{$defaultItemPadding});
+    padding-left: calc(var(--indentItemPadding) * 2 + var(--defaultItemPadding));
 }
 .depthFour {
-    padding-left: calc(#{$indentItemPadding} * 3 + #{$defaultItemPadding});
+    padding-left: calc(var(--indentItemPadding) * 3 + var(--defaultItemPadding));
 }
 .depthFive {
-    padding-left: calc(#{$indentItemPadding} * 4 + #{$defaultItemPadding});
+    padding-left: calc(var(--indentItemPadding) * 4 + var(--defaultItemPadding));
 }
 .depthSix {
-    padding-left: calc(#{$indentItemPadding} * 5 + #{$defaultItemPadding});
+    padding-left: calc(var(--indentItemPadding) * 5 + var(--defaultItemPadding));
 }
 
 .link {
