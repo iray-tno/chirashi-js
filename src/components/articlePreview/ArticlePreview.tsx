@@ -1,20 +1,13 @@
 import React from 'react';
 
-import {
-    Maybe,
-    MarkdownRemark,
-    MarkdownRemarkFrontmatter,
-    MarkdownRemarkFields,
-} from '../../../types/graphqlTypes';
-
 import ArticleTitle from '../article/ArticleTitle';
 import Frontmatter from '../frontmatter/Frontmatter';
 import ReadMoreLink from './ReadMoreLink';
 
 type Props = {
-    post: Pick<MarkdownRemark, 'excerpt' | 'id'> & {
-        frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'publish' | 'tags'>>,
-        fields?: Maybe<Pick<MarkdownRemarkFields, 'slug' | 'date' | 'index' | 'name'>>,
+    post: Pick<Queries.MarkdownRemark, 'excerpt' | 'id'> & {
+        frontmatter?: Queries.Maybe<Pick<Queries.MarkdownRemarkFrontmatter, 'title' | 'publish' | 'tags'>>,
+        fields?: Queries.Maybe<Pick<Queries.MarkdownRemarkFields, 'slug' | 'date' | 'index' | 'name'>>,
     },
 };
 

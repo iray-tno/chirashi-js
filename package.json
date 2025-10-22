@@ -11,7 +11,7 @@
     "develop": "NODE_OPTIONS='--openssl-legacy-provider' gatsby develop",
     "serve": "gatsby serve",
     "storybook": "start-storybook",
-    "lint": "eslint ./**/*.ts ./**/*.tsx ./**/*.js",
+    "lint": "eslint .",
     "test": "jest"
   },
   "dependencies": {

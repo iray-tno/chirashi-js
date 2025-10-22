@@ -1,6 +1,6 @@
+/// <reference path="../gatsby-types.d.ts" />
 import path from 'path';
 import { GatsbyNode } from 'gatsby';
-import { MarkdownRemarkConnection } from '../../types/graphqlTypes';
 
 import parseTag from './parseTag';
 
@@ -24,7 +24,7 @@ const query = `
 `;
 
 type Result = {
-    articles: MarkdownRemarkConnection,
+    articles: Queries.MarkdownRemarkConnection,
     tags: {
         group: Array<{ fieldValue: string }>,
     },
@@ -40,7 +40,7 @@ export type TagPageContext = {
     tag: string,
 }
 
-type ArticleNode = { node: { fields?: { slug?: string } } };
+type ArticleNode = { node: { fields?: { slug?: string | null } | null } };
 
 /**
  * createPages
@@ -51,7 +51,7 @@ const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
     const result = await graphql<Result>(query);
     if (result.errors) throw result.errors;
 
-    const articleNodes: ArticleNode[] | undefined = result?.data?.articles.edges;
+    const articleNodes: readonly ArticleNode[] | undefined = result?.data?.articles.edges;
     if (articleNodes == null) return;
     articleNodes.forEach(({ node }: ArticleNode) => {
         const nodePath = node?.fields?.slug;

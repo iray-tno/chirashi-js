@@ -2,6 +2,6 @@ node_modules/*
 public/*
 coverage/*
 temp/*
-types/graphqlTypes.d.ts
+src/gatsby-types.d.ts
 
 !.storybook

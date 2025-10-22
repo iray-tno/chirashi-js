@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import { TagArticlesQuery } from '../../types/graphqlTypes';
 import { TagPageContext } from '../gatsbyNode/createPages';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
@@ -9,7 +8,7 @@ import ArticlePreview from '../components/articlePreview/ArticlePreview';
 
 type Props = {
     pageContext: TagPageContext,
-    data: TagArticlesQuery,
+    data: Queries.TagArticlesQuery,
 };
 
 const TagPage: React.FC<Props> = React.memo((props) => {
