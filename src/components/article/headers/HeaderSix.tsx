@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './headerFive.module.scss';
+import './headerFive.module.css';
 
 type Props = {
     className?: string,

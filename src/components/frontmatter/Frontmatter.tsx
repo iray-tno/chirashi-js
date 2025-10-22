@@ -3,7 +3,7 @@ import React from 'react';
 import DateDisplay from './DateDisplay';
 import TagsDisplay from './TagsDisplay';
 
-import './frontmatter.module.scss';
+import './frontmatter.module.css';
 
 type Props = {
     tags?: Queries.Maybe<string>[] | null,

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTags } from '@fortawesome/free-solid-svg-icons';
 
 import TagItem from './TagItem';
-import './tagsDisplay.module.scss';
+import './tagsDisplay.module.css';
 
 type Props = {
     tags?: Queries.Maybe<string>[] | null,

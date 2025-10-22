@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './inlineCode.module.scss';
+import './inlineCode.module.css';
 
 type Props = {
     className?: string,

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { TableOfContentsState } from '../../modules/tableOfContentsModule';
 
-import './tableOfContents.module.scss';
+import './tableOfContents.module.css';
 
 type Props = {
     headings?: Array<Queries.Maybe<Queries.MarkdownHeading>> | null,
