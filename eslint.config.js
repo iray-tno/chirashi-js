@@ -15,6 +15,7 @@ module.exports = tseslint.config(
             'temp/**',
             'src/gatsby-types.d.ts',
             '.cache/**',
+            'vitest.config.ts',
         ],
     },
 
