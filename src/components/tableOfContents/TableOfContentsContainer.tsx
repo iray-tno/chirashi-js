@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { Maybe, MarkdownHeading } from '../../../types/graphqlTypes';
 import { RootState } from '../../store/createStore';
 import TableOfContents from './TableOfContents';
 
 type Props = {
-    headings?: Array<Maybe<MarkdownHeading>> | null,
+    headings?: Array<Queries.Maybe<Queries.MarkdownHeading>> | null,
     className?: string,
     styleName?: string,
 };

@@ -3,10 +3,9 @@ import { graphql } from 'gatsby';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
 import ArticlePreview from '../components/articlePreview/ArticlePreview';
-import { IndexQuery } from '../../types/graphqlTypes';
 
 type Props = {
-    data: IndexQuery,
+    data: Queries.IndexQuery,
 };
 
 const Index: React.FC<Props> = React.memo((props) => {

@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { Maybe } from '../../../types/graphqlTypes';
-
 import DateDisplay from './DateDisplay';
 import TagsDisplay from './TagsDisplay';
 
 import './frontmatter.module.scss';
 
 type Props = {
-    tags?: Maybe<string>[] | null,
+    tags?: Queries.Maybe<string>[] | null,
     date: string,
     className?: string,
     styleName?: string,

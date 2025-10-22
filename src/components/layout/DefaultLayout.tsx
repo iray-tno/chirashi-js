@@ -4,12 +4,10 @@ import { Helmet } from 'react-helmet';
 import Header from '../header/Header';
 import TableOfContentsContainer from '../tableOfContents/TableOfContentsContainer';
 
-import { Maybe, MarkdownHeading } from '../../../types/graphqlTypes';
-
 import './defaultLayout.module.scss';
 
 type Props = {
-    headings?: Array<Maybe<MarkdownHeading>> | null,
+    headings?: Array<Queries.Maybe<Queries.MarkdownHeading>> | null,
 };
 
 const DefaultLayout: React.FC<Props> = (props) => {

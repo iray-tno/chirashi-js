@@ -2,13 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTags } from '@fortawesome/free-solid-svg-icons';
 
-import { Maybe } from '../../../types/graphqlTypes';
-
 import TagItem from './TagItem';
 import './tagsDisplay.module.scss';
 
 type Props = {
-    tags?: Maybe<string>[] | null,
+    tags?: Queries.Maybe<string>[] | null,
     className?: string,
     styleName?: string,
 };

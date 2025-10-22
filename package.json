@@ -11,7 +11,7 @@
     "develop": "NODE_OPTIONS='--openssl-legacy-provider' gatsby develop",
     "serve": "gatsby serve",
     "storybook": "start-storybook",
-    "lint": "eslint ./**/*.ts ./**/*.tsx ./**/*.js",
+    "lint": "eslint .",
     "test": "jest"
   },
   "dependencies": {
@@ -94,10 +94,5 @@
     "ts-jest": "^29.3.4",
     "ts-loader": "^9.5.2",
     "webpack": "^5.99.9"
-  },
-  "volta": {
-    "node": "22.16.0",
-    "npm": "10.5.0",
-    "yarn": "4.9.2"
   }
 }

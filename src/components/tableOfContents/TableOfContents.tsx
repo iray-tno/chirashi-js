@@ -1,13 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Maybe, MarkdownHeading } from '../../../types/graphqlTypes';
 import { TableOfContentsState } from '../../modules/tableOfContentsModule';
 
 import './tableOfContents.module.scss';
 
 type Props = {
-    headings?: Array<Maybe<MarkdownHeading>> | null,
+    headings?: Array<Queries.Maybe<Queries.MarkdownHeading>> | null,
     tableOfContents?: TableOfContentsState | null,
     className?: string,
     styleName?: string,

@@ -3,7 +3,6 @@ import RehypeReact from 'rehype-react';
 import { graphql } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
 
-import { ArticlePageQuery } from '../../types/graphqlTypes';
 import { ArticlePageContext } from '../gatsbyNode/createPages';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
@@ -22,7 +21,7 @@ import Frontmatter from '../components/frontmatter/Frontmatter';
 
 type Props = {
     pageContext: ArticlePageContext,
-    data: ArticlePageQuery,
+    data: Queries.ArticlePageQuery,
 };
 
 // FIXME#167: Have to fix those type errors.
