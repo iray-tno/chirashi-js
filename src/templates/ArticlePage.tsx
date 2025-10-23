@@ -1,8 +1,9 @@
 import React from 'react';
 import * as prod from 'react/jsx-runtime';
-import rehypeReact from 'rehype-react';
+import rehypeReact, { type Options as RehypeReactOptions } from 'rehype-react';
 import { graphql } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
+import type { Root } from 'hast';
 
 import { ArticlePageContext } from '../gatsbyNode/createPages';
 
@@ -25,26 +26,30 @@ type Props = {
     data: Queries.ArticlePageQuery,
 };
 
-// FIXME#167: Have to fix those type errors.
+type CodeProps = {
+    className?: string;
+    children?: React.ReactNode;
+};
+
 // Migrated to rehype-react v8 API
-const renderAst = (htmlAst: any) => {
-    // @ts-expect-error: JSX runtime types
-    const processor = rehypeReact({
+const renderAst = (htmlAst: Root): React.ReactElement | null => {
+    const options: RehypeReactOptions = {
         ...prod,
         components: {
-            h1: HeaderOneContainer as any,
-            h2: HeaderTwoContainer as any,
-            h3: HeaderThreeContainer as any,
-            h4: HeaderFourContainer as any,
-            h5: HeaderFiveContainer as any,
-            h6: HeaderSixContainer as any,
-            code: (props: any) => {
+            h1: HeaderOneContainer,
+            h2: HeaderTwoContainer,
+            h3: HeaderThreeContainer,
+            h4: HeaderFourContainer,
+            h5: HeaderFiveContainer,
+            h6: HeaderSixContainer,
+            code: (props: CodeProps) => {
                 const { className } = props;
                 return className == null ? <InlineCode {...props} /> : <span {...props} />;
             },
         },
-    });
+    };
 
+    const processor = rehypeReact(options);
     return processor.stringify(htmlAst);
 };
 
