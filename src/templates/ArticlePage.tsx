@@ -1,5 +1,6 @@
 import React from 'react';
-import RehypeReact from 'rehype-react';
+import * as prod from 'react/jsx-runtime';
+import rehypeReact from 'rehype-react';
 import { graphql } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
 
@@ -25,21 +26,27 @@ type Props = {
 };
 
 // FIXME#167: Have to fix those type errors.
-const renderAst = new RehypeReact({
-    createElement: React.createElement as any,
-    components: {
-        h1: HeaderOneContainer as any,
-        h2: HeaderTwoContainer as any,
-        h3: HeaderThreeContainer as any,
-        h4: HeaderFourContainer as any,
-        h5: HeaderFiveContainer as any,
-        h6: HeaderSixContainer as any,
-        code: (props): any => {
-            const { className } = props;
-            return className == null ? <InlineCode {...props} /> : <span {...props} />;
+// Migrated to rehype-react v8 API
+const renderAst = (htmlAst: any) => {
+    // @ts-expect-error: JSX runtime types
+    const processor = rehypeReact({
+        ...prod,
+        components: {
+            h1: HeaderOneContainer as any,
+            h2: HeaderTwoContainer as any,
+            h3: HeaderThreeContainer as any,
+            h4: HeaderFourContainer as any,
+            h5: HeaderFiveContainer as any,
+            h6: HeaderSixContainer as any,
+            code: (props: any) => {
+                const { className } = props;
+                return className == null ? <InlineCode {...props} /> : <span {...props} />;
+            },
         },
-    },
-}).Compiler;
+    });
+
+    return processor.stringify(htmlAst);
+};
 
 const ArticlePage: React.FC<Props> = (props) => {
     const {
