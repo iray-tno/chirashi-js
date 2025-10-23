@@ -30,7 +30,7 @@
     "@types/rehype-react": "^6.0.0",
     "classnames": "^2.5.1",
     "disqus-react": "^1.1.6",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.3",
     "gatsby": "^5.15.0",
     "gatsby-plugin-catch-links": "^5.15.0",
     "gatsby-plugin-google-analytics": "^5.15.0",
@@ -72,7 +72,7 @@
     "@types/node": "^24.0.1",
     "@typescript-eslint/eslint-plugin": "^8.34.0",
     "@typescript-eslint/parser": "^8.34.0",
-    "@vitest/ui": "^3.2.4",
+    "@vitest/ui": "^4.0.1",
     "autoprefixer": "^10.4.21",
     "babel-core": "^7.0.0-bridge",
     "babel-eslint": "^10.1.0",
@@ -95,7 +95,7 @@
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.2",
     "typescript-eslint": "^8.46.2",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.1",
     "webpack": "^5.99.9"
   }
 }
