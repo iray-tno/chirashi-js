@@ -7,8 +7,8 @@
   "author": "Yuta Tanaka <iray.tno@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_OPTIONS='--openssl-legacy-provider' gatsby build",
-    "develop": "NODE_OPTIONS='--openssl-legacy-provider' gatsby develop",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
     "serve": "gatsby serve",
     "storybook": "start-storybook",
     "lint": "eslint .",
@@ -80,6 +80,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-webpack-plugin": "^4.2.0",
     "gatsby-plugin-postcss": "^6.15.0",
     "graphql": "^16.11.0",
     "postcss": "^8.5.5",
