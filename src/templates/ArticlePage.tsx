@@ -1,6 +1,7 @@
 import React from 'react';
 import * as prod from 'react/jsx-runtime';
 import rehypeReact, { type Options as RehypeReactOptions } from 'rehype-react';
+import { unified } from 'unified';
 import { graphql } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
 import type { Root } from 'hast';
@@ -31,7 +32,7 @@ type CodeProps = {
     children?: React.ReactNode;
 };
 
-// Migrated to rehype-react v8 API
+// Migrated to rehype-react v8 API with unified
 const renderAst = (htmlAst: Root): React.ReactElement | null => {
     const options: RehypeReactOptions = {
         ...prod,
@@ -49,8 +50,9 @@ const renderAst = (htmlAst: Root): React.ReactElement | null => {
         },
     };
 
-    const processor = rehypeReact(options);
-    return processor.stringify(htmlAst);
+    const processor = unified().use(rehypeReact, options);
+    const result = processor.stringify(htmlAst);
+    return result as React.ReactElement;
 };
 
 const ArticlePage: React.FC<Props> = (props) => {
