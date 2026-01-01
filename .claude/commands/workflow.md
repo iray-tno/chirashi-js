@@ -180,7 +180,10 @@ Closes #{ISSUE_NUMBER}
 ```
 
 **Important:**
-- Include `Closes #{ISSUE_NUMBER}` to auto-close issue on merge
+- **CRITICAL:** Include `Closes #{ISSUE_NUMBER}` in the PR body to automatically close the issue when merged
+  - GitHub supports keywords: `Closes`, `Fixes`, or `Resolves` (e.g., `Closes #123`, `Fixes #123`, `Resolves #123`)
+  - This must be in the PR description, not just commit messages
+  - When the PR is merged, GitHub will automatically close the referenced issue
 - Always use `--base master`
 - Review the PR URL that's returned
 
@@ -201,9 +204,14 @@ git branch -d feature/issue-{NUMBER}_{description}
 ```
 
 **Verify:**
-- Issue is automatically closed
+- Issue is automatically closed (if PR used `Closes #xxx` in description)
 - Changes are in master
 - All CI checks pass
+
+**Note:** If the issue wasn't automatically closed, you can manually close it:
+```bash
+gh issue close {NUMBER} --comment "Closed by #{PR_NUMBER}"
+```
 
 ---
 
@@ -256,6 +264,13 @@ git branch -d feature/issue-{N}_{desc}
   3. Migrate files
   4. Remove old dependencies
 - **PR:** #878 with `Closes #877`
+
+### Example 3: Issue #937 (Migrate proto to mise)
+- **Branch:** `feature/issue-937_migrate-proto-to-mise`
+- **Commit:** 1 commit with `#937` prefix
+- **PR:** #938 **without** `Closes #937` (forgot to add it)
+- **Result:** Issue had to be manually closed after merge
+- **Lesson:** Always include `Closes #xxx` in PR body to enable auto-closing!
 
 ---
 
