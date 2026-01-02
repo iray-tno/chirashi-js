@@ -2,7 +2,7 @@
 
 ## 1. Project Overview
 
-Migrate the existing Gatsby-based blog (`chirashi-js`) to Next.js (App Router) with technical and functional improvements. Content (Markdown files) is managed in a separate repository (`chiranoura-blog`) and will be accessed via Git Submodule or fetched during build time.
+Migrate the existing Gatsby-based blog (`chirashi-js`) to Next.js (App Router) with technical and functional improvements in a **monorepo structure**. Content from the separate `chiranoura-blog` repository will be merged into the monorepo under `packages/content/`, enabling seamless MDX and React component integration.
 
 **Final Goal:**
 
@@ -21,11 +21,16 @@ Migrate the existing Gatsby-based blog (`chirashi-js`) to Next.js (App Router) w
 * **Framework:** Next.js (App Router)
 * **Language:** TypeScript
 * **Styling:** Tailwind CSS
-* **Content:** MDX (`next-mdx-remote/rsc` or `@next/mdx`), `gray-matter` for Frontmatter
+* **Monorepo:** pnpm workspaces, multi-package structure
+* **Content:** MDX (`next-mdx-remote/rsc` or `contentlayer`), `gray-matter` for Frontmatter
 * **Math:** `rehype-katex`, `remark-math`
 * **Highlight:** `rehype-pretty-code` (Shiki based)
 * **Diagram:** `rehype-mermaid` (optional)
 * **Infra:** AWS S3, CloudFront, Route53, GitHub Actions
+* **Package Structure:**
+  * `apps/blog` - Main Next.js application
+  * `packages/components` - Shared React component library
+  * `packages/content` - Article content (MDX files)
 
 ---
 
@@ -68,22 +73,47 @@ CloudFront Distribution (blog.chiranoura.com)
 
 AI assistants should be given instructions for each phase and proceed to the next only after completion confirmation.
 
-### Phase 0: Progressive Setup (Side-by-Side Deployment)
+### Phase 0: Progressive Setup (Side-by-Side Deployment + Monorepo)
 
-**Purpose:** Set up Next.js alongside Gatsby without disrupting existing site.
+**Purpose:** Set up monorepo structure and Next.js alongside Gatsby without disrupting existing site.
 
-1. **Create Next.js Project:**
-   * New directory: `nextjs-app/` (separate from Gatsby)
-   * Initialize with `create-next-app` + TypeScript + Tailwind
+1. **Monorepo Initialization:**
+   * Install pnpm: `npm install -g pnpm`
+   * Create `pnpm-workspace.yaml` in root
+   * Create directory structure:
+     - `apps/blog/` - Next.js application
+     - `apps/legacy-gatsby/` - Move current Gatsby temporarily
+     - `packages/components/` - Shared React components
+     - `packages/content/` - Content (to be migrated)
+   * Initialize workspace: `pnpm init`
+   * See detailed steps in `docs/MONOREPO_MIGRATION.md`
 
-2. **AWS Infrastructure:**
+2. **Content Migration:**
+   * Use `git subtree` to merge `chiranoura-blog` repo into `packages/content/`
+   * Preserve git history of content changes
+   * Alternative: Manual copy if history not needed
+   * Create validation scripts for frontmatter
+
+3. **Component Package Setup:**
+   * Initialize `@chiranoura/components` package
+   * Set up TypeScript + tsup for building
+   * Create MDX component structure
+   * Configure exports for `mdx` and `article` components
+
+4. **Next.js App Creation:**
+   * Initialize Next.js in `apps/blog/` with TypeScript + Tailwind
+   * Configure workspace dependencies (`@chiranoura/components`, `@chiranoura/content`)
+   * Set up Contentlayer or MDX configuration
+   * Create `mdx-components.tsx` for component registry
+
+5. **AWS Infrastructure:**
    * Create new S3 bucket for Next.js (`blog-next`)
    * Keep existing Gatsby S3 bucket (`blog-gatsby`)
    * Configure CloudFront with two origins:
      - Origin 1: Gatsby S3 bucket (default/fallback)
      - Origin 2: Next.js S3 bucket (for new paths)
 
-3. **CloudFront Path Patterns:**
+6. **CloudFront Path Patterns:**
    * Create cache behaviors for Next.js paths (order matters - specific paths first):
      - `/posts/*` → Next.js origin
      - `/series/*` → Next.js origin
@@ -92,25 +122,56 @@ AI assistants should be given instructions for each phase and proceed to the nex
      - `/ja/*` → Next.js origin
      - `/*` → Gatsby origin (default)
 
-4. **Dual GitHub Actions:**
+7. **Dual GitHub Actions:**
    * Keep existing Gatsby workflow
-   * Add new Next.js workflow deploying to separate bucket
-   * Both can deploy independently
+   * Add new Next.js workflow for monorepo build:
+     - Install pnpm
+     - Install workspace dependencies: `pnpm install --frozen-lockfile`
+     - Build blog: `pnpm --filter blog build`
+     - Deploy to separate S3 bucket
+   * Both workflows deploy independently
 
-5. **Verification:**
+8. **Verification:**
+   * Workspace installation works: `pnpm install`
    * Gatsby site still accessible at root paths
-   * Next.js ready to serve new paths when implemented
+   * Next.js app runs: `pnpm --filter blog dev`
+   * Components importable in blog app
+   * Content accessible from packages/content/
 
 ### Phase 1: MVP Migration (Next.js First Routes)
 
-**Purpose:** Create a working Next.js blog for NEW routes only (e.g., `/posts/*`).
+**Purpose:** Create working Next.js blog pages using monorepo content and components.
 
-1. Create new project with `create-next-app` (in `nextjs-app/` directory).
-2. Place `chiranoura-blog` (content repo) locally and implement logic to read it as a filesystem (`fs`, `path`).
-3. Create basic page (`app/posts/[slug]/page.tsx`) to convert Markdown/MDX to HTML and display.
-4. Implement Next.js equivalents of Gatsby components (images, links).
-5. Verify that `npm run build` (SSG output) succeeds.
-6. **Deploy only to Next.js S3 bucket** - Gatsby unchanged
+**Prerequisites:** Phase 0 complete (monorepo set up, content migrated, components package initialized)
+
+1. **Content Layer Setup:**
+   * Install Contentlayer: `pnpm add -D contentlayer next-contentlayer`
+   * Create `contentlayer.config.ts` in `apps/blog/`
+   * Point to content: `contentDirPath: '../../packages/content/posts'`
+   * Define Post document type with frontmatter schema
+
+2. **MDX Component Integration:**
+   * Create `mdx-components.tsx` in `apps/blog/`
+   * Import components from `@chiranoura/components/mdx`
+   * Register components for use in MDX files
+
+3. **Article Pages:**
+   * Create `app/posts/[slug]/page.tsx`
+   * Use Contentlayer's generated types
+   * Render MDX with `useMDXComponent` hook
+   * Implement Next.js equivalents of Gatsby components (images, links)
+
+4. **Build & Deploy:**
+   * Configure `next.config.js` for SSG: `output: 'export'`
+   * Set up `next-image-export-optimizer` for S3
+   * Verify build: `pnpm --filter blog build`
+   * **Deploy only to Next.js S3 bucket** - Gatsby unchanged
+
+5. **Testing:**
+   * Verify MDX components render correctly
+   * Test component imports work in MDX
+   * Confirm TypeScript validates component props
+   * Check hot reload for content changes
 
 ### Phase 2: URL Design and Structuring (Routing & Data)
 
@@ -190,34 +251,46 @@ type Frontmatter = {
 
 Use the following commands with Claude Code or Gemini when starting each phase.
 
-### Phase 0 Start (Progressive Setup)
-
-```text
-@docs/PROJECT_DESIGN.md Please read the document.
-We're doing a PROGRESSIVE migration, not a rewrite.
-Let's start with Phase 0: Progressive Setup.
-
-Create a plan for:
-1. Setting up a new Next.js project in a separate directory (nextjs-app/)
-2. Configuring AWS with two S3 buckets (Gatsby existing + Next.js new)
-3. CloudFront multi-origin setup with path-based routing
-4. Dual GitHub Actions workflows for independent deployments
-
-The goal is to run both Gatsby and Next.js side-by-side with zero disruption.
-```
-
-### Phase 1 Start (First Next.js Routes)
+### Phase 0 Start (Progressive Setup + Monorepo)
 
 ```text
 @docs/PROJECT_DESIGN.md
-Phase 0 infrastructure is ready. Let's proceed with Phase 1: MVP Migration.
+@docs/MONOREPO_MIGRATION.md
 
-Create a Next.js (App Router, TypeScript) project in the nextjs-app/ directory.
-Implement ONLY the /posts/* routes initially - Gatsby handles everything else.
-Read Markdown files from chiranoura-blog and display article pages.
-Use Tailwind CSS for styling.
+We're doing a PROGRESSIVE migration with MONOREPO structure.
+Let's start with Phase 0: Progressive Setup + Monorepo.
 
-Remember: This deploys to the Next.js S3 bucket only. Gatsby stays unchanged.
+Follow these steps:
+1. Set up pnpm workspace (apps/, packages/ structure)
+2. Migrate content from chiranoura-blog to packages/content/ (preserve git history)
+3. Create @chiranoura/components package with TypeScript + tsup
+4. Initialize Next.js in apps/blog/ with workspace dependencies
+5. Configure AWS with two S3 buckets (Gatsby existing + Next.js new)
+6. Set up CloudFront multi-origin with path-based routing
+7. Configure dual GitHub Actions for monorepo builds
+
+The goal: Monorepo with Gatsby and Next.js running side-by-side, zero disruption.
+```
+
+### Phase 1 Start (MDX Integration)
+
+```text
+@docs/PROJECT_DESIGN.md
+@docs/MONOREPO_MIGRATION.md
+
+Phase 0 complete: Monorepo is set up, content migrated, components package ready.
+Let's proceed with Phase 1: MVP Migration.
+
+Tasks:
+1. Install and configure Contentlayer in apps/blog/
+2. Create contentlayer.config.ts pointing to ../../packages/content/posts
+3. Set up mdx-components.tsx to use @chiranoura/components
+4. Create app/posts/[slug]/page.tsx with MDX rendering
+5. Configure next.config.js for SSG export
+6. Test that MDX components work in articles
+
+Remember: This deploys to Next.js S3 bucket only. Gatsby stays unchanged.
+Verify: Component imports in MDX files, TypeScript validation, hot reload.
 ```
 
 ### Phase 2 Structuring
@@ -272,12 +345,32 @@ Key points:
 * **Rollback Ready:** Can remove Next.js paths from CloudFront instantly if issues arise
 * **User Experience First:** Readers should never notice the migration happening
 
-### Content Management
+### Content Management (Monorepo)
 
-* Content repository (`chiranoura-blog`) is separate and should not be modified during this migration
-* Both Gatsby and Next.js read from the same content source
+* Content migrated from `chiranoura-blog` repository to `packages/content/` (Phase 0)
+* Git history preserved via `git subtree` merge
+* Content now lives in monorepo for seamless MDX component integration
+* Both Gatsby (temporarily) and Next.js read from monorepo content
+* MDX files can directly import React components from `@chiranoura/components`
+* TypeScript validates component props used in MDX files
 * Focus on maintaining existing functionality while adding new features incrementally
 * All changes should be backward compatible with existing content
+
+### Monorepo Structure
+
+* **Workspace Tool:** pnpm workspaces (recommended) or yarn/npm workspaces
+* **Package Manager Benefits:**
+  * Shared dependencies reduce disk space
+  * Faster installs with symlinked packages
+  * Type safety across packages
+  * Single `node_modules` hoisting
+* **Detailed Migration Guide:** See `docs/MONOREPO_MIGRATION.md` for:
+  * Step-by-step monorepo setup
+  * Git history preservation techniques
+  * Workspace configuration examples
+  * Component package structure
+  * Content migration strategies
+  * GitHub Actions for monorepo builds
 
 ### Technical Considerations
 
@@ -285,3 +378,5 @@ Key points:
 * Monitor CloudFront metrics to compare Gatsby vs Next.js performance
 * Test each new Next.js route thoroughly before adding to CloudFront routing
 * Keep Gatsby build working until Next.js fully replaces all routes
+* Use pnpm for fastest installs and smallest disk footprint
+* Leverage workspace protocols (`workspace:*`) for local package dependencies
