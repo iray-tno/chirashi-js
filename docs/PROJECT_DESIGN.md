@@ -21,7 +21,7 @@ Migrate the existing Gatsby-based blog (`chirashi-js`) to Next.js (App Router) w
 * **Framework:** Next.js (App Router)
 * **Language:** TypeScript
 * **Styling:** Tailwind CSS
-* **Monorepo:** pnpm workspaces, multi-package structure
+* **Monorepo:** npm workspaces, multi-package structure
 * **Content:** MDX (`next-mdx-remote/rsc` or `contentlayer`), `gray-matter` for Frontmatter
 * **Math:** `rehype-katex`, `remark-math`
 * **Highlight:** `rehype-pretty-code` (Shiki based)
@@ -78,14 +78,13 @@ AI assistants should be given instructions for each phase and proceed to the nex
 **Purpose:** Set up monorepo structure and Next.js alongside Gatsby without disrupting existing site.
 
 1. **Monorepo Initialization:**
-   * Install pnpm: `npm install -g pnpm`
-   * Create `pnpm-workspace.yaml` in root
+   * Initialize npm workspace in root directory
+   * Add `workspaces` field to root `package.json`
    * Create directory structure:
      - `apps/blog/` - Next.js application
      - `apps/legacy-gatsby/` - Move current Gatsby temporarily
      - `packages/components/` - Shared React components
      - `packages/content/` - Content (to be migrated)
-   * Initialize workspace: `pnpm init`
    * See detailed steps in `docs/MONOREPO_MIGRATION.md`
 
 2. **Content Migration:**
@@ -125,16 +124,15 @@ AI assistants should be given instructions for each phase and proceed to the nex
 7. **Dual GitHub Actions:**
    * Keep existing Gatsby workflow
    * Add new Next.js workflow for monorepo build:
-     - Install pnpm
-     - Install workspace dependencies: `pnpm install --frozen-lockfile`
-     - Build blog: `pnpm --filter blog build`
+     - Install dependencies: `npm ci`
+     - Build blog: `npm run build --workspace=blog`
      - Deploy to separate S3 bucket
    * Both workflows deploy independently
 
 8. **Verification:**
-   * Workspace installation works: `pnpm install`
+   * Workspace installation works: `npm install`
    * Gatsby site still accessible at root paths
-   * Next.js app runs: `pnpm --filter blog dev`
+   * Next.js app runs: `npm run dev --workspace=blog`
    * Components importable in blog app
    * Content accessible from packages/content/
 
@@ -145,7 +143,7 @@ AI assistants should be given instructions for each phase and proceed to the nex
 **Prerequisites:** Phase 0 complete (monorepo set up, content migrated, components package initialized)
 
 1. **Content Layer Setup:**
-   * Install Contentlayer: `pnpm add -D contentlayer next-contentlayer`
+   * Install Contentlayer: `npm install --save-dev contentlayer next-contentlayer --workspace=blog`
    * Create `contentlayer.config.ts` in `apps/blog/`
    * Point to content: `contentDirPath: '../../packages/content/posts'`
    * Define Post document type with frontmatter schema
@@ -164,7 +162,7 @@ AI assistants should be given instructions for each phase and proceed to the nex
 4. **Build & Deploy:**
    * Configure `next.config.js` for SSG: `output: 'export'`
    * Set up `next-image-export-optimizer` for S3
-   * Verify build: `pnpm --filter blog build`
+   * Verify build: `npm run build --workspace=blog`
    * **Deploy only to Next.js S3 bucket** - Gatsby unchanged
 
 5. **Testing:**
@@ -261,7 +259,7 @@ We're doing a PROGRESSIVE migration with MONOREPO structure.
 Let's start with Phase 0: Progressive Setup + Monorepo.
 
 Follow these steps:
-1. Set up pnpm workspace (apps/, packages/ structure)
+1. Set up npm workspaces (apps/, packages/ structure)
 2. Migrate content from chiranoura-blog to packages/content/ (preserve git history)
 3. Create @chiranoura/components package with TypeScript + tsup
 4. Initialize Next.js in apps/blog/ with workspace dependencies
@@ -358,7 +356,7 @@ Key points:
 
 ### Monorepo Structure
 
-* **Workspace Tool:** pnpm workspaces (recommended) or yarn/npm workspaces
+* **Workspace Tool:** npm workspaces
 * **Package Manager Benefits:**
   * Shared dependencies reduce disk space
   * Faster installs with symlinked packages
@@ -378,5 +376,5 @@ Key points:
 * Monitor CloudFront metrics to compare Gatsby vs Next.js performance
 * Test each new Next.js route thoroughly before adding to CloudFront routing
 * Keep Gatsby build working until Next.js fully replaces all routes
-* Use pnpm for fastest installs and smallest disk footprint
+* Use npm workspaces for managing multi-package monorepo
 * Leverage workspace protocols (`workspace:*`) for local package dependencies

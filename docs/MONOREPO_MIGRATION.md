@@ -95,8 +95,7 @@ chiranoura/                          # Root (rename from chirashi-js)
 │   ├── PROJECT_DESIGN.md
 │   ├── FEATURES.md
 │   └── MONOREPO_MIGRATION.md       # This file
-├── package.json                    # Root workspace config
-├── pnpm-workspace.yaml             # or package.json workspaces
+├── package.json                    # Root workspace config (with workspaces field)
 ├── turbo.json                      # Optional: Turborepo for caching
 └── tsconfig.base.json              # Shared TypeScript config
 ```
@@ -125,19 +124,24 @@ packages/content
 
 **Steps:**
 
-1. **Choose Package Manager:**
-   - Recommended: **pnpm** (fastest, best for monorepos)
-   - Alternative: yarn workspaces, npm workspaces
-
-2. **Initialize Workspace:**
+1. **Initialize Workspace:**
    ```bash
    # In chirashi-js root
-   pnpm init
+   npm init -y
+   ```
 
-   # Create pnpm-workspace.yaml
-   echo "packages:
-     - 'apps/*'
-     - 'packages/*'" > pnpm-workspace.yaml
+2. **Configure Workspaces:**
+   ```json
+   // package.json (root)
+   {
+     "name": "chiranoura",
+     "version": "1.0.0",
+     "private": true,
+     "workspaces": [
+       "apps/*",
+       "packages/*"
+     ]
+   }
    ```
 
 3. **Create Directory Structure:**
@@ -156,7 +160,7 @@ packages/content
 5. **Initialize Next.js App:**
    ```bash
    cd apps/blog
-   pnpm create next-app@latest . --typescript --tailwind --app
+   npx create-next-app@latest . --typescript --tailwind --app
    ```
 
 6. **Setup Workspace Dependencies:**
@@ -171,8 +175,8 @@ packages/content
    ```
 
 **Verification:**
-- ✅ `pnpm install` succeeds
-- ✅ `pnpm --filter blog dev` runs Next.js
+- ✅ `npm install` succeeds
+- ✅ `npm run dev --workspace=blog` runs Next.js
 - ✅ Gatsby still runs independently
 
 ---
@@ -256,7 +260,7 @@ const postsDir = path.join(__dirname, '../posts');
 
 ```bash
 cd packages/components
-pnpm init
+npm init -y
 ```
 
 ```json
@@ -319,7 +323,7 @@ export { AnkiExportButton } from './AnkiExportButton';
 ```
 
 **Verification:**
-- ✅ `pnpm build` generates types
+- ✅ `npm run build --workspace=@chiranoura/components` generates types
 - ✅ Components importable in blog app
 - ✅ TypeScript autocomplete works
 
@@ -456,20 +460,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Build blog
-        run: pnpm --filter blog build
+        run: npm run build --workspace=blog
         env:
           NODE_ENV: production
 
@@ -495,43 +495,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'pnpm'
+          cache: 'npm'
 
-      - run: pnpm install
-      - run: pnpm --filter @chiranoura/content validate
+      - run: npm ci
+      - run: npm run validate --workspace=@chiranoura/content
 
       - name: Check frontmatter
-        run: pnpm --filter @chiranoura/content run validate-frontmatter
+        run: npm run validate-frontmatter --workspace=@chiranoura/content
 ```
 
 ---
 
 ## Workspace Configuration
 
-### pnpm Workspace (Recommended)
-
-**pnpm-workspace.yaml:**
-```yaml
-packages:
-  - 'apps/*'
-  - 'packages/*'
-```
+### npm Workspaces
 
 **Root package.json:**
 ```json
 {
   "name": "chiranoura",
+  "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "pnpm --filter blog dev",
-    "build": "pnpm --filter blog build",
-    "lint": "pnpm -r lint",
-    "test": "pnpm -r test",
-    "type-check": "pnpm -r type-check"
+    "dev": "npm run dev --workspace=blog",
+    "build": "npm run build --workspace=blog",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "type-check": "npm run type-check --workspaces --if-present"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
@@ -661,12 +658,12 @@ git merge content-rewritten/main --allow-unrelated-histories
 ## Migration Checklist
 
 ### Phase 0: Setup
-- [ ] Install pnpm
-- [ ] Create `pnpm-workspace.yaml`
+- [ ] Initialize npm workspace in root `package.json`
+- [ ] Add `workspaces` field to root package.json
 - [ ] Initialize `apps/` and `packages/` directories
 - [ ] Move Gatsby to `apps/legacy-gatsby/` (temporary)
 - [ ] Create Next.js app in `apps/blog/`
-- [ ] Verify workspace installation works
+- [ ] Verify workspace installation works with `npm install`
 
 ### Phase 1: Content
 - [ ] Decide: subtree vs manual copy
@@ -722,14 +719,14 @@ Once monorepo is stable:
 
 ### 1. Component Storybook
 ```bash
-pnpm add -D @storybook/react
+npm install --save-dev @storybook/react --workspace=@chiranoura/components
 # Document components visually
 ```
 
 ### 2. Publish Packages (Optional)
 ```bash
 # If components become useful to others
-pnpm --filter @chiranoura/components publish
+npm publish --workspace=@chiranoura/components
 ```
 
 ### 3. Add More Apps
@@ -756,9 +753,9 @@ packages/
 ```
 @docs/MONOREPO_MIGRATION.md
 
-I need to set up a pnpm workspace monorepo.
+I need to set up an npm workspaces monorepo.
 Follow Phase 0 instructions to:
-1. Create workspace configuration
+1. Create workspace configuration in root package.json
 2. Initialize directory structure
 3. Set up Next.js in apps/blog/
 4. Configure workspace dependencies
