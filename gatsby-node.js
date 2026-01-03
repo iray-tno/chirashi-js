@@ -3,7 +3,7 @@
 'use strict';
 
 require('ts-node').register(require('./tsconfig.json'));
-const gatsbyNode = require('./src/gatsbyNode/index');
+const gatsbyNode = require('./apps/legacy-gatsby/src/gatsbyNode/index');
 
 exports.createPages = gatsbyNode.createPages;
 exports.onCreateNode = gatsbyNode.onCreateNode;

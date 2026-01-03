@@ -1,18 +1,24 @@
 {
-  "name": "chirashi_js",
-  "version": "0.0.1",
-  "description": "My stupid blog.",
-  "main": "index.js",
+  "name": "chiranoura",
+  "version": "1.0.0",
+  "description": "Chiranoura Blog - Monorepo with Next.js and Gatsby",
+  "private": true,
   "repository": "https://github.com/iray-tno/chirashi-js",
   "author": "Yuta Tanaka <iray.tno@gmail.com>",
   "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "serve": "gatsby serve",
+    "dev": "npm run dev --workspace=blog",
+    "build": "npm run build --workspace=blog",
+    "build:legacy": "gatsby build",
+    "dev:legacy": "gatsby develop",
+    "serve:legacy": "gatsby serve",
     "storybook": "start-storybook",
-    "lint": "eslint .",
-    "test": "vitest run",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
     "test:watch": "vitest",
     "test:ui": "vitest --ui"
   },
