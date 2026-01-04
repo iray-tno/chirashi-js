@@ -9,8 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@chiranoura/components": "*",
-    "@chiranoura/content": "*",
+    "@chirashi/components": "*",
+    "@chirashi/content": "*",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"

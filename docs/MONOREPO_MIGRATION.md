@@ -48,7 +48,7 @@ import { Visualizer } from '@/components/mdx/Visualizer'
 - ✅ Local dev server shows real content immediately
 - ✅ Atomic deploys (code + content in sync)
 - ✅ Shared tooling (ESLint, TypeScript, Prettier)
-- ✅ Future: Publish `@chiranoura/components` to npm
+- ✅ Future: Publish `@chirashi/components` to npm
 
 ---
 
@@ -69,7 +69,7 @@ chiranoura/                          # Root (rename from chirashi-js)
 │       ├── next.config.js
 │       └── package.json
 ├── packages/                       # Shared packages
-│   ├── components/                 # @chiranoura/components
+│   ├── components/                 # @chirashi/components
 │   │   ├── src/
 │   │   │   ├── mdx/               # MDX components
 │   │   │   │   ├── Visualizer.tsx
@@ -80,7 +80,7 @@ chiranoura/                          # Root (rename from chirashi-js)
 │   │   │       └── TagList.tsx
 │   │   ├── package.json
 │   │   └── tsconfig.json
-│   ├── content/                    # @chiranoura/content (migrated from chiranoura-blog)
+│   ├── content/                    # @chirashi/content (migrated from chiranoura-blog)
 │   │   ├── posts/
 │   │   │   └── 2024-01-01-example/
 │   │   │       ├── index.ja.mdx
@@ -89,7 +89,7 @@ chiranoura/                          # Root (rename from chirashi-js)
 │   │   ├── package.json
 │   │   └── scripts/
 │   │       └── validate-frontmatter.ts
-│   └── eslint-config/              # @chiranoura/eslint-config (future)
+│   └── eslint-config/              # @chirashi/eslint-config (future)
 │       └── index.js
 ├── docs/                           # Documentation
 │   ├── PROJECT_DESIGN.md
@@ -104,14 +104,14 @@ chiranoura/                          # Root (rename from chirashi-js)
 
 ```
 apps/blog
-  ├─→ @chiranoura/components
-  └─→ @chiranoura/content
+  ├─→ @chirashi/components
+  └─→ @chirashi/content
 
 packages/components
   └─→ (standalone, could publish to npm)
 
 packages/content
-  └─→ (could depend on @chiranoura/components for type checking)
+  └─→ (could depend on @chirashi/components for type checking)
 ```
 
 ---
@@ -168,8 +168,8 @@ packages/content
    // apps/blog/package.json
    {
      "dependencies": {
-       "@chiranoura/components": "workspace:*",
-       "@chiranoura/content": "workspace:*"
+       "@chirashi/components": "workspace:*",
+       "@chirashi/content": "workspace:*"
      }
    }
    ```
@@ -222,7 +222,7 @@ rm -rf temp-content
 ```json
 // packages/content/package.json
 {
-  "name": "@chiranoura/content",
+  "name": "@chirashi/content",
   "version": "0.1.0",
   "private": true,
   "exports": {
@@ -266,7 +266,7 @@ npm init -y
 ```json
 // packages/components/package.json
 {
-  "name": "@chiranoura/components",
+  "name": "@chirashi/components",
   "version": "0.1.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -323,7 +323,7 @@ export { AnkiExportButton } from './AnkiExportButton';
 ```
 
 **Verification:**
-- ✅ `npm run build --workspace=@chiranoura/components` generates types
+- ✅ `npm run build --workspace=@chirashi/components` generates types
 - ✅ Components importable in blog app
 - ✅ TypeScript autocomplete works
 
@@ -388,7 +388,7 @@ import {
   Flashcard,
   FlashcardFront,
   FlashcardBack
-} from '@chiranoura/components/mdx';
+} from '@chirashi/components/mdx';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -501,10 +501,10 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
-      - run: npm run validate --workspace=@chiranoura/content
+      - run: npm run validate --workspace=@chirashi/content
 
       - name: Check frontmatter
-        run: npm run validate-frontmatter --workspace=@chiranoura/content
+        run: npm run validate-frontmatter --workspace=@chirashi/content
 ```
 
 ---
@@ -719,14 +719,14 @@ Once monorepo is stable:
 
 ### 1. Component Storybook
 ```bash
-npm install --save-dev @storybook/react --workspace=@chiranoura/components
+npm install --save-dev @storybook/react --workspace=@chirashi/components
 # Document components visually
 ```
 
 ### 2. Publish Packages (Optional)
 ```bash
 # If components become useful to others
-npm publish --workspace=@chiranoura/components
+npm publish --workspace=@chirashi/components
 ```
 
 ### 3. Add More Apps
@@ -778,7 +778,7 @@ Repository: https://github.com/iray-tno/chiranoura-blog
 ```
 @docs/MONOREPO_MIGRATION.md
 
-Phase 2: Create @chiranoura/components package
+Phase 2: Create @chirashi/components package
 Set up TypeScript, tsup build tooling, and exports.
 Create initial MDX component structure (Visualizer, Flashcard).
 ```

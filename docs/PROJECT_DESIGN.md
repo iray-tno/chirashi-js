@@ -94,14 +94,14 @@ AI assistants should be given instructions for each phase and proceed to the nex
    * Create validation scripts for frontmatter
 
 3. **Component Package Setup:**
-   * Initialize `@chiranoura/components` package
+   * Initialize `@chirashi/components` package
    * Set up TypeScript + tsup for building
    * Create MDX component structure
    * Configure exports for `mdx` and `article` components
 
 4. **Next.js App Creation:**
    * Initialize Next.js in `apps/blog/` with TypeScript + Tailwind
-   * Configure workspace dependencies (`@chiranoura/components`, `@chiranoura/content`)
+   * Configure workspace dependencies (`@chirashi/components`, `@chirashi/content`)
    * Set up Contentlayer or MDX configuration
    * Create `mdx-components.tsx` for component registry
 
@@ -150,7 +150,7 @@ AI assistants should be given instructions for each phase and proceed to the nex
 
 2. **MDX Component Integration:**
    * Create `mdx-components.tsx` in `apps/blog/`
-   * Import components from `@chiranoura/components/mdx`
+   * Import components from `@chirashi/components/mdx`
    * Register components for use in MDX files
 
 3. **Article Pages:**
@@ -261,7 +261,7 @@ Let's start with Phase 0: Progressive Setup + Monorepo.
 Follow these steps:
 1. Set up npm workspaces (apps/, packages/ structure)
 2. Migrate content from chiranoura-blog to packages/content/ (preserve git history)
-3. Create @chiranoura/components package with TypeScript + tsup
+3. Create @chirashi/components package with TypeScript + tsup
 4. Initialize Next.js in apps/blog/ with workspace dependencies
 5. Configure AWS with two S3 buckets (Gatsby existing + Next.js new)
 6. Set up CloudFront multi-origin with path-based routing
@@ -282,7 +282,7 @@ Let's proceed with Phase 1: MVP Migration.
 Tasks:
 1. Install and configure Contentlayer in apps/blog/
 2. Create contentlayer.config.ts pointing to ../../packages/content/posts
-3. Set up mdx-components.tsx to use @chiranoura/components
+3. Set up mdx-components.tsx to use @chirashi/components
 4. Create app/posts/[slug]/page.tsx with MDX rendering
 5. Configure next.config.js for SSG export
 6. Test that MDX components work in articles
@@ -349,7 +349,7 @@ Key points:
 * Git history preserved via `git subtree` merge
 * Content now lives in monorepo for seamless MDX component integration
 * Both Gatsby (temporarily) and Next.js read from monorepo content
-* MDX files can directly import React components from `@chiranoura/components`
+* MDX files can directly import React components from `@chirashi/components`
 * TypeScript validates component props used in MDX files
 * Focus on maintaining existing functionality while adding new features incrementally
 * All changes should be backward compatible with existing content
