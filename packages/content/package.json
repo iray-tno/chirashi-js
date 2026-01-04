@@ -4,10 +4,11 @@
   "private": true,
   "description": "Content repository for Chirashi blog (MDX posts)",
   "exports": {
-    "./posts/*": "./posts/*"
+    "./posts/*": "./posts/*",
+    "./images/*": "./images/*"
   },
   "scripts": {
-    "validate": "echo 'Content validation placeholder'",
-    "validate-frontmatter": "echo 'Frontmatter validation placeholder'"
+    "validate": "echo 'Content validation placeholder - to be implemented in Phase 2'",
+    "validate-frontmatter": "echo 'Frontmatter validation placeholder - to be implemented in Phase 2'"
   }
 }
