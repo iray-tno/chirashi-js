@@ -1,4 +1,10 @@
 // MDX component exports
-// TODO: Add MDX components (Visualizer, Flashcard, etc.) in Phase 2
-
-export {};
+export { Visualizer, type VisualizerProps } from './Visualizer';
+export {
+  Flashcard,
+  FlashcardFront,
+  FlashcardBack,
+  type FlashcardProps,
+  type FlashcardFrontProps,
+  type FlashcardBackProps,
+} from './Flashcard';

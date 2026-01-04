@@ -1,4 +1,7 @@
-// Main export file for @chiranoura/components
-// TODO: Add component exports in Phase 2
+// Main export file for @chirashi/components
 
-export {};
+// Re-export all MDX components
+export * from './mdx';
+
+// Re-export all article components
+export * from './article';

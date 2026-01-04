@@ -1,4 +1,3 @@
 // Article UI component exports
-// TODO: Add article components (SeriesNav, TagList, etc.) in Phase 2
-
-export {};
+export { SeriesNav, type SeriesNavProps } from './SeriesNav';
+export { TagList, type TagListProps } from './TagList';
