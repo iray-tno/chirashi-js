@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export interface VisualizerProps {
   type: 'bubble-sort' | 'quick-sort' | 'merge-sort' | 'binary-tree';
@@ -16,14 +16,28 @@ export interface VisualizerProps {
  * <Visualizer type="bubble-sort" data={[5, 2, 8, 1, 9]} speed={500} />
  * ```
  */
-export const Visualizer: React.FC<VisualizerProps> = ({ type, data, speed }) => {
+export const Visualizer: React.FC<VisualizerProps> = ({
+  type,
+  data,
+  speed,
+}) => {
   return (
-    <div style={{ padding: '1rem', border: '1px dashed #ccc', borderRadius: '4px' }}>
-      <p><strong>Visualizer Placeholder</strong></p>
+    <div
+      style={{
+        padding: '1rem',
+        border: '1px dashed #ccc',
+        borderRadius: '4px',
+      }}
+    >
+      <p>
+        <strong>Visualizer Placeholder</strong>
+      </p>
       <p>Type: {type}</p>
       {data && <p>Data: [{data.join(', ')}]</p>}
       {speed && <p>Speed: {speed}ms</p>}
-      <p><em>Visualization will be implemented in future phases.</em></p>
+      <p>
+        <em>Visualization will be implemented in future phases.</em>
+      </p>
     </div>
   );
 };
