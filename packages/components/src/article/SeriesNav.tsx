@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export interface SeriesNavProps {
   series: string;
@@ -27,9 +27,20 @@ export interface SeriesNavProps {
  * />
  * ```
  */
-export const SeriesNav: React.FC<SeriesNavProps> = ({ series, currentOrder, posts }) => {
+export const SeriesNav: React.FC<SeriesNavProps> = ({
+  series,
+  currentOrder,
+  posts,
+}) => {
   return (
-    <nav style={{ padding: '1rem', backgroundColor: '#f5f5f5', borderRadius: '4px', marginBottom: '2rem' }}>
+    <nav
+      style={{
+        padding: '1rem',
+        backgroundColor: '#f5f5f5',
+        borderRadius: '4px',
+        marginBottom: '2rem',
+      }}
+    >
       <h3 style={{ marginTop: 0 }}>Series: {series}</h3>
       {posts && posts.length > 0 ? (
         <ol>
@@ -45,7 +56,9 @@ export const SeriesNav: React.FC<SeriesNavProps> = ({ series, currentOrder, post
           ))}
         </ol>
       ) : (
-        <p><em>No posts in this series yet.</em></p>
+        <p>
+          <em>No posts in this series yet.</em>
+        </p>
       )}
     </nav>
   );

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Flashcard, FlashcardFront, FlashcardBack } from './Flashcard';
+import { Flashcard, FlashcardBack, FlashcardFront } from './Flashcard';
 
 const meta = {
   title: 'MDX/Flashcard',

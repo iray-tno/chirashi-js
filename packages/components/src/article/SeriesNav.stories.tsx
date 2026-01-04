@@ -76,7 +76,11 @@ export const FirstInSeries: Story = {
     series: 'Algorithm Design',
     currentOrder: 1,
     posts: [
-      { slug: 'intro-algorithms', title: 'Introduction to Algorithms', order: 1 },
+      {
+        slug: 'intro-algorithms',
+        title: 'Introduction to Algorithms',
+        order: 1,
+      },
       { slug: 'sorting-algorithms', title: 'Sorting Algorithms', order: 2 },
       { slug: 'graph-algorithms', title: 'Graph Algorithms', order: 3 },
     ],
@@ -88,7 +92,11 @@ export const LastInSeries: Story = {
     series: 'Algorithm Design',
     currentOrder: 3,
     posts: [
-      { slug: 'intro-algorithms', title: 'Introduction to Algorithms', order: 1 },
+      {
+        slug: 'intro-algorithms',
+        title: 'Introduction to Algorithms',
+        order: 1,
+      },
       { slug: 'sorting-algorithms', title: 'Sorting Algorithms', order: 2 },
       { slug: 'graph-algorithms', title: 'Graph Algorithms', order: 3 },
     ],
