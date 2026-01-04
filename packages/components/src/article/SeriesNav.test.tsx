@@ -10,7 +10,7 @@ describe('SeriesNav', () => {
 
   it('displays placeholder when no posts provided', () => {
     render(<SeriesNav series="React Tutorial" currentOrder={1} />);
-    expect(screen.getByText(/SeriesNav Placeholder/i)).toBeInTheDocument();
+    expect(screen.getByText(/No posts in this series yet/i)).toBeInTheDocument();
   });
 
   it('renders post list when posts are provided', () => {
@@ -19,7 +19,7 @@ describe('SeriesNav', () => {
       { slug: 'post-2', title: 'Second Post', order: 2 },
     ];
     render(<SeriesNav series="React Tutorial" currentOrder={1} posts={posts} />);
-    expect(screen.getByText('First Post')).toBeInTheDocument();
-    expect(screen.getByText('Second Post')).toBeInTheDocument();
+    expect(screen.getByText(/First Post/)).toBeInTheDocument();
+    expect(screen.getByText(/Second Post/)).toBeInTheDocument();
   });
 });

@@ -26,6 +26,9 @@ export interface FlashcardBackProps {
 export const Flashcard: React.FC<FlashcardProps> = ({ children }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
+  const childrenArray = React.Children.toArray(children);
+  const content = childrenArray[isFlipped ? 1 : 0];
+
   return (
     <div
       onClick={() => setIsFlipped(!isFlipped)}
@@ -41,7 +44,7 @@ export const Flashcard: React.FC<FlashcardProps> = ({ children }) => {
         backgroundColor: isFlipped ? '#f0f0f0' : '#fff',
       }}
     >
-      {React.Children.toArray(children)[isFlipped ? 1 : 0]}
+      {content}
     </div>
   );
 };
