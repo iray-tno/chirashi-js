@@ -1,0 +1,13 @@
+{
+  "name": "@chirashi/content",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Content repository for Chirashi blog (MDX posts)",
+  "exports": {
+    "./posts/*": "./posts/*"
+  },
+  "scripts": {
+    "validate": "echo 'Content validation placeholder'",
+    "validate-frontmatter": "echo 'Frontmatter validation placeholder'"
+  }
+}

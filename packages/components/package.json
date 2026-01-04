@@ -1,0 +1,20 @@
+{
+  "name": "@chirashi/components",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared React components for Chirashi blog",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    "./mdx": "./src/mdx/index.ts",
+    "./article": "./src/article/index.ts"
+  },
+  "scripts": {
+    "build": "echo 'Build script placeholder'",
+    "dev": "echo 'Dev script placeholder'"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
