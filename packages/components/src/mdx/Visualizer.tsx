@@ -1,4 +1,4 @@
-import type React from 'react';
+import React from 'react';
 
 export interface VisualizerProps {
   type: 'bubble-sort' | 'quick-sort' | 'merge-sort' | 'binary-tree';
