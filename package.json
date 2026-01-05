@@ -13,14 +13,19 @@
   "scripts": {
     "dev": "npm run dev --workspace=blog",
     "build": "npm run build --workspace=blog",
+    "build:all": "npm run build --workspace=@chirashi/components && npm run build --workspace=blog",
     "build:legacy": "gatsby build",
     "dev:legacy": "gatsby develop",
     "serve:legacy": "gatsby serve",
-    "storybook": "start-storybook",
+    "storybook": "npm run storybook --workspace=@chirashi/components",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "check": "npm run lint && npm run test",
+    "check:components": "npm run check --workspace=@chirashi/components && npm run type-check --workspace=@chirashi/components",
+    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules package-lock.json",
+    "fresh-install": "npm run clean && npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
