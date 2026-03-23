@@ -28,7 +28,7 @@ const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_\d{2}_(.+)\.md$/;
 function parseFilename(filename: string): { date: string; slug: string } | null {
   const match = filename.match(FILENAME_REGEX);
   if (!match) return null;
-  return { date: match[1], slug: match[2] };
+  return { date: match[1], slug: `${match[1]}_${match[2]}` };
 }
 
 export function getAllPosts(): Post[] {
