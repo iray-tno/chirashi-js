@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
+import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
 import { getPostBySlug, getAllSlugs } from '@/lib/posts';
 
@@ -28,6 +29,12 @@ async function renderMarkdown(content: string): Promise<string> {
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypePrettyCode, {
+      theme: {
+        dark: 'github-dark',
+        light: 'github-light',
+      },
+    })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
   return String(result);

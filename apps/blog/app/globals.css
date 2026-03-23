@@ -25,3 +25,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Syntax highlighting: light/dark theme switching */
+[data-rehype-pretty-code-figure] pre {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+html:not(.dark) [data-rehype-pretty-code-figure] [data-theme="dark"] {
+  display: none;
+}
+
+html.dark [data-rehype-pretty-code-figure] [data-theme="light"] {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-rehype-pretty-code-figure] [data-theme="light"] {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  [data-rehype-pretty-code-figure] [data-theme="dark"] {
+    display: none;
+  }
+}
