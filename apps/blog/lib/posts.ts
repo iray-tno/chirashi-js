@@ -28,7 +28,7 @@ const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_\d{2}_(.+)\.md$/;
 function parseFilename(filename: string): { date: string; slug: string } | null {
   const match = filename.match(FILENAME_REGEX);
   if (!match) return null;
-  return { date: match[1], slug: match[2] };
+  return { date: match[1], slug: `${match[1]}_${match[2]}` };
 }
 
 export function getAllPosts(): Post[] {
@@ -59,4 +59,39 @@ export function getAllPosts(): Post[] {
   posts.sort((a, b) => b.date.localeCompare(a.date));
 
   return posts;
+}
+
+export interface PostWithContent extends Post {
+  content: string;
+}
+
+export function getPostBySlug(slug: string): PostWithContent | null {
+  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
+
+  for (const file of files) {
+    const parsed = parseFilename(file);
+    if (!parsed || parsed.slug !== slug) continue;
+
+    const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf-8');
+    const { data, content } = matter(raw);
+    const frontmatter = data as PostFrontmatter;
+
+    if (frontmatter.publish === false) return null;
+
+    return {
+      slug: parsed.slug,
+      date: parsed.date,
+      title: frontmatter.title,
+      author: frontmatter.author,
+      category: frontmatter.category,
+      tags: frontmatter.tags ?? [],
+      content,
+    };
+  }
+
+  return null;
+}
+
+export function getAllSlugs(): string[] {
+  return getAllPosts().map((post) => post.slug);
 }
