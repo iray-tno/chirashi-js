@@ -34,7 +34,9 @@ export const Anchor: React.FC<AnchorProps> = ({
       {children}
       {external && (
         <span
-          aria-hidden="true"
+          role="img"
+          aria-label="opens in new tab"
+          title="opens in new tab"
           style={{
             display: 'inline-block',
             marginLeft: '0.2em',
@@ -45,7 +47,6 @@ export const Anchor: React.FC<AnchorProps> = ({
           ↗
         </span>
       )}
-      {external && <span className="sr-only"> (opens in new tab)</span>}
     </a>
   );
 };
