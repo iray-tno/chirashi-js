@@ -1,10 +1,21 @@
+import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeStringify from 'rehype-stringify';
+import rehypeReact from 'rehype-react';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+import {
+  Anchor,
+  Heading,
+  Blockquote,
+  Table,
+  TableHead,
+  TableCell,
+  Image,
+} from '@chirashi/components/markdown';
 import { getPostBySlug, getAllSlugs } from '@/lib/posts';
 
 interface Props {
@@ -25,7 +36,7 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-async function renderMarkdown(content: string): Promise<string> {
+async function renderMarkdown(content: string): Promise<React.JSX.Element> {
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })
@@ -35,9 +46,28 @@ async function renderMarkdown(content: string): Promise<string> {
         light: 'github-light',
       },
     })
-    .use(rehypeStringify, { allowDangerousHtml: true })
+    .use(rehypeReact as any, {
+      Fragment,
+      jsx: jsx as any,
+      jsxs: jsxs as any,
+      components: {
+        a: Anchor as any,
+        h1: (props: any) => <Heading level={1} {...props} />,
+        h2: (props: any) => <Heading level={2} {...props} />,
+        h3: (props: any) => <Heading level={3} {...props} />,
+        h4: (props: any) => <Heading level={4} {...props} />,
+        h5: (props: any) => <Heading level={5} {...props} />,
+        h6: (props: any) => <Heading level={6} {...props} />,
+        blockquote: Blockquote as any,
+        table: Table as any,
+        thead: TableHead as any,
+        th: (props: any) => <TableCell isHeader {...props} />,
+        td: TableCell as any,
+        img: Image as any,
+      },
+    })
     .process(content);
-  return String(result);
+  return result.result as React.JSX.Element;
 }
 
 export default async function PostPage({ params }: Props) {
@@ -48,7 +78,7 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const html = await renderMarkdown(post.content);
+  const rendered = await renderMarkdown(post.content);
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
@@ -82,10 +112,9 @@ export default async function PostPage({ params }: Props) {
           </div>
         </header>
 
-        <div
-          className="prose prose-zinc dark:prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className="prose prose-zinc dark:prose-invert max-w-none">
+          {rendered}
+        </div>
       </article>
     </div>
   );
