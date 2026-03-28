@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import {
   getAllCategories,
   getPostsByCategory,
+  parseTag,
 } from '@/lib/posts';
 
 interface Props {
@@ -61,7 +62,7 @@ export default async function CategoryPage({ params }: Props) {
                       key={tag}
                       className="text-xs text-zinc-500 dark:text-zinc-400"
                     >
-                      #{tag}
+                      #{parseTag(tag).display}
                     </span>
                   ))}
                 </div>

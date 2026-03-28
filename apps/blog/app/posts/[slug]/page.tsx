@@ -16,7 +16,7 @@ import {
   TableCell,
   Image,
 } from '@chirashi/components/markdown';
-import { getPostBySlug, getAllSlugs } from '@/lib/posts';
+import { getPostBySlug, getAllSlugs, parseTag } from '@/lib/posts';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -104,15 +104,18 @@ export default async function PostPage({ params }: Props) {
             >
               {post.category}
             </Link>
-            {post.tags.map((tag) => (
-              <Link
-                key={tag}
-                href={`/tags/${tag}`}
-                className="text-xs text-zinc-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
-              >
-                #{tag}
-              </Link>
-            ))}
+            {post.tags.map((tag) => {
+              const { display, slug } = parseTag(tag);
+              return (
+                <Link
+                  key={tag}
+                  href={`/tags/${slug}`}
+                  className="text-xs text-zinc-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
+                >
+                  #{display}
+                </Link>
+              );
+            })}
           </div>
         </header>
 

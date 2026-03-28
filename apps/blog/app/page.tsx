@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, parseTag } from '@/lib/posts';
 
 export default function Home() {
   const posts = getAllPosts();
@@ -32,15 +32,18 @@ export default function Home() {
                 >
                   {post.category}
                 </Link>
-                {post.tags.map((tag) => (
-                  <Link
-                    key={tag}
-                    href={`/tags/${tag}`}
-                    className="text-xs text-zinc-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
-                  >
-                    #{tag}
-                  </Link>
-                ))}
+                {post.tags.map((tag) => {
+                  const { display, slug } = parseTag(tag);
+                  return (
+                    <Link
+                      key={tag}
+                      href={`/tags/${slug}`}
+                      className="text-xs text-zinc-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
+                    >
+                      #{display}
+                    </Link>
+                  );
+                })}
               </div>
             </article>
           </li>

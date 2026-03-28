@@ -1,30 +1,36 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getAllTags, getPostsByTag } from '@/lib/posts';
+import { getAllTags, getPostsByTag, parseTag } from '@/lib/posts';
 
 interface Props {
   params: Promise<{ tag: string }>;
 }
 
 export async function generateStaticParams() {
-  return getAllTags().map((tag) => ({ tag }));
+  return getAllTags().map((tag) => ({ tag: parseTag(tag).slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { tag } = await params;
+  const allTags = getAllTags();
+  const rawTag = allTags.find((t) => parseTag(t).slug === tag);
+  const display = rawTag ? parseTag(rawTag).display : tag;
   return {
-    title: `#${decodeURIComponent(tag)} | Chiranoura Blog`,
+    title: `#${display} | Chiranoura Blog`,
   };
 }
 
 export default async function TagPage({ params }: Props) {
-  const { tag: rawTag } = await params;
-  const tag = decodeURIComponent(rawTag);
-  const posts = getPostsByTag(tag);
+  const { tag: tagSlug } = await params;
+  const posts = getPostsByTag(tagSlug);
 
   if (posts.length === 0) {
     notFound();
   }
+
+  const allTags = getAllTags();
+  const rawTag = allTags.find((t) => parseTag(t).slug === tagSlug);
+  const display = rawTag ? parseTag(rawTag).display : tagSlug;
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
@@ -36,7 +42,7 @@ export default async function TagPage({ params }: Props) {
       </Link>
 
       <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-        #{tag}
+        #{display}
       </h1>
 
       <ul className="space-y-8">
@@ -57,14 +63,17 @@ export default async function TagPage({ params }: Props) {
                   <span className="rounded bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300">
                     {post.category}
                   </span>
-                  {post.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs text-zinc-500 dark:text-zinc-400"
-                    >
-                      #{t}
-                    </span>
-                  ))}
+                  {post.tags.map((t) => {
+                    const parsed = parseTag(t);
+                    return (
+                      <span
+                        key={t}
+                        className="text-xs text-zinc-500 dark:text-zinc-400"
+                      >
+                        #{parsed.display}
+                      </span>
+                    );
+                  })}
                 </div>
               </Link>
             </article>
