@@ -69,7 +69,7 @@ git checkout -b feature/issue-{NUMBER}_{description}
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 ```
 
 **Best Practices:**
@@ -90,7 +90,7 @@ git commit -m "#877 Install PostCSS and configure plugins
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>"
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ```
 
 ---
@@ -235,7 +235,7 @@ git commit -m "#{N} {Description}
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>"
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 # 4. Push and create PR
 git push origin feature/issue-{N}_{desc}
@@ -282,6 +282,10 @@ git branch -d feature/issue-{N}_{desc}
 - Test before committing: `npm test`, `npm run build`
 - Keep commits atomic and focused
 - Update issue checklist as you progress
+- **Always use `--legacy-peer-deps`** for all npm install commands (Storybook/React version conflicts)
+- **Build components before blog**: `npm run build --workspace=@chirashi/components` then `npm run build --workspace=blog`
+- If blog build hangs, remove stale cache: `rm -rf apps/blog/.next`
+- See `CLAUDE.md` at project root for full architecture and tips
 
 ---
 

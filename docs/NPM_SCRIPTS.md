@@ -219,7 +219,7 @@ npm run build-storybook --workspace=@chirashi/components
 
 ## Content Package Scripts
 
-The `@chirashi/content` package holds MDX blog posts.
+The `@chirashi/content` package holds Markdown blog posts.
 
 ```bash
 # Validate content (placeholder - Phase 2)
