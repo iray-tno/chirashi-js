@@ -13,31 +13,35 @@ export default function Home() {
       <ul className="space-y-8">
         {posts.map((post) => (
           <li key={post.slug}>
-            <article className="group">
-              <Link
-                href={`/posts/${post.slug}`}
-                className="block rounded-lg p-4 -m-4 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-900"
-              >
-                <time className="text-sm text-zinc-500 dark:text-zinc-400">
-                  {post.date}
-                </time>
-                <h2 className="mt-1 text-xl font-semibold text-zinc-900 group-hover:text-blue-600 dark:text-zinc-100 dark:group-hover:text-blue-400">
+            <article className="rounded-lg p-4 -m-4">
+              <time className="text-sm text-zinc-500 dark:text-zinc-400">
+                {post.date}
+              </time>
+              <h2 className="mt-1 text-xl font-semibold">
+                <Link
+                  href={`/posts/${post.slug}`}
+                  className="text-zinc-900 hover:text-blue-600 dark:text-zinc-100 dark:hover:text-blue-400"
+                >
                   {post.title}
-                </h2>
-                <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <span className="rounded bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-700 dark:bg-zinc-700 dark:text-zinc-300">
-                    {post.category}
-                  </span>
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs text-zinc-500 dark:text-zinc-400"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </Link>
+                </Link>
+              </h2>
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <Link
+                  href={`/categories/${post.category}`}
+                  className="rounded bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-600"
+                >
+                  {post.category}
+                </Link>
+                {post.tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/tags/${tag}`}
+                    className="text-xs text-zinc-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400"
+                  >
+                    #{tag}
+                  </Link>
+                ))}
+              </div>
             </article>
           </li>
         ))}
