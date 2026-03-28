@@ -95,3 +95,37 @@ export function getPostBySlug(slug: string): PostWithContent | null {
 export function getAllSlugs(): string[] {
   return getAllPosts().map((post) => post.slug);
 }
+
+const TAG_REGEX = /^(.+)\(([^)]+)\)$/;
+
+/**
+ * Parse a tag like "競プロ(CompProg)" into { display: "競プロ", slug: "CompProg" }.
+ * Plain tags like "Python" return { display: "Python", slug: "Python" }.
+ */
+export function parseTag(tag: string): { display: string; slug: string } {
+  const match = tag.match(TAG_REGEX);
+  if (match) {
+    return { display: match[1], slug: match[2] };
+  }
+  return { display: tag, slug: tag };
+}
+
+export function getPostsByCategory(category: string): Post[] {
+  return getAllPosts().filter((post) => post.category === category);
+}
+
+export function getPostsByTag(tagSlug: string): Post[] {
+  return getAllPosts().filter((post) =>
+    post.tags.some((t) => parseTag(t).slug === tagSlug)
+  );
+}
+
+export function getAllCategories(): string[] {
+  const categories = new Set(getAllPosts().map((post) => post.category));
+  return [...categories].sort();
+}
+
+export function getAllTags(): string[] {
+  const tags = new Set(getAllPosts().flatMap((post) => post.tags));
+  return [...tags].sort();
+}
