@@ -95,3 +95,21 @@ export function getPostBySlug(slug: string): PostWithContent | null {
 export function getAllSlugs(): string[] {
   return getAllPosts().map((post) => post.slug);
 }
+
+export function getPostsByCategory(category: string): Post[] {
+  return getAllPosts().filter((post) => post.category === category);
+}
+
+export function getPostsByTag(tag: string): Post[] {
+  return getAllPosts().filter((post) => post.tags.includes(tag));
+}
+
+export function getAllCategories(): string[] {
+  const categories = new Set(getAllPosts().map((post) => post.category));
+  return [...categories].sort();
+}
+
+export function getAllTags(): string[] {
+  const tags = new Set(getAllPosts().flatMap((post) => post.tags));
+  return [...tags].sort();
+}
