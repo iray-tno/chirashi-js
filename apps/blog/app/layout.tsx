@@ -16,6 +16,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Chiranoura Blog",
   description: "Blog by iray_tno",
+  metadataBase: new URL("https://chiranoura.com"),
+  openGraph: {
+    siteName: "Chiranoura Blog",
+    type: "website",
+    locale: "ja_JP",
+  },
 };
 
 export default function RootLayout({

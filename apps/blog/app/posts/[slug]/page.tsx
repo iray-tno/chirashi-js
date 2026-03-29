@@ -33,6 +33,15 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${post.title} | Chiranoura Blog`,
     description: `${post.title} - ${post.category}`,
+    openGraph: {
+      title: post.title,
+      description: `${post.title} - ${post.category}`,
+      type: 'article',
+      url: `/posts/${slug}`,
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: post.tags,
+    },
   };
 }
 
