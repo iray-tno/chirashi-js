@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Chiranoura Blog",
   description: "Blog by iray_tno",
   metadataBase: new URL(SITE_URL),
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
   openGraph: {
     siteName: "Chiranoura Blog",
     type: "website",
