@@ -9,6 +9,15 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    a11y: {
+      // axe-core options
+      options: {
+        runOnly: {
+          type: 'tag',
+          values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
+        },
+      },
+    },
   },
 };
 
