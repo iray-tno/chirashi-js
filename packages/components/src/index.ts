@@ -6,3 +6,5 @@ export * from './article';
 export * from './markdown';
 // Re-export all MDX components
 export * from './mdx';
+// Re-export all UI components
+export * from './ui';
