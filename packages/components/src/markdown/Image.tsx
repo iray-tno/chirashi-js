@@ -4,33 +4,21 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   caption?: string;
 }
 
-export const Image: React.FC<ImageProps> = ({ caption, alt, ...props }) => {
+export const Image: React.FC<ImageProps> = ({ caption, alt, className, ...props }) => {
   const img = (
     <img
       alt={alt || ''}
       loading="lazy"
-      style={{
-        maxWidth: '100%',
-        height: 'auto',
-        borderRadius: '0.5rem',
-        display: 'block',
-      }}
+      className={`max-w-full h-auto rounded-lg block ${className || ''}`}
       {...props}
     />
   );
 
   if (caption) {
     return (
-      <figure style={{ margin: '1.5rem 0' }}>
+      <figure className="my-6">
         {img}
-        <figcaption
-          style={{
-            marginTop: '0.5rem',
-            fontSize: '0.875rem',
-            color: '#71717a',
-            textAlign: 'center',
-          }}
-        >
+        <figcaption className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 text-center">
           {caption}
         </figcaption>
       </figure>
