@@ -1,11 +1,37 @@
 name: Tests
-on: [push]
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
 jobs:
-  unittests:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Run Tests
-      run: |
-        yarn install
-        yarn test
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Biome check
+        run: npm run check
+
+      - name: Type check (components)
+        run: npm run type-check --workspace=@chirashi/components
+
+      - name: Unit tests (components)
+        run: npm test --workspace=@chirashi/components
+
+      - name: Build components
+        run: npm run build --workspace=@chirashi/components
+
+      - name: Build blog
+        run: npm run build --workspace=blog
