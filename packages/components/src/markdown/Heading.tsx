@@ -65,8 +65,6 @@ export const Heading: React.FC<HeadingProps> = ({
           left: '-1.25em',
           color: 'inherit',
           textDecoration: 'none',
-          opacity: 0,
-          transition: 'opacity 0.2s',
           fontWeight: 'normal',
         }}
         className="heading-anchor"
