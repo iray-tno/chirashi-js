@@ -30,10 +30,10 @@ export const ExternalLink: Story = {
 export const ExternalLinkInParagraph: Story = {
   render: () => (
     <p style={{ maxWidth: '40rem', lineHeight: 1.7 }}>
-      This blog is built with{' '}
-      <Anchor href="https://nextjs.org">Next.js</Anchor> and uses{' '}
-      <Anchor href="https://tailwindcss.com">Tailwind CSS</Anchor> for styling.
-      Check the <Anchor href="/docs">documentation</Anchor> for more details.
+      This blog is built with <Anchor href="https://nextjs.org">Next.js</Anchor>{' '}
+      and uses <Anchor href="https://tailwindcss.com">Tailwind CSS</Anchor> for
+      styling. Check the <Anchor href="/docs">documentation</Anchor> for more
+      details.
     </p>
   ),
 };

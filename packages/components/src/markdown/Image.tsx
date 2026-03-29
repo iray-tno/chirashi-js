@@ -1,10 +1,15 @@
-import React from 'react';
+import type React from 'react';
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   caption?: string;
 }
 
-export const Image: React.FC<ImageProps> = ({ caption, alt, className, ...props }) => {
+export const Image: React.FC<ImageProps> = ({
+  caption,
+  alt,
+  className,
+  ...props
+}) => {
   const img = (
     <img
       alt={alt || ''}

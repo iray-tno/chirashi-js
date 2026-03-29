@@ -1,22 +1,22 @@
-import React from 'react';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeReact from 'rehype-react';
-import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import {
   Anchor,
-  Heading,
   Blockquote,
-  Table,
-  TableHead,
-  TableCell,
+  Heading,
   Image,
+  Table,
+  TableCell,
+  TableHead,
 } from '@chirashi/components/markdown';
-import { getPostBySlug, getAllSlugs, parseTag } from '@/lib/posts';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type React from 'react';
+import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeReact from 'rehype-react';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
+import { getAllSlugs, getPostBySlug, parseTag } from '@/lib/posts';
 
 interface Props {
   params: Promise<{ slug: string }>;

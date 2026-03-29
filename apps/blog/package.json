@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "biome lint app lib",
+    "lint:fix": "biome lint --write app lib",
+    "format": "biome format --write app lib",
+    "format:check": "biome format app lib",
+    "check": "biome check app lib",
+    "check:fix": "biome check --write app lib"
   },
   "dependencies": {
     "@chirashi/components": "*",
@@ -24,12 +29,11 @@
     "unified": "^11.0.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

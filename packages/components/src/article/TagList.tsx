@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export interface TagListProps {
   tags: string[];
@@ -19,8 +19,9 @@ export const TagList: React.FC<TagListProps> = ({ tags, onTagClick }) => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
       {tags.map((tag) => (
-        <span
+        <button
           key={tag}
+          type="button"
           onClick={() => onTagClick?.(tag)}
           style={{
             padding: '0.25rem 0.75rem',
@@ -28,10 +29,11 @@ export const TagList: React.FC<TagListProps> = ({ tags, onTagClick }) => {
             borderRadius: '12px',
             fontSize: '0.875rem',
             cursor: onTagClick ? 'pointer' : 'default',
+            border: 'none',
           }}
         >
           {tag}
-        </span>
+        </button>
       ))}
     </div>
   );

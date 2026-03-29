@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { describe, it, expect } from 'vitest';
-import { Flashcard, FlashcardFront, FlashcardBack } from './Flashcard';
+import { describe, expect, it } from 'vitest';
+import { Flashcard, FlashcardBack, FlashcardFront } from './Flashcard';
 
 describe('Flashcard', () => {
   it('renders front content by default', () => {

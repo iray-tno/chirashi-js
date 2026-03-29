@@ -1,32 +1,32 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
-import { SITE_URL } from "@/lib/config";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import Link from 'next/link';
+import { SITE_URL } from '@/lib/config';
+import './globals.css';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Chiranoura Blog",
-  description: "Blog by iray_tno",
+  title: 'Chiranoura Blog',
+  description: 'Blog by iray_tno',
   metadataBase: new URL(SITE_URL),
   alternates: {
     types: {
-      "application/rss+xml": "/feed.xml",
+      'application/rss+xml': '/feed.xml',
     },
   },
   openGraph: {
-    siteName: "Chiranoura Blog",
-    type: "website",
-    locale: "ja_JP",
+    siteName: 'Chiranoura Blog',
+    type: 'website',
+    locale: 'ja_JP',
   },
 };
 

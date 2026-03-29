@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Table, TableHead, TableCell } from './Table';
+import { Table, TableCell, TableHead } from './Table';
 
 const meta = {
   title: 'Markdown/Table',
