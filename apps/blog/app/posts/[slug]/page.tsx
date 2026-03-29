@@ -94,9 +94,12 @@ export default async function PostPage({ params }: Props) {
           <time className="text-sm text-zinc-500 dark:text-zinc-400">
             {post.date}
           </time>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+          <Heading
+            level={1}
+            className="mt-2 tracking-tight text-zinc-900 dark:text-zinc-100"
+          >
             {post.title}
-          </h1>
+          </Heading>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <Link
               href={`/categories/${post.category}`}

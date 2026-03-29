@@ -63,10 +63,8 @@ export const Heading: React.FC<HeadingProps> = ({
         style={{
           position: 'absolute',
           left: '-1.25em',
-          color: '#a1a1aa',
+          color: 'inherit',
           textDecoration: 'none',
-          opacity: 0,
-          transition: 'opacity 0.2s',
           fontWeight: 'normal',
         }}
         className="heading-anchor"
