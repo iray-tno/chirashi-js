@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,6 +17,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Chiranoura Blog",
   description: "Blog by iray_tno",
+  metadataBase: new URL(SITE_URL),
+  openGraph: {
+    siteName: "Chiranoura Blog",
+    type: "website",
+    locale: "ja_JP",
+  },
 };
 
 export default function RootLayout({

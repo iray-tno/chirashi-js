@@ -1,5 +1,6 @@
 node_modules
-public
+/public
+!/apps/blog/public
 articles
 .cache
 .nyc_output
