@@ -1,5 +1,5 @@
-import { getAllPosts, parseTag } from '@/lib/posts';
 import { SITE_URL } from '@/lib/config';
+import { getAllPosts, parseTag } from '@/lib/posts';
 
 function escapeXml(text: string): string {
   return text

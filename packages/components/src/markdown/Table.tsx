@@ -1,14 +1,17 @@
-import React from 'react';
+import type React from 'react';
 
 export interface TableProps
   extends React.TableHTMLAttributes<HTMLTableElement> {
   children: React.ReactNode;
 }
 
-export const Table: React.FC<TableProps> = ({ children, className, ...props }) => {
+export const Table: React.FC<TableProps> = ({
+  children,
+  className,
+  ...props
+}) => {
   return (
-    <div
-      role="region"
+    <section
       aria-label="Data table"
       tabIndex={0}
       className="overflow-x-auto my-6"
@@ -19,7 +22,7 @@ export const Table: React.FC<TableProps> = ({ children, className, ...props }) =
       >
         {children}
       </table>
-    </div>
+    </section>
   );
 };
 

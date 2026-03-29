@@ -30,7 +30,8 @@ export const Flashcard: React.FC<FlashcardProps> = ({ children }) => {
   const content = childrenArray[isFlipped ? 1 : 0];
 
   return (
-    <div
+    <button
+      type="button"
       onClick={() => setIsFlipped(!isFlipped)}
       style={{
         padding: '2rem',
@@ -38,6 +39,7 @@ export const Flashcard: React.FC<FlashcardProps> = ({ children }) => {
         borderRadius: '8px',
         cursor: 'pointer',
         minHeight: '150px',
+        width: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -45,7 +47,7 @@ export const Flashcard: React.FC<FlashcardProps> = ({ children }) => {
       }}
     >
       {content}
-    </div>
+    </button>
   );
 };
 

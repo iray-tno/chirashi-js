@@ -1,10 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import {
-  getAllCategories,
-  getPostsByCategory,
-  parseTag,
-} from '@/lib/posts';
+import { getAllCategories, getPostsByCategory, parseTag } from '@/lib/posts';
 
 interface Props {
   params: Promise<{ category: string }>;

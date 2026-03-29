@@ -6,8 +6,8 @@ export { Image, type ImageProps } from './Image';
 export {
   Table,
   TableCell,
-  TableHead,
   type TableCellProps,
+  TableHead,
   type TableHeadProps,
   type TableProps,
 } from './Table';

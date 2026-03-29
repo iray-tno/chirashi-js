@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import matter from 'gray-matter';
 
 const POSTS_DIR = path.join(process.cwd(), '../../packages/content/posts');
@@ -25,7 +25,9 @@ interface PostFrontmatter {
 
 const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_\d{2}_(.+)\.md$/;
 
-function parseFilename(filename: string): { date: string; slug: string } | null {
+function parseFilename(
+  filename: string
+): { date: string; slug: string } | null {
   const match = filename.match(FILENAME_REGEX);
   if (!match) return null;
   return { date: match[1], slug: `${match[1]}_${match[2]}` };
