@@ -2,7 +2,6 @@ import {
   Anchor,
   Blockquote,
   Heading,
-  Image,
   Table,
   TableCell,
   TableHead,
@@ -16,6 +15,7 @@ import rehypeReact from 'rehype-react';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
+import { MarkdownImage } from '@/components/MarkdownImage';
 import { getAllSlugs, getPostBySlug, parseTag } from '@/lib/posts';
 
 interface Props {
@@ -72,7 +72,7 @@ async function renderMarkdown(content: string): Promise<React.JSX.Element> {
         thead: TableHead as any,
         th: (props: any) => <TableCell isHeader {...props} />,
         td: TableCell as any,
-        img: Image as any,
+        img: MarkdownImage as any,
       },
     })
     .process(content);
