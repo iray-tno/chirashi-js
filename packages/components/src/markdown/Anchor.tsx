@@ -13,6 +13,7 @@ function isExternal(href: string | undefined): boolean {
 export const Anchor: React.FC<AnchorProps> = ({
   href,
   children,
+  className,
   ...props
 }) => {
   const external = isExternal(href);
@@ -24,11 +25,7 @@ export const Anchor: React.FC<AnchorProps> = ({
         target: '_blank',
         rel: 'noopener noreferrer',
       })}
-      style={{
-        color: '#2563eb',
-        textDecoration: 'underline',
-        textUnderlineOffset: '2px',
-      }}
+      className={`text-blue-600 underline underline-offset-2 dark:text-blue-400 ${className || ''}`}
       {...props}
     >
       {children}
@@ -37,12 +34,7 @@ export const Anchor: React.FC<AnchorProps> = ({
           role="img"
           aria-label="opens in new tab"
           title="opens in new tab"
-          style={{
-            display: 'inline-block',
-            marginLeft: '0.2em',
-            fontSize: '0.75em',
-            verticalAlign: 'super',
-          }}
+          className="inline-block ml-0.5 text-xs align-super"
         >
           ↗
         </span>
