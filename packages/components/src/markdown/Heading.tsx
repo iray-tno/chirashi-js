@@ -48,13 +48,13 @@ export const Heading: React.FC<HeadingProps> = ({
   return (
     <Tag
       id={headingId}
-      className={`relative leading-tight ${headingStyles[level]} ${className || ''}`}
+      className={`group relative leading-tight ${headingStyles[level]} ${className || ''}`}
       {...props}
     >
       <a
         href={`#${headingId}`}
         aria-label={`Link to ${extractText(children)}`}
-        className="heading-anchor absolute -left-[1.25em] no-underline font-normal text-inherit"
+        className="absolute -left-[1.25em] no-underline font-normal text-inherit opacity-0 transition-opacity duration-150 group-hover:opacity-100"
       >
         #
       </a>

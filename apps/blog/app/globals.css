@@ -26,21 +26,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Heading anchor links */
-.heading-anchor {
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-h1:hover .heading-anchor,
-h2:hover .heading-anchor,
-h3:hover .heading-anchor,
-h4:hover .heading-anchor,
-h5:hover .heading-anchor,
-h6:hover .heading-anchor {
-  opacity: 1;
-}
-
 /* Syntax highlighting */
 [data-rehype-pretty-code-figure] pre {
   border-radius: 0.5rem;
