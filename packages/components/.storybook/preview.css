@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* Heading anchor links */
 .heading-anchor {
   opacity: 0;
