@@ -7,6 +7,8 @@ interface MarkdownImageProps {
   title?: string;
   caption?: string;
   className?: string;
+  width?: number | string;
+  height?: number | string;
 }
 
 export const MarkdownImage: React.FC<MarkdownImageProps> = ({
@@ -15,16 +17,22 @@ export const MarkdownImage: React.FC<MarkdownImageProps> = ({
   title,
   caption,
   className,
+  width,
+  height,
 }) => {
   if (!src) return null;
+
+  const hasSize = width && height;
+  const imgWidth = hasSize ? Number(width) : 0;
+  const imgHeight = hasSize ? Number(height) : 0;
 
   const img = (
     <NextImage
       src={src}
       alt={alt || ''}
       title={title}
-      width={0}
-      height={0}
+      width={imgWidth}
+      height={imgHeight}
       sizes="100vw"
       className={`w-full h-auto rounded-lg ${className || ''}`}
     />

@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type React from 'react';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
+import rehypeImgSize from 'rehype-img-size';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeReact from 'rehype-react';
 import remarkParse from 'remark-parse';
@@ -49,6 +50,7 @@ async function renderMarkdown(content: string): Promise<React.JSX.Element> {
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeImgSize, { dir: 'public' })
     .use(rehypePrettyCode, {
       theme: {
         dark: 'github-dark',
