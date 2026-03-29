@@ -26,6 +26,11 @@
       "types": "./dist/markdown/index.d.ts",
       "import": "./dist/markdown/index.mjs",
       "require": "./dist/markdown/index.js"
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.mjs",
+      "require": "./dist/ui/index.js"
     }
   },
   "files": [
