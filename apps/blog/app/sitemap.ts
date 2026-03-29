@@ -1,13 +1,12 @@
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/posts';
-
-const BASE_URL = 'https://chiranoura.com';
+import { SITE_URL } from '@/lib/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${BASE_URL}/posts/${post.slug}`,
+    url: `${SITE_URL}/posts/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly',
     priority: 0.7,
@@ -15,17 +14,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: BASE_URL,
+      url: SITE_URL,
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: `${BASE_URL}/categories`,
+      url: `${SITE_URL}/categories`,
       changeFrequency: 'weekly',
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/tags`,
+      url: `${SITE_URL}/tags`,
       changeFrequency: 'weekly',
       priority: 0.5,
     },
