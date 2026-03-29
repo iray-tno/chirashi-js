@@ -5,20 +5,16 @@ export interface TableProps
   children: React.ReactNode;
 }
 
-export const Table: React.FC<TableProps> = ({ children, ...props }) => {
+export const Table: React.FC<TableProps> = ({ children, className, ...props }) => {
   return (
     <div
       role="region"
       aria-label="Data table"
       tabIndex={0}
-      style={{ overflowX: 'auto', margin: '1.5rem 0' }}
+      className="overflow-x-auto my-6"
     >
       <table
-        style={{
-          width: '100%',
-          borderCollapse: 'collapse',
-          fontSize: '0.875rem',
-        }}
+        className={`w-full border-collapse text-sm ${className || ''}`}
         {...props}
       >
         {children}
@@ -34,13 +30,12 @@ export interface TableHeadProps
 
 export const TableHead: React.FC<TableHeadProps> = ({
   children,
+  className,
   ...props
 }) => {
   return (
     <thead
-      style={{
-        borderBottom: '2px solid #d4d4d8',
-      }}
+      className={`border-b-2 border-zinc-300 dark:border-zinc-600 ${className || ''}`}
       {...props}
     >
       {children}
@@ -57,17 +52,13 @@ export interface TableCellProps
 export const TableCell: React.FC<TableCellProps> = ({
   children,
   isHeader = false,
+  className,
   ...props
 }) => {
   const Tag = isHeader ? 'th' : 'td';
   return (
     <Tag
-      style={{
-        padding: '0.5rem 0.75rem',
-        textAlign: 'left',
-        borderBottom: '1px solid #e4e4e7',
-        ...(isHeader && { fontWeight: 600 }),
-      }}
+      className={`px-3 py-2 text-left border-b border-zinc-200 dark:border-zinc-700 ${isHeader ? 'font-semibold' : ''} ${className || ''}`}
       {...props}
     >
       {children}
