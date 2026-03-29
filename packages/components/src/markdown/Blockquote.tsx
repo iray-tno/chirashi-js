@@ -7,17 +7,12 @@ export interface BlockquoteProps
 
 export const Blockquote: React.FC<BlockquoteProps> = ({
   children,
+  className,
   ...props
 }) => {
   return (
     <blockquote
-      style={{
-        borderLeft: '4px solid #d4d4d8',
-        paddingLeft: '1rem',
-        margin: '1.5rem 0',
-        color: '#52525b',
-        fontStyle: 'italic',
-      }}
+      className={`border-l-4 border-zinc-300 dark:border-zinc-600 pl-4 my-6 text-zinc-600 dark:text-zinc-400 italic ${className || ''}`}
       {...props}
     >
       {children}

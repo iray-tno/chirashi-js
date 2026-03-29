@@ -6,13 +6,13 @@ export interface HeadingProps
   children: React.ReactNode;
 }
 
-const fontSizes: Record<number, string> = {
-  1: '2rem',
-  2: '1.5rem',
-  3: '1.25rem',
-  4: '1.125rem',
-  5: '1rem',
-  6: '0.875rem',
+const headingStyles: Record<number, string> = {
+  1: 'text-4xl font-bold mt-8 mb-3',
+  2: 'text-3xl font-bold mt-8 mb-3',
+  3: 'text-2xl font-bold mt-6 mb-3',
+  4: 'text-xl font-semibold mt-6 mb-3',
+  5: 'text-lg font-semibold mt-4 mb-2',
+  6: 'text-base font-semibold mt-4 mb-2',
 };
 
 function slugify(text: string): string {
@@ -39,6 +39,7 @@ export const Heading: React.FC<HeadingProps> = ({
   level,
   children,
   id,
+  className,
   ...props
 }) => {
   const Tag = `h${level}` as const;
@@ -47,27 +48,13 @@ export const Heading: React.FC<HeadingProps> = ({
   return (
     <Tag
       id={headingId}
-      style={{
-        fontSize: fontSizes[level],
-        fontWeight: level <= 3 ? 'bold' : '600',
-        lineHeight: 1.3,
-        marginTop: level <= 2 ? '2rem' : '1.5rem',
-        marginBottom: '0.75rem',
-        position: 'relative',
-      }}
+      className={`group relative leading-tight ${headingStyles[level]} ${className || ''}`}
       {...props}
     >
       <a
         href={`#${headingId}`}
         aria-label={`Link to ${extractText(children)}`}
-        style={{
-          position: 'absolute',
-          left: '-1.25em',
-          color: 'inherit',
-          textDecoration: 'none',
-          fontWeight: 'normal',
-        }}
-        className="heading-anchor"
+        className="absolute -left-[1.25em] no-underline font-normal text-inherit opacity-0 transition-opacity duration-150 group-hover:opacity-100"
       >
         #
       </a>
