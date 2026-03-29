@@ -33,9 +33,12 @@ function parseFilename(
   return { date: match[1], slug: `${match[1]}_${match[2]}` };
 }
 
-export function getAllPosts(): Post[] {
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
+let cachedPosts: Post[] | null = null;
 
+export function getAllPosts(): Post[] {
+  if (cachedPosts) return cachedPosts;
+
+  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
   const posts: Post[] = [];
 
   for (const file of files) {
@@ -60,7 +63,8 @@ export function getAllPosts(): Post[] {
 
   posts.sort((a, b) => b.date.localeCompare(a.date));
 
-  return posts;
+  cachedPosts = posts;
+  return cachedPosts;
 }
 
 export interface PostWithContent extends Post {
