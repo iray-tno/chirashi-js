@@ -2,7 +2,6 @@ import {
   Anchor,
   Blockquote,
   Heading,
-  Image,
   Table,
   TableCell,
   TableHead,
@@ -11,11 +10,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type React from 'react';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
+import rehypeImgSize from 'rehype-img-size';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeReact from 'rehype-react';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
+import { MarkdownImage } from '@/app/components/markdown-image';
 import { getAllSlugs, getPostBySlug, parseTag } from '@/lib/posts';
 
 interface Props {
@@ -49,6 +50,7 @@ async function renderMarkdown(content: string): Promise<React.JSX.Element> {
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeImgSize as any, { dir: 'public' })
     .use(rehypePrettyCode, {
       theme: {
         dark: 'github-dark',
@@ -72,7 +74,7 @@ async function renderMarkdown(content: string): Promise<React.JSX.Element> {
         thead: TableHead as any,
         th: (props: any) => <TableCell isHeader {...props} />,
         td: TableCell as any,
-        img: Image as any,
+        img: MarkdownImage as any,
       },
     })
     .process(content);
