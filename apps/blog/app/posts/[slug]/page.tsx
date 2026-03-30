@@ -18,6 +18,7 @@ import { unified } from 'unified';
 import { MarkdownImage } from '@/components/MarkdownImage';
 import { getAllSlugs, getPostBySlug, parseTag } from '@/lib/posts';
 import rehypeImgSizeSafe from '@/lib/rehype-img-size-safe';
+import remarkRewriteImages from '@/lib/remark-rewrite-images';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -49,6 +50,7 @@ export async function generateMetadata({ params }: Props) {
 async function renderMarkdown(content: string): Promise<React.JSX.Element> {
   const result = await unified()
     .use(remarkParse)
+    .use(remarkRewriteImages)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeImgSizeSafe as any, { dir: 'public' })
     .use(rehypePrettyCode, {
