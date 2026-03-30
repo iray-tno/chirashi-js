@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
-import { ThemeToggle as ThemeToggleBase } from '@chirashi/components/ui';
 import type { Theme } from '@chirashi/components/ui';
+import { ThemeToggle as ThemeToggleBase } from '@chirashi/components/ui';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const themes: Theme[] = ['light', 'dark', 'system'];
 
