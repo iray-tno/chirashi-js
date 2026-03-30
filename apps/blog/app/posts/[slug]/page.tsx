@@ -10,7 +10,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type React from 'react';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
-import rehypeImgSize from 'rehype-img-size';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeReact from 'rehype-react';
 import remarkParse from 'remark-parse';
@@ -18,6 +17,7 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { MarkdownImage } from '@/components/MarkdownImage';
 import { getAllSlugs, getPostBySlug, parseTag } from '@/lib/posts';
+import rehypeImgSizeSafe from '@/lib/rehype-img-size-safe';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -50,7 +50,7 @@ async function renderMarkdown(content: string): Promise<React.JSX.Element> {
   const result = await unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeImgSize, { dir: 'public' })
+    .use(rehypeImgSizeSafe as any, { dir: 'public' })
     .use(rehypePrettyCode, {
       theme: {
         dark: 'github-dark',
