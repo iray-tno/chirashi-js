@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { imageSize } from 'image-size';
 import { visit } from 'unist-util-visit';
@@ -22,7 +23,8 @@ export default function rehypeImgSizeSafe(
 
       const filePath = path.join(process.cwd(), options.dir, src);
       try {
-        const { width, height } = imageSize(filePath);
+        const buffer = fs.readFileSync(filePath);
+        const { width, height } = imageSize(buffer);
         if (width) node.properties.width = width;
         if (height) node.properties.height = height;
       } catch {

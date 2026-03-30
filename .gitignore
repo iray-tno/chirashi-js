@@ -1,7 +1,7 @@
 node_modules
 /public
 !/apps/blog/public
-articles
+/articles
 .cache
 .nyc_output
 coverage
