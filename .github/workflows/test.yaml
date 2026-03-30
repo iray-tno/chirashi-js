@@ -30,6 +30,9 @@ jobs:
       - name: Unit tests (components)
         run: npm test --workspace=@chirashi/components
 
+      - name: Unit tests (blog)
+        run: npm test --workspace=blog
+
       - name: Build components
         run: npm run build --workspace=@chirashi/components
 
