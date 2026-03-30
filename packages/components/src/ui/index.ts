@@ -1,1 +1,1 @@
-export { ThemeToggle, type Theme, type ThemeToggleProps } from './ThemeToggle';
+export { type Theme, ThemeToggle, type ThemeToggleProps } from './ThemeToggle';
