@@ -38,3 +38,17 @@ jobs:
 
       - name: Build blog
         run: npm run build --workspace=blog
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Storybook
+        run: npm run build-storybook --workspace=@chirashi/components
+
+      - name: Run Storybook a11y tests
+        run: |
+          npx http-server packages/components/storybook-static --port 6006 --silent &
+          npx wait-on http://localhost:6006
+          npm run test-storybook --workspace=@chirashi/components
+        env:
+          TARGET_URL: http://localhost:6006
