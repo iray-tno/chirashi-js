@@ -34,7 +34,9 @@ describe('Anchor', () => {
 
   it('renders the ↗ icon for external links', () => {
     render(<Anchor href="https://example.com">External</Anchor>);
-    expect(screen.getByRole('img', { name: /opens in new tab/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: /opens in new tab/i })
+    ).toBeInTheDocument();
   });
 
   it('does not render the ↗ icon for internal links', () => {
