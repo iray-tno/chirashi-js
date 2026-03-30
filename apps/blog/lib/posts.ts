@@ -24,6 +24,7 @@ interface PostFrontmatter {
 }
 
 const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_\d{2}_(.+)\.md$/;
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 function parseFilename(
   filename: string
@@ -31,6 +32,37 @@ function parseFilename(
   const match = filename.match(FILENAME_REGEX);
   if (!match) return null;
   return { date: match[1], slug: `${match[1]}_${match[2]}` };
+}
+
+function validateFrontmatter(
+  filename: string,
+  data: PostFrontmatter,
+  date: string
+): void {
+  const errors: string[] = [];
+
+  if (!data.title || typeof data.title !== 'string' || data.title.trim() === '')
+    errors.push('missing or empty "title"');
+  if (
+    !data.author ||
+    typeof data.author !== 'string' ||
+    data.author.trim() === ''
+  )
+    errors.push('missing or empty "author"');
+  if (
+    !data.category ||
+    typeof data.category !== 'string' ||
+    data.category.trim() === ''
+  )
+    errors.push('missing or empty "category"');
+  if (!Array.isArray(data.tags)) errors.push('"tags" must be an array');
+  if (!DATE_REGEX.test(date)) errors.push(`invalid date format "${date}"`);
+
+  if (errors.length > 0) {
+    throw new Error(
+      `Frontmatter validation failed for "${filename}":\n  - ${errors.join('\n  - ')}`
+    );
+  }
 }
 
 let cachedPosts: Post[] | null = null;
@@ -50,6 +82,8 @@ export function getAllPosts(): Post[] {
     const frontmatter = data as PostFrontmatter;
 
     if (frontmatter.publish === false) continue;
+
+    validateFrontmatter(file, frontmatter, parsed.date);
 
     posts.push({
       slug: parsed.slug,
@@ -83,6 +117,8 @@ export function getPostBySlug(slug: string): PostWithContent | null {
     const frontmatter = data as PostFrontmatter;
 
     if (frontmatter.publish === false) return null;
+
+    validateFrontmatter(file, frontmatter, parsed.date);
 
     return {
       slug: parsed.slug,

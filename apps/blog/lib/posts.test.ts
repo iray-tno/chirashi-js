@@ -164,6 +164,47 @@ describe('getPostsByTag', () => {
   });
 });
 
+describe('frontmatter validation', () => {
+  beforeEach(() => {
+    vi.resetModules();
+    vi.clearAllMocks();
+  });
+
+  it.each([
+    'title',
+    'author',
+    'category',
+  ] as const)('throws when "%s" is missing', async (field) => {
+    const broken = MOCK_POST_MD.replace(
+      new RegExp(`${field}: [^\n]+`),
+      `${field}: ''`
+    );
+    setupFsMock({ '2024-01-15_01_broken.md': broken });
+
+    const { getAllPosts } = await import('./posts');
+    expect(() => getAllPosts()).toThrow(/missing or empty/);
+  });
+
+  it('throws when tags is not an array', async () => {
+    const broken = MOCK_POST_MD.replace(
+      "tags: [Python, '競プロ(CompProg)']",
+      'tags: not-an-array'
+    );
+    setupFsMock({ '2024-01-15_01_broken.md': broken });
+
+    const { getAllPosts } = await import('./posts');
+    expect(() => getAllPosts()).toThrow(/"tags" must be an array/);
+  });
+
+  it('includes the filename in the error message', async () => {
+    const broken = MOCK_POST_MD.replace('title: Test Post', "title: ''");
+    setupFsMock({ '2024-01-15_01_broken.md': broken });
+
+    const { getAllPosts } = await import('./posts');
+    expect(() => getAllPosts()).toThrow('2024-01-15_01_broken.md');
+  });
+});
+
 describe('getPostsByCategory', () => {
   beforeEach(() => {
     vi.resetModules();
