@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "copy-images": "mkdir -p public/img && cp -r ../../packages/content/images/* public/img/",
-    "predev": "npm run copy-images",
+    "predev": "npm run copy-images && npm run build --workspace=@chirashi/components",
     "dev": "next dev",
-    "prebuild": "npm run copy-images",
+    "prebuild": "npm run copy-images && npm run build --workspace=@chirashi/components",
     "build": "next build",
     "start": "next start",
     "lint": "biome lint app lib",
