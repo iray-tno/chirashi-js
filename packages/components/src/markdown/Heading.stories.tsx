@@ -18,6 +18,13 @@ export const H1: Story = {
     level: 1,
     children: 'Main Title',
   },
+  decorators: [
+    (Story) => (
+      <div className="pl-8">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const H2: Story = {
@@ -25,6 +32,13 @@ export const H2: Story = {
     level: 2,
     children: 'Section Heading',
   },
+  decorators: [
+    (Story) => (
+      <div className="pl-8">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const H3: Story = {
@@ -32,11 +46,18 @@ export const H3: Story = {
     level: 3,
     children: 'Subsection Heading',
   },
+  decorators: [
+    (Story) => (
+      <div className="pl-8">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const AllLevels: Story = {
   render: () => (
-    <div>
+    <div className="pl-8">
       <Heading level={1}>Heading Level 1</Heading>
       <p>Some paragraph text below the heading.</p>
       <Heading level={2}>Heading Level 2</Heading>
@@ -55,8 +76,7 @@ export const AllLevels: Story = {
 
 export const WithAnchorLink: Story = {
   render: () => (
-    <div>
-      <style>{`.heading-anchor:hover, h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1 !important; }`}</style>
+    <div className="pl-8">
       <Heading level={2}>Hover to See Anchor Link</Heading>
       <p>Hover the heading above to see the # anchor link appear.</p>
     </div>
