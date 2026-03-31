@@ -53,7 +53,7 @@ export const Heading: React.FC<HeadingProps> = ({
       <a
         href={`#${headingId}`}
         aria-label={`Link to ${extractText(children)}`}
-        className="absolute right-full pr-2 no-underline font-normal text-inherit opacity-0 transition-opacity duration-150 group-hover:opacity-100 focus:opacity-100"
+        className="absolute right-full no-underline font-normal text-inherit opacity-0 transition-opacity duration-150 group-hover:opacity-100 focus:opacity-100"
       >
         #
       </a>
