@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
