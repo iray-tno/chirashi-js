@@ -16,6 +16,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { MarkdownImage } from '@/components/MarkdownImage';
+import { DisqusComments } from '@/components/DisqusComments';
 import { getAllSlugs, getPostBySlug, parseTag } from '@/lib/posts';
 import rehypeImgSizeSafe from '@/lib/rehype-img-size-safe';
 import remarkRewriteImages from '@/lib/remark-rewrite-images';
@@ -137,6 +138,14 @@ export default async function PostPage({ params }: Props) {
 
         <div className="prose prose-zinc dark:prose-invert max-w-none">
           {rendered}
+        </div>
+
+        <div className="mt-16">
+          <DisqusComments
+            identifier={post.legacyPath}
+            url={`http://chiraoura.nobody.jp${post.legacyPath}`}
+            title={post.title}
+          />
         </div>
       </article>
     </div>

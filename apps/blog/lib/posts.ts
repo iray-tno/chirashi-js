@@ -11,6 +11,7 @@ export interface Post {
   author: string;
   category: string;
   tags: string[];
+  legacyPath: string;
 }
 
 interface PostFrontmatter {
@@ -23,15 +24,20 @@ interface PostFrontmatter {
   publish?: boolean;
 }
 
-const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_\d{2}_(.+)\.md$/;
+const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_(\d{2})_(.+)\.md$/;
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 function parseFilename(
   filename: string
-): { date: string; slug: string } | null {
+): { date: string; slug: string; legacyPath: string } | null {
   const match = filename.match(FILENAME_REGEX);
   if (!match) return null;
-  return { date: match[1], slug: `${match[1]}_${match[2]}` };
+  const stem = filename.slice(0, -3); // remove .md
+  return {
+    date: match[1],
+    slug: `${match[1]}_${match[3]}`,
+    legacyPath: `/articles/${stem}/`,
+  };
 }
 
 function validateFrontmatter(
@@ -92,6 +98,7 @@ export function getAllPosts(): Post[] {
       author: frontmatter.author,
       category: frontmatter.category,
       tags: frontmatter.tags ?? [],
+      legacyPath: parsed.legacyPath,
     });
   }
 
@@ -127,6 +134,7 @@ export function getPostBySlug(slug: string): PostWithContent | null {
       author: frontmatter.author,
       category: frontmatter.category,
       tags: frontmatter.tags ?? [],
+      legacyPath: parsed.legacyPath,
       content,
     };
   }
