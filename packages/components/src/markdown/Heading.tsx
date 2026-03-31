@@ -17,10 +17,10 @@ const headingStyles: Record<number, string> = {
 function slugify(text: string): string {
   return text
     .toString()
-    .toLowerCase()
     .trim()
+    .toLowerCase()
     .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '')
+    .replace(/[^\p{L}\p{N}_-]/gu, '')
     .replace(/--+/g, '-');
 }
 
@@ -53,7 +53,7 @@ export const Heading: React.FC<HeadingProps> = ({
       <a
         href={`#${headingId}`}
         aria-label={`Link to ${extractText(children)}`}
-        className="absolute left-0 -translate-x-full pr-1 no-underline font-normal text-inherit opacity-0 transition-opacity duration-150 group-hover:opacity-100 focus:opacity-100"
+        className="absolute right-full no-underline font-normal text-inherit opacity-0 transition-opacity duration-150 group-hover:opacity-100 focus:opacity-100"
       >
         #
       </a>
