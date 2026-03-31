@@ -17,10 +17,10 @@ const headingStyles: Record<number, string> = {
 function slugify(text: string): string {
   return text
     .toString()
-    .toLowerCase()
     .trim()
+    .toLowerCase()
     .replace(/\s+/g, '-')
-    .replace(/[^\w-]+/g, '')
+    .replace(/[^\p{L}\p{N}_-]/gu, '')
     .replace(/--+/g, '-');
 }
 

@@ -69,6 +69,7 @@
     "@storybook/react-vite": "^9.1.20",
     "@storybook/test-runner": "^0.24.3",
     "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.2",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^14.3.1",
