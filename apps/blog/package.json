@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "copy-images": "mkdir -p public/img && cp -r ../../packages/content/images/* public/img/",
+    "copy-images": "shx mkdir -p public/img && shx cp -r ../../packages/content/images/* public/img/",
     "predev": "npm run copy-images && npm run build --workspace=@chirashi/components",
     "dev": "next dev",
     "prebuild": "npm run copy-images && npm run build --workspace=@chirashi/components",
@@ -45,6 +45,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.1",
+    "shx": "^0.4.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.2"
