@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 vi.mock('node:fs');
 
 import * as fs from 'node:fs';
+import { basename } from 'node:path';
 
 const MOCK_POST = `---
 title: Hello World
@@ -18,7 +19,7 @@ function setupFsMock(files: Record<string, string>) {
     Object.keys(files) as unknown as ReturnType<typeof fs.readdirSync>
   );
   vi.mocked(fs.readFileSync).mockImplementation((filePath) => {
-    const name = String(filePath).split('/').pop() ?? '';
+    const name = basename(String(filePath));
     if (name in files) return files[name];
     throw new Error(`ENOENT: ${filePath}`);
   });
