@@ -11,7 +11,7 @@ priority: 1.0
 
 #### はじめに
 
-[Cygwin上でpipとsetuptoolsをインストールする方法](/articles/2014-03-04_01_how_to_install_pip_and_setuptools/)で書いた、Cygwin64で最新版のpipが動かない問題の解決策がわかったので書き直しました。
+[Cygwin上でpipとsetuptoolsをインストールする方法](/posts/2014-03-04_how_to_install_pip_and_setuptools)で書いた、Cygwin64で最新版のpipが動かない問題の解決策がわかったので書き直しました。
 
 Cygwinのsetup-x86_64.exeから、`binutils` と `libuuid-devel` の２つのパッケージを追加でインストールすれば動くようになります。64bitのwindows8とwindows7で確認しました。
 

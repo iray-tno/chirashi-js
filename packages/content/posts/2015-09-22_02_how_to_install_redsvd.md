@@ -24,7 +24,7 @@ redsvdを使うと大規模疎行列に対する特異値分解が高速に計�
 
 #### 依存の解決
 
-redsvdはEigenを使っているのでインストールしてないなら、[CygwinにEigenをインストール](/articles/2015-09-22_01_how_to_install_eigen/)を見て。
+redsvdはEigenを使っているのでインストールしてないなら、[CygwinにEigenをインストール](/posts/2015-09-22_how_to_install_eigen)を見て。
 
 また、redsvdはビルドシステムにwafを使っているのでPythonが必要になります。
 

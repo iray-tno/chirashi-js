@@ -15,8 +15,8 @@ SciPyというライブラリを使うとPythonで簡単に最適化問題が解
 
 pipとmatplotlibを先にインストールしておきましょう。
 
-- [Cygwin上でpipとsetuptoolsをインストールする方法](/articles/2014-05-27_01_how_to_install_pip_and_setuptools/)
-- [Cygwin上でMatplotlibをインストールする。](/articles/2014-10-08_01_how_to_install_matplotlib_on_cygwin/)
+- [Cygwin上でpipとsetuptoolsをインストールする方法](/posts/2014-05-27_how_to_install_pip_and_setuptools)
+- [Cygwin上でMatplotlibをインストールする。](/posts/2014-10-08_how_to_install_matplotlib_on_cygwin)
 
 <!-- headline -->
 
