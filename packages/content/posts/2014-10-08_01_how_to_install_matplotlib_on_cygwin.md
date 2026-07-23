@@ -13,7 +13,7 @@ priority: 1.0
 
 Matplotlibの1.4.0がリリースされたようです。
 
-それに伴って[Cygwin上でMatplotlibをインストールする。](/articles/2014-03-20_01_how_to_install_matplotlib_on_cygwin/)で書いたバグも直っているようです。記事に書いたパッチの適用は必要なくなりました。
+それに伴って[Cygwin上でMatplotlibをインストールする。](/posts/2014-03-20_how_to_install_matplotlib_on_cygwin)で書いたバグも直っているようです。記事に書いたパッチの適用は必要なくなりました。
 
 つまり、依存するパッケージをインストールして、pipを動くようにしたら`pip install matplotlib`とするだけでインストールは完了です。
 
@@ -47,7 +47,7 @@ cygwinのsetup-x86_64.exeから以下のパッケージをインストールし�
 
 #### pipのインストール
 
-Matplotlibのインストールにpipを使うので上でインストールしたsetuptoolsを使ってpipをインストールします。（[Cygwin上でpipとsetuptoolsをインストールする方法](/articles/2014-03-04_01_how_to_install_pip_and_setuptools/)）
+Matplotlibのインストールにpipを使うので上でインストールしたsetuptoolsを使ってpipをインストールします。（[Cygwin上でpipとsetuptoolsをインストールする方法](/posts/2014-03-04_how_to_install_pip_and_setuptools)）
 
 ```plain
 $ easy_install-2.7 pip
