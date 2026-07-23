@@ -170,20 +170,19 @@ describe('frontmatter validation', () => {
     vi.clearAllMocks();
   });
 
-  it.each([
-    'title',
-    'author',
-    'category',
-  ] as const)('throws when "%s" is missing', async (field) => {
-    const broken = MOCK_POST_MD.replace(
-      new RegExp(`${field}: [^\n]+`),
-      `${field}: ''`
-    );
-    setupFsMock({ '2024-01-15_01_broken.md': broken });
+  it.each(['title', 'author', 'category'] as const)(
+    'throws when "%s" is missing',
+    async (field) => {
+      const broken = MOCK_POST_MD.replace(
+        new RegExp(`${field}: [^\n]+`),
+        `${field}: ''`
+      );
+      setupFsMock({ '2024-01-15_01_broken.md': broken });
 
-    const { getAllPosts } = await import('./posts');
-    expect(() => getAllPosts()).toThrow(/missing or empty/);
-  });
+      const { getAllPosts } = await import('./posts');
+      expect(() => getAllPosts()).toThrow(/missing or empty/);
+    }
+  );
 
   it('throws when tags is not an array', async () => {
     const broken = MOCK_POST_MD.replace(
