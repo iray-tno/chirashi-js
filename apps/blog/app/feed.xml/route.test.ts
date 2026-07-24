@@ -38,14 +38,14 @@ describe('feed.xml route', () => {
   });
 
   it('returns application/rss+xml content-type', async () => {
-    setupFsMock({ '2024-01-15_01_hello-world.md': MOCK_POST });
+    setupFsMock({ '2024-01-15_01_hello-world.mdx': MOCK_POST });
     const { GET } = await import('./route');
     const response = await GET();
     expect(response.headers.get('Content-Type')).toMatch('application/rss+xml');
   });
 
   it('returns valid RSS XML with channel and items', async () => {
-    setupFsMock({ '2024-01-15_01_hello-world.md': MOCK_POST });
+    setupFsMock({ '2024-01-15_01_hello-world.mdx': MOCK_POST });
     const { GET } = await import('./route');
     const response = await GET();
     const xml = await response.text();

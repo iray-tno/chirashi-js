@@ -24,7 +24,7 @@ interface PostFrontmatter {
   publish?: boolean;
 }
 
-const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_(\d{2})_(.+)\.md$/;
+const FILENAME_REGEX = /^(\d{4}-\d{2}-\d{2})_(\d{2})_(.+)\.mdx$/;
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
 function parseFilename(
@@ -32,7 +32,7 @@ function parseFilename(
 ): { date: string; slug: string; legacyPath: string } | null {
   const match = filename.match(FILENAME_REGEX);
   if (!match) return null;
-  const stem = filename.slice(0, -3); // remove .md
+  const stem = filename.slice(0, -4); // remove .mdx
   return {
     date: match[1],
     slug: `${match[1]}_${match[3]}`,
@@ -76,7 +76,7 @@ let cachedPosts: Post[] | null = null;
 export function getAllPosts(): Post[] {
   if (cachedPosts) return cachedPosts;
 
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
+  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.mdx'));
   const posts: Post[] = [];
 
   for (const file of files) {
@@ -113,7 +113,7 @@ export interface PostWithContent extends Post {
 }
 
 export function getPostBySlug(slug: string): PostWithContent | null {
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md'));
+  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.mdx'));
 
   for (const file of files) {
     const parsed = parseFilename(file);

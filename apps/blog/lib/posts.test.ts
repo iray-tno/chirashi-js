@@ -79,7 +79,7 @@ describe('getAllPosts', () => {
 
   it('parses a valid markdown post file', async () => {
     setupFsMock({
-      '2024-01-15_01_hello-world.md': MOCK_POST_MD,
+      '2024-01-15_01_hello-world.mdx': MOCK_POST_MD,
     });
 
     const { getAllPosts } = await import('./posts');
@@ -97,8 +97,8 @@ describe('getAllPosts', () => {
 
   it('filters out posts with publish: false', async () => {
     setupFsMock({
-      '2024-01-15_01_published.md': MOCK_POST_MD,
-      '2024-01-16_01_draft.md': UNPUBLISHED_POST_MD,
+      '2024-01-15_01_published.mdx': MOCK_POST_MD,
+      '2024-01-16_01_draft.mdx': UNPUBLISHED_POST_MD,
     });
 
     const { getAllPosts } = await import('./posts');
@@ -111,7 +111,7 @@ describe('getAllPosts', () => {
   it('ignores files that do not match the filename pattern', async () => {
     setupFsMock({
       'README.md': MOCK_POST_MD,
-      '2024-01-15_01_valid.md': MOCK_POST_MD,
+      '2024-01-15_01_valid.mdx': MOCK_POST_MD,
     });
 
     const { getAllPosts } = await import('./posts');
@@ -122,8 +122,8 @@ describe('getAllPosts', () => {
 
   it('sorts posts by date descending', async () => {
     setupFsMock({
-      '2024-01-01_01_older.md': MOCK_POST_MD.replace('Test Post', 'Older'),
-      '2024-06-15_01_newer.md': MOCK_POST_MD.replace('Test Post', 'Newer'),
+      '2024-01-01_01_older.mdx': MOCK_POST_MD.replace('Test Post', 'Older'),
+      '2024-06-15_01_newer.mdx': MOCK_POST_MD.replace('Test Post', 'Newer'),
     });
 
     const { getAllPosts } = await import('./posts');
@@ -135,7 +135,7 @@ describe('getAllPosts', () => {
 
   it('caches the result on repeated calls', async () => {
     setupFsMock({
-      '2024-01-15_01_hello.md': MOCK_POST_MD,
+      '2024-01-15_01_hello.mdx': MOCK_POST_MD,
     });
 
     const { getAllPosts } = await import('./posts');
@@ -155,7 +155,7 @@ describe('getPostsByTag', () => {
 
   it('returns posts matching by slug (parenthesized part)', async () => {
     setupFsMock({
-      '2024-01-15_01_hello.md': MOCK_POST_MD,
+      '2024-01-15_01_hello.mdx': MOCK_POST_MD,
     });
 
     const { getPostsByTag } = await import('./posts');
@@ -178,7 +178,7 @@ describe('frontmatter validation', () => {
         new RegExp(`${field}: [^\n]+`),
         `${field}: ''`
       );
-      setupFsMock({ '2024-01-15_01_broken.md': broken });
+      setupFsMock({ '2024-01-15_01_broken.mdx': broken });
 
       const { getAllPosts } = await import('./posts');
       expect(() => getAllPosts()).toThrow(/missing or empty/);
@@ -190,7 +190,7 @@ describe('frontmatter validation', () => {
       "tags: [Python, '競プロ(CompProg)']",
       'tags: not-an-array'
     );
-    setupFsMock({ '2024-01-15_01_broken.md': broken });
+    setupFsMock({ '2024-01-15_01_broken.mdx': broken });
 
     const { getAllPosts } = await import('./posts');
     expect(() => getAllPosts()).toThrow(/"tags" must be an array/);
@@ -198,10 +198,10 @@ describe('frontmatter validation', () => {
 
   it('includes the filename in the error message', async () => {
     const broken = MOCK_POST_MD.replace('title: Test Post', "title: ''");
-    setupFsMock({ '2024-01-15_01_broken.md': broken });
+    setupFsMock({ '2024-01-15_01_broken.mdx': broken });
 
     const { getAllPosts } = await import('./posts');
-    expect(() => getAllPosts()).toThrow('2024-01-15_01_broken.md');
+    expect(() => getAllPosts()).toThrow('2024-01-15_01_broken.mdx');
   });
 });
 
@@ -213,7 +213,7 @@ describe('getPostsByCategory', () => {
 
   it('returns posts in the given category', async () => {
     setupFsMock({
-      '2024-01-15_01_hello.md': MOCK_POST_MD,
+      '2024-01-15_01_hello.mdx': MOCK_POST_MD,
     });
 
     const { getPostsByCategory } = await import('./posts');
