@@ -46,6 +46,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.1",
+    "remark-stringify": "^11.0.0",
     "shx": "^0.4.0",
     "tailwindcss": "^4",
     "typescript": "^5",
