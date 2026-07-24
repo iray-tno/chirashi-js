@@ -6,6 +6,7 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { SITE_URL } from '@/lib/config';
 import { getAllPosts, getPostBySlug, parseTag } from '@/lib/posts';
+import remarkStripMdxComponents from '@/lib/remark-strip-mdx-components';
 
 function escapeXml(text: string): string {
   return text
@@ -19,6 +20,7 @@ function escapeXml(text: string): string {
 async function markdownToHtml(markdown: string): Promise<string> {
   const result = await unified()
     .use(remarkParse)
+    .use(remarkStripMdxComponents)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(markdown);

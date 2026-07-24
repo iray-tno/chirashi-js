@@ -20,6 +20,7 @@
   "dependencies": {
     "@chirashi/components": "*",
     "@chirashi/content": "*",
+    "@mdx-js/mdx": "^3.1.1",
     "@tailwindcss/typography": "^0.5.19",
     "disqus-react": "^1.1.7",
     "gray-matter": "^4.0.3",
@@ -45,6 +46,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.1",
+    "remark-stringify": "^11.0.0",
     "shx": "^0.4.0",
     "tailwindcss": "^4",
     "typescript": "^5",

@@ -20,8 +20,6 @@ Codeforces Round #333 Div. 2 Prob. B. Approximating a Constant Range
 
 解けたけど効率悪い実装していたので書いておく。
 
-<!-- headline -->
-
 #### 考え方
 
 multisetに数字を突っ込んだり削除したりしながらしゃくとりするだけ。計算量はO(nlogn)
@@ -32,7 +30,7 @@ ACしたけどmultisetの挙動がよくわからず40分ぐらいかかった�
 
 - 最大値や最小値を取り出すのはrbeginやbeginを使うと楽。（なんとか_boundを使うよりバグりにくい）
 
-- multiset\<int,greater<int\>>みたいに宣言すると大きい順に並ぶようにできる
+- `multiset<int,greater<int>>`みたいに宣言すると大きい順に並ぶようにできる
 
 set、multiset、map、multimap、dequeなどは良く忘れるのでまとめた記事を書きたい。
 

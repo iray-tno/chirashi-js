@@ -19,8 +19,6 @@ Codeforces Round #344 Div. 2 Prob. A. Interview
 ある配列xについて、lからrまでの区間ですべての要素のorをとったものを、f(x,l,r)と定義する。
 与えられた２つの配列a,bについて、max f(a,l,r)+f(b,l,r)を求める。
 
-<!-- headline -->
-
 #### 考え方
 
 lとrについて全探索するだけ。計算量はO(n^2)。Div2のAにしては難しい気がするし１０分くらいかかった。
@@ -62,3 +60,14 @@ int main() {
     return 0;
 }
 ```
+
+#### 復習
+
+<Flashcard>
+<FlashcardFront>
+この問題の計算量は？
+</FlashcardFront>
+<FlashcardBack>
+O(n^2)（lとrについて全探索）
+</FlashcardBack>
+</Flashcard>

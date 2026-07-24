@@ -38,7 +38,7 @@ describe('sitemap', () => {
   });
 
   it('includes static pages and post entries', async () => {
-    setupFsMock({ '2024-01-15_01_hello-world.md': MOCK_POST });
+    setupFsMock({ '2024-01-15_01_hello-world.mdx': MOCK_POST });
     const { default: sitemap } = await import('./sitemap');
     const entries = sitemap();
     const urls = entries.map((e) => e.url);
@@ -54,7 +54,7 @@ describe('sitemap', () => {
   });
 
   it('sets lastModified from post date', async () => {
-    setupFsMock({ '2024-01-15_01_hello-world.md': MOCK_POST });
+    setupFsMock({ '2024-01-15_01_hello-world.mdx': MOCK_POST });
     const { default: sitemap } = await import('./sitemap');
     const entries = sitemap();
     const post = entries.find((e) => e.url.includes('/posts/'));
