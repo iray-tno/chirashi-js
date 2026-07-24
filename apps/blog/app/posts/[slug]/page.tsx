@@ -1,25 +1,10 @@
-import {
-  Anchor,
-  Blockquote,
-  Heading,
-  Table,
-  TableCell,
-  TableHead,
-} from '@chirashi/components/markdown';
+import { Heading } from '@chirashi/components/markdown';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import type React from 'react';
-import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeReact from 'rehype-react';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import { unified } from 'unified';
 import { DisqusComments } from '@/components/DisqusComments';
-import { MarkdownImage } from '@/components/MarkdownImage';
+import { mdxComponents } from '@/lib/mdx-components';
 import { getAllSlugs, getPostBySlug, parseTag } from '@/lib/posts';
-import rehypeImgSizeSafe from '@/lib/rehype-img-size-safe';
-import remarkRewriteImages from '@/lib/remark-rewrite-images';
+import { compileMdx } from '@/lib/render-mdx';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -48,42 +33,6 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-async function renderMarkdown(content: string): Promise<React.JSX.Element> {
-  const result = await unified()
-    .use(remarkParse)
-    .use(remarkRewriteImages)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeImgSizeSafe as any, { dir: 'public' })
-    .use(rehypePrettyCode, {
-      theme: {
-        dark: 'github-dark',
-        light: 'github-light',
-      },
-    })
-    .use(rehypeReact as any, {
-      Fragment,
-      jsx: jsx as any,
-      jsxs: jsxs as any,
-      components: {
-        a: Anchor as any,
-        h1: (props: any) => <Heading level={1} {...props} />,
-        h2: (props: any) => <Heading level={2} {...props} />,
-        h3: (props: any) => <Heading level={3} {...props} />,
-        h4: (props: any) => <Heading level={4} {...props} />,
-        h5: (props: any) => <Heading level={5} {...props} />,
-        h6: (props: any) => <Heading level={6} {...props} />,
-        blockquote: Blockquote as any,
-        table: Table as any,
-        thead: TableHead as any,
-        th: (props: any) => <TableCell isHeader {...props} />,
-        td: TableCell as any,
-        img: MarkdownImage as any,
-      },
-    })
-    .process(content);
-  return result.result as React.JSX.Element;
-}
-
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -92,7 +41,7 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const rendered = await renderMarkdown(post.content);
+  const MDXContent = await compileMdx(post.content);
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">
@@ -137,7 +86,7 @@ export default async function PostPage({ params }: Props) {
         </header>
 
         <div className="prose prose-zinc dark:prose-invert max-w-none">
-          {rendered}
+          <MDXContent components={mdxComponents} />
         </div>
 
         <div className="mt-16">
